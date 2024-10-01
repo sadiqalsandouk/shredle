@@ -7,11 +7,9 @@ import {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card"
 
 type CardComponentProps = {
-  title: string
   description: string
   content: string
   buttons?: string[]
@@ -19,7 +17,6 @@ type CardComponentProps = {
 }
 
 export const CardComponent: React.FC<CardComponentProps> = ({
-  title,
   description,
   content,
   buttons,
@@ -28,13 +25,12 @@ export const CardComponent: React.FC<CardComponentProps> = ({
   return (
     <div className="flex justify-center items-center h-screen">
       <Card className="max-w-md mx-auto">
-        <CardHeader className="mb-4">
-          <Avatar>
+        <CardHeader className="flex flex-col items-center justify-center">
+          <Avatar className="w-40 h-40 mb-4">
             <AvatarImage src={avatarUrl} />
             <AvatarFallback>testfallback</AvatarFallback>
           </Avatar>
-          <CardTitle className="text-center">{title}</CardTitle>
-          <CardDescription className="mt-2 text-center">
+          <CardDescription className="text-center">
             {description}
           </CardDescription>
         </CardHeader>
