@@ -6,9 +6,7 @@ import { CardComponent } from "./CardComponent"
 export default function Game() {
   const { data } = useFoodData()
   const foodItems: FoodItem[] | undefined = data?.foodData?.foodItems
-  if (foodItems) {
-    console.log(foodItems[0])
-  }
+
   return (
     <div className="flex flex-wrap justify-center items-center min-h-screen">
       {foodItems ? (
