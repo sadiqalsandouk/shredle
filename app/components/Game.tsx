@@ -22,7 +22,7 @@ export default function Game() {
   const handleHigher = () => {
     if (
       foodItems &&
-      foodItems[currentIndex + 1].calories > foodItems[currentIndex].calories
+      foodItems[currentIndex + 1].calories >= foodItems[currentIndex].calories
     ) {
       setStreak(streak + 1)
       setCurrentIndex(currentIndex + 1)
@@ -34,7 +34,7 @@ export default function Game() {
   const handleLower = () => {
     if (
       foodItems &&
-      foodItems[currentIndex + 1].calories < foodItems[currentIndex].calories
+      foodItems[currentIndex + 1].calories <= foodItems[currentIndex].calories
     ) {
       setStreak(streak + 1)
       setCurrentIndex(currentIndex + 1)
