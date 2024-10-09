@@ -9,8 +9,11 @@ import {
 } from "@/components/ui/card"
 type CardComponentProps = {
   description: string
-  content: string
+  content: number
   buttons?: string[]
+  buttonHandlers?: ((
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => void)[]
   avatarUrl: string
 }
 export const CardComponent: React.FC<CardComponentProps> = ({
@@ -18,6 +21,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
   content,
   buttons,
   avatarUrl,
+  buttonHandlers,
 }) => {
   return (
     <Card className="max-w-md mx-40">
@@ -34,7 +38,12 @@ export const CardComponent: React.FC<CardComponentProps> = ({
       {buttons && (
         <CardFooter className="flex justify-center mt-4 space-x-4">
           {buttons.map((label, index) => (
-            <Button key={index}>{label}</Button>
+            <Button
+              onClick={buttonHandlers ? buttonHandlers[index] : undefined}
+              key={index}
+            >
+              {label}
+            </Button>
           ))}
         </CardFooter>
       )}
