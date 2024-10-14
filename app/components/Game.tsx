@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { FoodItem } from "../foodData"
 import { useFoodData } from "../utils/hooks/useFoodData"
 import { CardComponent } from "./CardComponent"
@@ -10,14 +10,7 @@ export default function Game() {
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [streak, setStreak] = useState(0)
-  const [lives, setLives] = useState(3)
   const [gameOver, setGameOver] = useState(false)
-
-  useEffect(() => {
-    if (lives === 0) {
-      setGameOver(true)
-    }
-  }, [lives])
 
   const handleHigher = () => {
     if (
@@ -27,7 +20,7 @@ export default function Game() {
       setStreak(streak + 1)
       setCurrentIndex(currentIndex + 1)
     } else {
-      setLives(lives - 1)
+      setGameOver(true)
     }
   }
 
@@ -39,7 +32,7 @@ export default function Game() {
       setStreak(streak + 1)
       setCurrentIndex(currentIndex + 1)
     } else {
-      setLives(lives - 1)
+      setGameOver(true)
     }
   }
 
@@ -50,7 +43,6 @@ export default function Game() {
       ) : foodItems ? (
         <>
           <div>Streak: {streak}</div>
-          <div>Lives: {lives}</div>
           <CardComponent
             avatarUrl="https://github.com/shadcn.png"
             description={foodItems[currentIndex].name}
