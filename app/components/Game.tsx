@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import { useState } from "react"
 import { CardComponent } from "./CardComponent"
@@ -10,7 +9,6 @@ interface GameProps {
 
 export default function Game({ initialFoodData }: GameProps) {
   const foodItems = initialFoodData.foodItems
-
   const [currentIndex, setCurrentIndex] = useState(0)
   const [streak, setStreak] = useState(0)
   const [gameOver, setGameOver] = useState(false)
@@ -40,14 +38,16 @@ export default function Game({ initialFoodData }: GameProps) {
   }
 
   return (
-    <>
-      <GameHeader />
-      <div className="flex flex-wrap justify-center items-center min-h-screen">
+    <div className="h-screen flex flex-col">
+      <div className="flex-none">
+        <GameHeader />
+      </div>
+
+      <div className="flex-1 flex items-center justify-center p-4">
         {gameOver ? (
           <div>Game Over</div>
         ) : foodItems ? (
-          <>
-            <div>Streak: {streak}</div>
+          <div className="flex flex-col md:flex-row gap-8">
             <CardComponent
               avatarUrl="https://github.com/shadcn.png"
               description={foodItems[currentIndex].name}
@@ -60,9 +60,9 @@ export default function Game({ initialFoodData }: GameProps) {
               buttons={["Higher", "Lower"]}
               buttonHandlers={[handleHigher, handleLower]}
             />
-          </>
+          </div>
         ) : null}
       </div>
-    </>
+    </div>
   )
 }

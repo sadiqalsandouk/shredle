@@ -2,7 +2,7 @@ import HowToPlay from "./HowToPlay"
 
 export default function GameHeader() {
   return (
-    <header className="text-center py-6 mt-10">
+    <header className="text-center py-6 mt-5">
       <h1 className="text-5xl font-bold text-green-500 mb-2">
         🍔 Shreddle.com
       </h1>
