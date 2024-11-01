@@ -11,8 +11,8 @@ import {
 export default function HowToPlay() {
   return (
     <Dialog>
-      <DialogTrigger className="hover:underline cursor-pointer text-green-500 hover:text-green-600 text-sm">
-        How To Play
+      <DialogTrigger className="hover:underline cursor-pointer text-green-700 hover:text-green-800 text-lg">
+        How do I play?
       </DialogTrigger>
       <DialogContent className="max-w-md">
         <DialogHeader>
