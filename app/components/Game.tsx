@@ -50,13 +50,13 @@ export default function Game({ initialFoodData }: GameProps) {
           <div className="flex flex-col md:flex-row gap-8">
             <CardComponent
               avatarUrl="https://github.com/shadcn.png"
-              description={foodItems[currentIndex].name}
-              content={foodItems[currentIndex].calories}
+              foodItemName={foodItems[currentIndex].name}
+              foodItemCalories={foodItems[currentIndex].calories}
             />
             <CardComponent
               avatarUrl="https://github.com/shadcn.png"
-              description={foodItems[currentIndex + 1].name}
-              content={foodItems[currentIndex + 1].calories}
+              foodItemName={foodItems[currentIndex + 1].name}
+              foodItemCalories={foodItems[currentIndex + 1].calories}
               buttons={["Higher", "Lower"]}
               buttonHandlers={[handleHigher, handleLower]}
             />

@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 
 type CardComponentProps = {
-  description: string
-  content: number
+  foodItemName: string
+  foodItemCalories: number
   buttons?: string[]
   buttonHandlers?: ((
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -13,8 +13,8 @@ type CardComponentProps = {
 }
 
 export const CardComponent: React.FC<CardComponentProps> = ({
-  description,
-  content,
+  foodItemName,
+  foodItemCalories,
   buttons,
   avatarUrl,
   buttonHandlers,
@@ -35,14 +35,14 @@ export const CardComponent: React.FC<CardComponentProps> = ({
         </p>
 
         {/* Food Item Name */}
-        <h3 className="font-bold text-lg text-center">{description}</h3>
+        <h3 className="font-bold text-lg text-center">{foodItemName}</h3>
       </CardHeader>
 
       <CardContent className="text-center flex-1 flex items-center justify-center">
         {!buttons ? (
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">Calories</p>
-            <p className="text-3xl font-bold">{content}</p>
+            <p className="text-3xl font-bold">{foodItemCalories}</p>
           </div>
         ) : (
           <div className="space-y-2">
