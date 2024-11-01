@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import { useState } from "react"
-import { FoodItem } from "../foodData"
-import { useFoodData } from "../utils/hooks/useFoodData"
 import { CardComponent } from "./CardComponent"
 
-export default function Game() {
-  const { data } = useFoodData()
-  const foodItems: FoodItem[] | undefined = data?.foodData?.foodItems
+interface GameProps {
+  initialFoodData: any
+}
+
+export default function Game({ initialFoodData }: GameProps) {
+  const foodItems = initialFoodData.foodItems
 
   const [currentIndex, setCurrentIndex] = useState(0)
   const [streak, setStreak] = useState(0)
