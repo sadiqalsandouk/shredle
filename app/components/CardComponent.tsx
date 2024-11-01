@@ -56,7 +56,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
 
       <CardFooter className="flex justify-center p-4">
         {buttons ? (
-          <div className="flex gap-2 sm:gap-4">
+          <div className="flex gap-4">
             {buttons.map((label, index) => (
               <Button
                 key={index}
