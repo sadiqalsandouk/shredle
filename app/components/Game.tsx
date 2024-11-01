@@ -2,6 +2,7 @@
 "use client"
 import { useState } from "react"
 import { CardComponent } from "./CardComponent"
+import GameHeader from "./GameHeader"
 
 interface GameProps {
   initialFoodData: any
@@ -39,26 +40,29 @@ export default function Game({ initialFoodData }: GameProps) {
   }
 
   return (
-    <div className="flex flex-wrap justify-center items-center min-h-screen">
-      {gameOver ? (
-        <div>Game Over</div>
-      ) : foodItems ? (
-        <>
-          <div>Streak: {streak}</div>
-          <CardComponent
-            avatarUrl="https://github.com/shadcn.png"
-            description={foodItems[currentIndex].name}
-            content={foodItems[currentIndex].calories}
-          />
-          <CardComponent
-            avatarUrl="https://github.com/shadcn.png"
-            description={foodItems[currentIndex + 1].name}
-            content={foodItems[currentIndex + 1].calories}
-            buttons={["Higher", "Lower"]}
-            buttonHandlers={[handleHigher, handleLower]}
-          />
-        </>
-      ) : null}
-    </div>
+    <>
+      <GameHeader />
+      <div className="flex flex-wrap justify-center items-center min-h-screen">
+        {gameOver ? (
+          <div>Game Over</div>
+        ) : foodItems ? (
+          <>
+            <div>Streak: {streak}</div>
+            <CardComponent
+              avatarUrl="https://github.com/shadcn.png"
+              description={foodItems[currentIndex].name}
+              content={foodItems[currentIndex].calories}
+            />
+            <CardComponent
+              avatarUrl="https://github.com/shadcn.png"
+              description={foodItems[currentIndex + 1].name}
+              content={foodItems[currentIndex + 1].calories}
+              buttons={["Higher", "Lower"]}
+              buttonHandlers={[handleHigher, handleLower]}
+            />
+          </>
+        ) : null}
+      </div>
+    </>
   )
 }
