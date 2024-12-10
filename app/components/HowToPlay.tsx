@@ -17,7 +17,7 @@ export default function HowToPlay() {
       <DialogContent className="max-w-md">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center mb-4">
-            How to Play Shreddle
+            How to Play Shredle
           </DialogTitle>
         </DialogHeader>
         <DialogDescription>
@@ -57,7 +57,7 @@ export default function HowToPlay() {
             <div className="bg-gradient-to-r from-blue-50 to-green-50 p-3 rounded-lg">
               <h3 className="font-semibold text-lg mb-2">💡 Why Play?</h3>
               <p>
-                Whether you&apos;re tracking macros or just curious, Shreddle
+                Whether you&apos;re tracking macros or just curious, Shredle
                 helps you make informed choices about fast food. You might be
                 surprised which menu items are actually gym-friendly and which
                 ones could derail your fitness goals!
