@@ -3,6 +3,7 @@ import { useState } from "react"
 import { CardComponent } from "./CardComponent"
 
 interface GameProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initialFoodData: any
 }
 

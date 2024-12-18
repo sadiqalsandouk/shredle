@@ -84,11 +84,12 @@ export default function TermsAndConditions() {
 
         <h2 className="text-md font-bold mt-4">Limitation of Liability</h2>
         <p>
-          Shredle is provided "as is" without any warranties. We are not liable
-          for any direct, indirect, incidental, special, or consequential
-          damages arising from your use of the game. This includes, but is not
-          limited to, loss of data, interruption of service, or any damages
-          resulting from errors, bugs, or game modifications.
+          Shredle is provided &quot;as is&quot; without any warranties. We are
+          not liable for any direct, indirect, incidental, special, or
+          consequential damages arising from your use of the game. This
+          includes, but is not limited to, loss of data, interruption of
+          service, or any damages resulting from errors, bugs, or game
+          modifications.
         </p>
 
         <h2 className="text-md font-bold mt-4">

@@ -42,20 +42,20 @@ export default function Privacy() {
           Advertisements and Third-Party Services
         </h2>
         <p>
-          Shredle uses third-party advertising services to support the game's
-          free-to-play model. These advertisements may collect and use data
-          about your interactions, including device information, IP address, and
-          usage patterns. We work with ad networks that aim to provide relevant
-          and non-intrusive advertisements. While we strive to partner with
-          reputable ad providers, we cannot directly control the data collection
-          practices of these third-party advertisers.
+          Shredle uses third-party advertising services to support the
+          game&apos;s free-to-play model. These advertisements may collect and
+          use data about your interactions, including device information, IP
+          address, and usage patterns. We work with ad networks that aim to
+          provide relevant and non-intrusive advertisements. While we strive to
+          partner with reputable ad providers, we cannot directly control the
+          data collection practices of these third-party advertisers.
         </p>
         <p>
           Advertisements may use cookies, pixel tags, and other tracking
           technologies to personalize ad content and measure advertising
           effectiveness. You can manage your ad preferences through your device
-          settings or by adjusting your browser's cookie settings. Please note
-          that opting out of personalized ads may not eliminate ad display
+          settings or by adjusting your browser&apos;s cookie settings. Please
+          note that opting out of personalized ads may not eliminate ad display
           entirely.
         </p>
 
