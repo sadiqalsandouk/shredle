@@ -1,7 +1,6 @@
 "use client"
 import { useState } from "react"
 import { CardComponent } from "./CardComponent"
-import GameHeader from "./GameHeader"
 
 interface GameProps {
   initialFoodData: any
@@ -39,9 +38,7 @@ export default function Game({ initialFoodData }: GameProps) {
 
   return (
     <div className="h-screen flex flex-col">
-      <div className="flex-none">
-        <GameHeader />
-      </div>
+      <div className="flex-none"></div>
 
       <div className="flex-1 flex items-center justify-center p-4">
         {gameOver ? (
