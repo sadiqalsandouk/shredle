@@ -1,4 +1,11 @@
+import { Metadata } from "next"
 import FooterPagesLayout from "../components/FooterPagesLayout"
+
+export const metadata: Metadata = {
+  title: "Shredle - Terms and Conditions",
+  description:
+    "Read our Terms and Conditions to understand the rules and guidelines for using our service.",
+}
 
 export default function TermsAndConditions() {
   return (

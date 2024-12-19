@@ -1,4 +1,10 @@
+import { Metadata } from "next"
 import FooterPagesLayout from "../components/FooterPagesLayout"
+
+export const metadata: Metadata = {
+  title: "Shredle - Privacy Policy",
+  description: "Read our privacy policy to understand how we handle your data.",
+}
 
 export default function Privacy() {
   return (
