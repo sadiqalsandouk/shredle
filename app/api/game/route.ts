@@ -17,7 +17,7 @@ export async function GET(req: Request) {
   if (lastPlayed && new Date(lastPlayed) >= todayUTC) {
     return NextResponse.json(
       {
-        message: "You have already played today!",
+        message: "Great job on today's game! Check out your progress",
         nextReset: utcMidnight.toISOString(),
       },
       { status: 403 }
@@ -27,7 +27,7 @@ export async function GET(req: Request) {
   setLastPlayedCookie(now)
 
   return NextResponse.json({
-    message: "You can play!",
+    message: "User can play",
     nextReset: utcMidnight.toISOString(),
   })
 }
