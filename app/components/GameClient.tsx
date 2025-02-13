@@ -17,16 +17,13 @@ export default function GameClient({ foodItems }: GameClientProps) {
   useEffect(() => {
     const fetchGameStatus = async () => {
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/game`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-          }
-        )
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        })
         const data = await response.json()
         console.log(data)
         setGameStatus(data)
