@@ -9,11 +9,7 @@ export default function GameClient({ foodItems }: GameClientProps) {
   const { currentIndex, gameOver, handleHigher, handleLower } =
     useGameLogic(foodItems)
 
-  const {
-    data: gameStatus,
-    error,
-    isLoading,
-  } = useQuery<GameStatus>({
+  const { error, isLoading } = useQuery<GameStatus>({
     queryKey: ["gameStatus"],
     queryFn: fetchGameStatus,
     retry: (failureCount, error) => {
