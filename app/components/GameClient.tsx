@@ -1,58 +1,50 @@
 "use client"
 import { CardComponent } from "./CardComponent"
 import { useGameLogic } from "../hooks/useGameLogic"
-import { GameClientProps } from "../types/types"
-import { useEffect, useState } from "react"
+import { GameClientProps, GameStatus } from "../types/types"
+import { fetchGameStatus } from "../utils/api"
+import { useQuery } from "@tanstack/react-query"
 
 export default function GameClient({ foodItems }: GameClientProps) {
   const { currentIndex, gameOver, handleHigher, handleLower } =
     useGameLogic(foodItems)
 
-  const [gameStatus, setGameStatus] = useState({
-    message: "",
-    nextReset: new Date(),
-  })
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchGameStatus = async () => {
-      try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        })
-        const data = await response.json()
-        console.log(data)
-        setGameStatus(data)
-      } catch (error) {
-        console.error("Error fetching game status:", error)
-      } finally {
-        setLoading(false)
+  const {
+    data: gameStatus,
+    error,
+    isLoading,
+  } = useQuery<GameStatus>({
+    queryKey: ["gameStatus"],
+    queryFn: fetchGameStatus,
+    retry: (failureCount, error) => {
+      if (
+        error instanceof Error &&
+        error.message === "Great job on today's game! Check out your progress"
+      ) {
+        return false
       }
-    }
+      return failureCount < 3
+    },
+  })
 
-    fetchGameStatus()
-  }, [])
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex-1 flex items-center justify-center p-4">
         Loading...
       </div>
     )
   }
-
-  if (gameStatus && gameStatus.message !== "User can play") {
+  if (error) {
     return (
       <div className="flex-1 flex items-center justify-center p-4">
-        <div>{gameStatus.message}</div>
-        <div>
-          Next reset at:
-          {gameStatus.nextReset.toLocaleString()}
-        </div>
+        {error.message ===
+        "Great job on today's game! Check out your progress" ? (
+          <div>
+            <div>Great job on todays game! Check out your progress</div>
+          </div>
+        ) : (
+          error.message
+        )}
       </div>
     )
   }

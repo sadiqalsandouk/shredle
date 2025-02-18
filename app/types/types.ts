@@ -6,3 +6,7 @@ export interface FoodItem {
 export interface GameClientProps {
   foodItems: FoodItem[]
 }
+export interface GameStatus {
+  message: string
+  nextReset: string
+}
