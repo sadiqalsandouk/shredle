@@ -5,9 +5,9 @@ import { GameClientProps, GameStatus } from "../types/types"
 import { fetchGameStatus } from "../utils/api"
 import { useQuery } from "@tanstack/react-query"
 
-export default function GameClient({ foodItems }: GameClientProps) {
+export default function GameClient({ foodData }: GameClientProps) {
   const { currentIndex, gameOver, handleHigher, handleLower } =
-    useGameLogic(foodItems)
+    useGameLogic(foodData)
 
   const { error, isLoading } = useQuery<GameStatus>({
     queryKey: ["gameStatus"],
@@ -52,12 +52,12 @@ export default function GameClient({ foodItems }: GameClientProps) {
       ) : (
         <div className="flex flex-col md:flex-row gap-8">
           <CardComponent
-            foodItemName={foodItems[currentIndex].name}
-            foodItemCalories={foodItems[currentIndex].calories}
+            foodItemName={foodData[currentIndex].name}
+            foodItemCalories={foodData[currentIndex].calories}
           />
           <CardComponent
-            foodItemName={foodItems[currentIndex + 1].name}
-            foodItemCalories={foodItems[currentIndex + 1].calories}
+            foodItemName={foodData[currentIndex + 1].name}
+            foodItemCalories={foodData[currentIndex + 1].calories}
             buttons={["Higher", "Lower"]}
             buttonHandlers={[handleHigher, handleLower]}
           />

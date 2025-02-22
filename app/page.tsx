@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const res = await getFoodData()
-  return <GameServer foodItems={res.foodData} />
+  return <GameServer foodData={res.foodData} />
 }

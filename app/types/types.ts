@@ -1,10 +1,13 @@
 export interface FoodItem {
+  id: number
   name: string
   calories: number
+  protein_g: number
+  category: string
 }
 
 export interface GameClientProps {
-  foodItems: FoodItem[]
+  foodData: FoodItem[]
 }
 export interface GameStatus {
   message: string
