@@ -12,6 +12,9 @@ export function useGameLogic(foodItems: FoodItem[]) {
     if (
       foodItems[currentIndex + 1].calories >= foodItems[currentIndex].calories
     ) {
+      if (streak + 1 >= 5) {
+        setGameOver(true)
+      }
       setStreak(streak + 1)
       setCurrentIndex(currentIndex + 1)
     } else {
@@ -23,6 +26,9 @@ export function useGameLogic(foodItems: FoodItem[]) {
     if (
       foodItems[currentIndex + 1].calories <= foodItems[currentIndex].calories
     ) {
+      if (streak + 1 >= 5) {
+        setGameOver(true)
+      }
       setStreak(streak + 1)
       setCurrentIndex(currentIndex + 1)
     } else {
