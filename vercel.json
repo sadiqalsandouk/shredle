@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://www.shredle.co.uk/api/:path*",
+      "permanent": true
+    }
+  ]
+}
