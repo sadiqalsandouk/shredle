@@ -1,16 +1,19 @@
 "use client"
 
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import { FoodItem } from "../types/types"
+import { getDailyFoods } from "../utils/dailyFoods"
 
 export function useGameLogic(foodItems: FoodItem[]) {
+  const dailyFoods = useMemo(() => getDailyFoods(foodItems), [foodItems])
+  console.log(dailyFoods)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [streak, setStreak] = useState(0)
   const [gameOver, setGameOver] = useState(false)
 
   const handleHigher = () => {
     if (
-      foodItems[currentIndex + 1].calories >= foodItems[currentIndex].calories
+      dailyFoods[currentIndex + 1].calories >= dailyFoods[currentIndex].calories
     ) {
       if (streak + 1 >= 5) {
         setGameOver(true)
@@ -24,7 +27,7 @@ export function useGameLogic(foodItems: FoodItem[]) {
 
   const handleLower = () => {
     if (
-      foodItems[currentIndex + 1].calories <= foodItems[currentIndex].calories
+      dailyFoods[currentIndex + 1].calories <= dailyFoods[currentIndex].calories
     ) {
       if (streak + 1 >= 5) {
         setGameOver(true)
@@ -42,5 +45,6 @@ export function useGameLogic(foodItems: FoodItem[]) {
     gameOver,
     handleHigher,
     handleLower,
+    dailyFoods,
   }
 }

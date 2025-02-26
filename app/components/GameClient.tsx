@@ -6,8 +6,14 @@ import { fetchGameStatus, updateGameStatus } from "../utils/api"
 import { useQuery } from "@tanstack/react-query"
 
 export default function GameClient({ foodData }: GameClientProps) {
-  const { currentIndex, gameOver, handleHigher, handleLower, streak } =
-    useGameLogic(foodData)
+  const {
+    currentIndex,
+    gameOver,
+    handleHigher,
+    handleLower,
+    streak,
+    dailyFoods,
+  } = useGameLogic(foodData)
 
   const { error, isLoading } = useQuery<GameStatus>({
     queryKey: ["gameStatus"],
@@ -74,12 +80,12 @@ export default function GameClient({ foodData }: GameClientProps) {
       ) : (
         <div className="flex flex-col md:flex-row gap-8">
           <CardComponent
-            foodItemName={foodData[currentIndex].name}
-            foodItemCalories={foodData[currentIndex].calories}
+            foodItemName={dailyFoods[currentIndex].name}
+            foodItemCalories={dailyFoods[currentIndex].calories}
           />
           <CardComponent
-            foodItemName={foodData[currentIndex + 1].name}
-            foodItemCalories={foodData[currentIndex + 1].calories}
+            foodItemName={dailyFoods[currentIndex + 1].name}
+            foodItemCalories={dailyFoods[currentIndex + 1].calories}
             buttons={["Higher", "Lower"]}
             buttonHandlers={[handleHigher, handleLower]}
           />
