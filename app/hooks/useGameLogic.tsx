@@ -6,7 +6,6 @@ import { getDailyFoods } from "../utils/dailyFoods"
 
 export function useGameLogic(foodItems: FoodItem[]) {
   const dailyFoods = useMemo(() => getDailyFoods(foodItems), [foodItems])
-  console.log(dailyFoods)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [streak, setStreak] = useState(0)
   const [gameOver, setGameOver] = useState(false)
