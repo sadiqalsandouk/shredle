@@ -4,10 +4,8 @@ import GameClient from "./GameClient"
 
 export default function GameServer({ foodData }: GameClientProps) {
   return (
-    <div className="flex justify-center items-center py-8">
-      <Suspense fallback={<div>Loading...</div>}>
-        <GameClient foodData={foodData} />
-      </Suspense>
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <GameClient foodData={foodData} />
+    </Suspense>
   )
 }

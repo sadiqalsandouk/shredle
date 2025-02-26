@@ -27,7 +27,9 @@ export default function RootLayout({
       >
         <ClientProvider>
           <GameHeader />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 flex justify-center items-center">
+            {children}
+          </main>
           <Footer />
         </ClientProvider>
       </body>
