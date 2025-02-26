@@ -13,15 +13,6 @@ export default function GameClient({ foodData }: GameClientProps) {
     queryKey: ["gameStatus"],
     queryFn: updateGameStatus,
     enabled: gameOver,
-    retry: (failureCount, error) => {
-      if (
-        error instanceof Error &&
-        error.message === "Great job on today's game! Check out your progress"
-      ) {
-        return false
-      }
-      return failureCount < 3
-    },
   })
 
   const { error: lastPlayed, isLoading: checkingStatus } = useQuery<GameStatus>(
