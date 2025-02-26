@@ -24,10 +24,21 @@ export async function GET(req: Request) {
     )
   }
 
+  return NextResponse.json({
+    message: "User can play",
+    nextReset: utcMidnight.toISOString(),
+  })
+}
+
+export async function POST(req: Request) {
+  const mockDateHeader = req.headers.get("X-Mock-Date")
+  const now = mockDateHeader ? new Date(mockDateHeader) : new Date()
+  const utcMidnight = getUTCMidnight(now)
+
   setLastPlayedCookie(now)
 
   return NextResponse.json({
-    message: "User can play",
+    message: "Game completed",
     nextReset: utcMidnight.toISOString(),
   })
 }
