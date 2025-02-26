@@ -18,9 +18,9 @@ export const CardComponent: React.FC<CardComponentProps> = ({
 }) => {
   return (
     <Card className="w-[280px] flex flex-col justify-between bg-white">
-      <CardHeader className="flex flex-col items-center space-y-3 pt-4">
-        {/* Food Item Name */}
+      <CardHeader className="flex flex-col items-center space-y-0 pt-4">
         <h3 className="font-bold text-lg text-center">{foodItemName}</h3>
+        <h1 className="text-sm text-center">(100g)</h1>
       </CardHeader>
 
       <CardContent className="text-center flex-1 flex items-center justify-center">
