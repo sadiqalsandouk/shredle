@@ -4,8 +4,7 @@ import GameClient from "./GameClient"
 
 export default function GameServer({ foodData }: GameClientProps) {
   return (
-    <div className="h-screen flex flex-col">
-      <div className="flex-none"></div>
+    <div className="flex justify-center items-center py-8">
       <Suspense fallback={<div>Loading...</div>}>
         <GameClient foodData={foodData} />
       </Suspense>
