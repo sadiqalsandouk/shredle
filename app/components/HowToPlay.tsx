@@ -55,7 +55,7 @@ export default function HowToPlay() {
             </div>
 
             <div className="bg-gradient-to-r from-blue-50 to-green-50 p-3 rounded-lg">
-              <h3 className="font-semibold text-lg mb-2">💡 Why Play?</h3>
+              <h3 className="font-semibold text-lg mb-2">Why Play?</h3>
               <p>
                 Whether you&apos;re tracking macros or just curious, Shredle
                 helps you make informed choices about fast food. You might be
