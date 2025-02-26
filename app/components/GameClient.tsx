@@ -44,7 +44,7 @@ export default function GameClient({ foodData }: GameClientProps) {
     return (
       <div className="flex items-center justify-center p-4">
         <div className="text-center">
-          <div>You've already played today's game!</div>
+          <div>You have already played today!</div>
           <div>Come back tomorrow for a new challenge.</div>
         </div>
       </div>
