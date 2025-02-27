@@ -7,7 +7,7 @@ export function setLastPlayedCookie(now: Date) {
   )
 
   const expires = new Date(getUTCMidnight(now))
-  expires.setUTCDate(expires.getUTCDate() + 1)
+  expires.setUTCDate(expires.getUTCDate())
 
   cookies().set({
     name: "lastPlayed",
