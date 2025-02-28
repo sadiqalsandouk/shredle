@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-
+import Image from "next/image"
 type CardComponentProps = {
   foodItemName: string
   foodItemCalories: number
+  foodItemImage: string
   buttons?: string[]
   buttonHandlers?: ((
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -13,12 +14,22 @@ type CardComponentProps = {
 export const CardComponent: React.FC<CardComponentProps> = ({
   foodItemName,
   foodItemCalories,
+  foodItemImage,
   buttons,
   buttonHandlers,
 }) => {
   return (
     <Card className="w-[280px] flex flex-col justify-between bg-white">
       <CardHeader className="flex flex-col items-center space-y-0 pt-4">
+        <div className="w-full h-48 relative rounded-lg overflow-hidden mb-4">
+          <Image
+            src={foodItemImage}
+            alt={foodItemName}
+            fill
+            className="object-cover"
+            sizes="(max-width: 280px) 100vw, 280px"
+          />
+        </div>
         <h3 className="font-bold text-lg text-center">{foodItemName}</h3>
         <h1 className="text-sm text-center">(100g)</h1>
       </CardHeader>

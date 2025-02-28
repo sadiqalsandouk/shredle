@@ -82,10 +82,12 @@ export default function GameClient({ foodData }: GameClientProps) {
           <CardComponent
             foodItemName={dailyFoods[currentIndex].name}
             foodItemCalories={dailyFoods[currentIndex].calories}
+            foodItemImage={dailyFoods[currentIndex].image}
           />
           <CardComponent
             foodItemName={dailyFoods[currentIndex + 1].name}
             foodItemCalories={dailyFoods[currentIndex + 1].calories}
+            foodItemImage={dailyFoods[currentIndex + 1].image}
             buttons={["Higher", "Lower"]}
             buttonHandlers={[handleHigher, handleLower]}
           />
