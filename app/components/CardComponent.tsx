@@ -26,6 +26,8 @@ export const CardComponent: React.FC<CardComponentProps> = ({
             src={foodItemImage}
             alt={foodItemName}
             fill
+            priority
+            loading="eager"
             className="object-cover"
             sizes="(max-width: 280px) 100vw, 280px"
           />
