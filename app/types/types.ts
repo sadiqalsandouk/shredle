@@ -2,8 +2,8 @@ export interface FoodItem {
   id: number
   name: string
   calories: number
-  protein_g: number
-  category: string
+  protein: number
+  image: string
 }
 
 export interface GameClientProps {
