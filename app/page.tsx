@@ -4,7 +4,7 @@ import GameServer from "./components/GameServer"
 
 export const metadata: Metadata = {
   title: "Shredle",
-  description: "A Wordle Inspired Calories Game",
+  description: "A Wordle Inspired Calories Higher/Lower Game",
 }
 
 export default async function Home() {
