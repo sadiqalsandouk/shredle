@@ -8,14 +8,16 @@ export const getDateSeed = () => {
 }
 export const seededShuffle = (array: FoodItem[], seed: string) => {
   const shuffled = [...array]
-  let currentHash = 0
+  let hash = 0
+
+  for (let i = 0; i < seed.length; i++) {
+    hash = (hash << 5) - hash + seed.charCodeAt(i)
+    hash = hash & hash
+  }
   const seededRandom = () => {
-    currentHash =
-      (currentHash << 5) -
-      currentHash +
-      seed.charCodeAt(currentHash % seed.length)
-    currentHash = currentHash & currentHash
-    return Math.abs(currentHash) / Math.pow(2, 32)
+    hash = (hash << 5) - hash + 1
+    hash = hash & hash
+    return Math.abs(hash) / Math.pow(2, 32)
   }
 
   for (let i = shuffled.length - 1; i > 0; i--) {

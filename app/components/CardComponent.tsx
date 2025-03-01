@@ -35,7 +35,6 @@ export const CardComponent: React.FC<CardComponentProps> = ({
         <h3 className="font-bold text-lg text-center">{foodItemName}</h3>
         <h1 className="text-sm text-center">(100g)</h1>
       </CardHeader>
-
       <CardContent className="text-center flex-1 flex items-center justify-center">
         {!buttons ? (
           <div className="space-y-2">
