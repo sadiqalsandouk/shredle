@@ -11,7 +11,6 @@ export function ScoreDisplay({
   isGameOver = false,
   message,
 }: ScoreDisplayProps) {
-  // Array of food emojis to use
   const foodEmojis = ["🍎", "🥑", "🥕", "🥦", "🍌"]
 
   return (
