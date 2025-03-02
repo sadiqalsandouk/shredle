@@ -74,11 +74,14 @@ export const CardComponent: React.FC<CardComponentProps> = ({
           <Button
             key={index}
             onClick={buttonHandlers?.[index]}
-            className={`w-24 sm:w-24 py-3 sm:py-2 text-base sm:text-base font-medium transition-all duration-300 shadow-lg ${
-              index === 0
-                ? "bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 hover:scale-105"
-                : "bg-gradient-to-r from-orange-400 to-red-500 hover:from-orange-500 hover:to-red-600 hover:scale-105"
-            }`}
+            className={`w-24 sm:w-24 py-3 sm:py-2 text-base sm:text-base font-medium 
+              transition-all duration-150 shadow-lg 
+              active:transform active:scale-95 active:shadow-md
+              ${
+                index === 0
+                  ? "bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 hover:scale-105"
+                  : "bg-gradient-to-r from-orange-400 to-red-500 hover:from-orange-500 hover:to-red-600 hover:scale-105"
+              }`}
           >
             {label}
           </Button>
