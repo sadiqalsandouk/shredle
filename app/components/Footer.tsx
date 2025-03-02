@@ -27,7 +27,7 @@ export default function Footer() {
           className="text-orange-700 hover:text-orange-900 transition-colors duration-200"
           href="/contact"
         >
-          Contact Us
+          Contact
         </Link>
       </div>
     </footer>
