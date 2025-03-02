@@ -48,7 +48,7 @@ export default function GameClient({ foodData }: GameClientProps) {
   }
 
   if (gameOver) {
-    const finalStreak = gameStatus?.streak || streak
+    const finalStreak = gameStatus?.streak
     return (
       <div className="flex items-center justify-center p-4">
         <div className="text-center">
