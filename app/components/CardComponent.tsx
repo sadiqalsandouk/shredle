@@ -23,7 +23,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
       className={`w-[140px] sm:w-[280px] flex flex-col justify-between bg-white rounded-3xl border-2
     ${
       buttons
-        ? "border-orange-200 shadow-[0_0_15px_rgba(251,146,60,0.3)] animate-pulse-slow hover:shadow-[0_0_20px_rgba(251,146,60,0.5)]"
+        ? "border-orange-200 shadow-[0_0_20px_rgba(251,146,60,0.5)]"
         : "border-orange-200 shadow-lg"
     } 
     transition-all duration-300 transform hover:-translate-y-1`}
