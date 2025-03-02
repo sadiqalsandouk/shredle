@@ -62,21 +62,23 @@ export default function GameClient({ foodData }: GameClientProps) {
     )
   }
   return (
-    <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-4">
       <ScoreDisplay score={streak} />
-      <div className="flex flex-col md:flex-row gap-8">
-        <CardComponent
-          foodItemName={dailyFoods[currentIndex].name}
-          foodItemCalories={dailyFoods[currentIndex].calories}
-          foodItemImage={dailyFoods[currentIndex].image}
-        />
-        <CardComponent
-          foodItemName={dailyFoods[currentIndex + 1].name}
-          foodItemCalories={dailyFoods[currentIndex + 1].calories}
-          foodItemImage={dailyFoods[currentIndex + 1].image}
-          buttons={["Higher", "Lower"]}
-          buttonHandlers={[handleHigher, handleLower]}
-        />
+      <div className="flex justify-center px-2 w-full">
+        <div className="flex gap-2 sm:gap-4">
+          <CardComponent
+            foodItemName={dailyFoods[currentIndex].name}
+            foodItemCalories={dailyFoods[currentIndex].calories}
+            foodItemImage={dailyFoods[currentIndex].image}
+          />
+          <CardComponent
+            foodItemName={dailyFoods[currentIndex + 1].name}
+            foodItemCalories={dailyFoods[currentIndex + 1].calories}
+            foodItemImage={dailyFoods[currentIndex + 1].image}
+            buttons={["Higher", "Lower"]}
+            buttonHandlers={[handleHigher, handleLower]}
+          />
+        </div>
       </div>
     </div>
   )
