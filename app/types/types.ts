@@ -11,4 +11,5 @@ export interface GameClientProps {
 export interface GameStatus {
   message: string
   nextReset: string
+  streak?: number
 }

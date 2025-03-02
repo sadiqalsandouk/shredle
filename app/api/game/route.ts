@@ -1,26 +1,24 @@
 import { NextResponse } from "next/server"
 import { getUTCMidnight } from "@/app/utils/getUTCMidnight"
-import {
-  getLastPlayedCookie,
-  setLastPlayedCookie,
-} from "@/app/utils/cookieUtils"
+import { getGameCookie, setGameCookie } from "@/app/utils/cookieUtils"
 
 export async function GET(req: Request) {
   const mockDateHeader = req.headers.get("X-Mock-Date")
-  const lastPlayed = getLastPlayedCookie()
+  const gameState = getGameCookie()
   const now = mockDateHeader ? new Date(mockDateHeader) : new Date()
   const utcMidnight = getUTCMidnight(now)
   const todayUTC = new Date(
     Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
   )
 
-  if (lastPlayed && new Date(lastPlayed) >= todayUTC) {
+  if (gameState?.lastPlayed && new Date(gameState.lastPlayed) >= todayUTC) {
     return NextResponse.json(
       {
-        message: "Great job on today's game! Check out your progress",
+        message: "User cannot play",
         nextReset: utcMidnight.toISOString(),
+        streak: gameState.streak || 0,
       },
-      { status: 403 }
+      { status: 200 }
     )
   }
 
@@ -34,8 +32,9 @@ export async function POST(req: Request) {
   const mockDateHeader = req.headers.get("X-Mock-Date")
   const now = mockDateHeader ? new Date(mockDateHeader) : new Date()
   const utcMidnight = getUTCMidnight(now)
+  const { streak } = await req.json()
 
-  setLastPlayedCookie(now)
+  setGameCookie(now, streak)
 
   return NextResponse.json({
     message: "Game completed",

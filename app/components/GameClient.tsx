@@ -15,19 +15,17 @@ export default function GameClient({ foodData }: GameClientProps) {
     dailyFoods,
   } = useGameLogic(foodData)
 
-  const { error, isLoading } = useQuery<GameStatus>({
+  const { data: gameStatus } = useQuery<GameStatus>({
     queryKey: ["gameStatus"],
-    queryFn: updateGameStatus,
+    queryFn: () => updateGameStatus(streak),
     enabled: gameOver,
   })
 
-  const { error: lastPlayed, isLoading: checkingStatus } = useQuery<GameStatus>(
-    {
-      queryKey: ["checkGameStatus"],
-      queryFn: fetchGameStatus,
-      retry: false,
-    }
-  )
+  const { data: gameState, isLoading: checkingStatus } = useQuery<GameStatus>({
+    queryKey: ["checkGameStatus"],
+    queryFn: fetchGameStatus,
+    retry: false,
+  })
 
   if (checkingStatus) {
     return (
@@ -35,12 +33,13 @@ export default function GameClient({ foodData }: GameClientProps) {
     )
   }
 
-  if (
-    lastPlayed?.message === "Great job on today's game! Check out your progress"
-  ) {
+  if (gameState?.message === "User cannot play") {
     return (
       <div className="flex items-center justify-center p-4">
         <div className="text-center">
+          <div className="text-2xl font-bold mb-2">
+            Todays Score: {gameState.streak}/5
+          </div>
           <div>You have already played today!</div>
           <div>Come back tomorrow for a new challenge.</div>
         </div>
@@ -49,35 +48,21 @@ export default function GameClient({ foodData }: GameClientProps) {
   }
 
   if (gameOver) {
-    if (isLoading) {
-      return (
-        <div className="flex items-center justify-center p-4">Loading...</div>
-      )
-    }
-
+    const finalStreak = gameStatus?.streak || streak
     return (
       <div className="flex items-center justify-center p-4">
         <div className="text-center">
-          <div className="mb-2">Game Over!</div>
-          <div>Final Score: {streak}</div>
-          {error && (
-            <div className="mt-2">
-              {error.message ===
-              "Great job on today's game! Check out your progress"
-                ? "Great job on today's game! Check out your progress"
-                : error.message}
-            </div>
-          )}
+          <div className="text-2xl font-bold mb-2">Game Over!</div>
+          <div className="text-xl">Final Score: {finalStreak}/5 </div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="flex items-center justify-center p-4">
-      {gameOver ? (
-        <div>Game Over</div>
-      ) : (
+    <>
+      <div className="text-xl">Score: {streak}/5</div>
+      <div className="flex items-center justify-center p-4">
         <div className="flex flex-col md:flex-row gap-8">
           <CardComponent
             foodItemName={dailyFoods[currentIndex].name}
@@ -92,7 +77,7 @@ export default function GameClient({ foodData }: GameClientProps) {
             buttonHandlers={[handleHigher, handleLower]}
           />
         </div>
-      )}
-    </div>
+      </div>
+    </>
   )
 }

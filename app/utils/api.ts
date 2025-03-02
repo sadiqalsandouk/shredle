@@ -21,12 +21,13 @@ export const fetchGameStatus = async (): Promise<GameStatus> => {
   return data
 }
 
-export const updateGameStatus = async (): Promise<GameStatus> => {
+export const updateGameStatus = async (streak: number): Promise<GameStatus> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({ streak }),
     credentials: "include",
   })
 
