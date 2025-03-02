@@ -3,18 +3,30 @@ import React from "react"
 
 export default function Footer() {
   return (
-    <footer className="text-black py-4 px-4">
+    <footer className="text-sm py-4 px-4">
       <div className="container mx-auto flex flex-row flex-wrap justify-center gap-4">
-        <Link className="hover:text-gray-600" href="/">
+        <Link
+          className="text-orange-700 hover:text-orange-900 transition-colors duration-200"
+          href="/"
+        >
           Play
         </Link>
-        <Link className="hover:text-gray-600" href="/privacy">
+        <Link
+          className="text-orange-700 hover:text-orange-900 transition-colors duration-200"
+          href="/privacy"
+        >
           Privacy Policy
         </Link>
-        <Link className="hover:text-gray-600" href="/terms">
+        <Link
+          className="text-orange-700 hover:text-orange-900 transition-colors duration-200"
+          href="/terms"
+        >
           Terms & Conditions
         </Link>
-        <Link className="hover:text-gray-600" href="/contact">
+        <Link
+          className="text-orange-700 hover:text-orange-900 transition-colors duration-200"
+          href="/contact"
+        >
           Contact Us
         </Link>
       </div>

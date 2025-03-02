@@ -15,24 +15,18 @@ export function ScoreDisplay({
   const foodEmojis = ["🍎", "🥑", "🥕", "🥦", "🍌"]
 
   return (
-    <div className="flex flex-col items-center gap-6 mb-8">
-      <div className="flex flex-col items-center gap-4">
-        <div className="text-2xl font-bold text-gray-800">
-          {isGameOver ? "Today's Score:" : "Score:"}
+    <div className="flex flex-col items-center gap-4 mb-6">
+      <div className="flex flex-col items-center gap-3">
+        <div className="text-xl sm:text-2xl font-bold text-orange-800 mb-2">
+          {isGameOver ? "Today's Score:" : "Score:"} {score}/{total}
         </div>
-        <div
-          className="text-3xl font-bold bg-clip-text text-transparent 
-              bg-gradient-to-r from-green-500 to-blue-500"
-        >
-          {score}/{total}
-        </div>
-        <div className="flex gap-20">
+        <div className="flex gap-4 sm:gap-8 md:gap-12">
           {[...Array(total)].map((_, i) => (
             <div
               key={i}
-              className={`text-2xl transition-all duration-500 transform
-                  ${i < score ? "scale-125" : "opacity-40"}
-                  ${i === score - 1 ? "animate-bounce" : ""}`}
+              className={`text-xl sm:text-2xl transition-all duration-500 transform
+                ${i < score ? "scale-110 sm:scale-125" : "opacity-40"}
+                ${i === score - 1 ? "animate-bounce" : ""}`}
             >
               {foodEmojis[i]}
             </div>
@@ -41,8 +35,8 @@ export function ScoreDisplay({
       </div>
       {message && (
         <div
-          className="text-lg text-gray-600 font-medium 
-              animate-fade-in"
+          className="text-base sm:text-lg text-gray-600 font-medium 
+          animate-fade-in text-center px-4"
         >
           {message}
         </div>
@@ -50,4 +44,3 @@ export function ScoreDisplay({
     </div>
   )
 }
-//

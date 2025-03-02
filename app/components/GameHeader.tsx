@@ -3,15 +3,27 @@ import HowToPlay from "./HowToPlay"
 
 export default function GameHeader() {
   return (
-    <header className="text-center py-6 mt-5">
-      <h1 className="hover:text-green-600 text-3xl sm:text-4xl font-semibold text-green-500 mb-2">
-        <Link href="/"> 🍔 Shredle.co.uk</Link>
-      </h1>
-      <p className="text-green-500 sm:text-4xl font-semibold mt-3 text-3xl">
-        Which has more calories?
-      </p>
-      <div className="mt-4">
-        <HowToPlay />
+    <header className="">
+      <div className="max-w-4xl mx-auto px-4 py-4">
+        <div className="flex items-center justify-between">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-2xl sm:text-3xl 
+              font-bold font-display"
+          >
+            <span className="text-2xl sm:text-3xl">🍔</span>
+            <span
+              className="bg-gradient-to-r from-orange-600 to-orange-800 
+              bg-clip-text text-transparent hover:text-orange-800"
+            >
+              Shredle
+            </span>
+          </Link>
+
+          <div className="flex items-center gap-4">
+            <HowToPlay />
+          </div>
+        </div>
       </div>
     </header>
   )

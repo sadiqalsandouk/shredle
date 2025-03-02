@@ -30,7 +30,9 @@ export default function GameClient({ foodData }: GameClientProps) {
 
   if (checkingStatus) {
     return (
-      <div className="flex items-center justify-center p-4">Loading...</div>
+      <div className="flex items-center justify-center">
+        <div className="animate-spin text-3xl">🍔</div>
+      </div>
     )
   }
 

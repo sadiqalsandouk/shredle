@@ -10,7 +10,7 @@ export default function FooterPagesLayout({
   children,
 }: FooterPagesLayoutProps) {
   return (
-    <div className="max-w-2xl mx-auto container mx-auto py-8 px-10">
+    <div className="text-orange-800 max-w-2xl mx-auto container mx-auto py-8 px-10">
       <h1 className="text-xl font-bold mb-4">{title}</h1>
       <div>{children}</div>
     </div>
