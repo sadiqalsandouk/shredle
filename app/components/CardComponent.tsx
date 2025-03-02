@@ -69,20 +69,16 @@ export const CardComponent: React.FC<CardComponentProps> = ({
           </div>
         )}
       </CardContent>
-      <CardFooter className="flex justify-center p-2 sm:p-4 gap-2 sm:gap-4">
+      <CardFooter className="flex flex-col sm:flex-row justify-center p-2 sm:p-4 gap-2 sm:gap-4">
         {buttons?.map((label, index) => (
           <Button
             key={index}
             onClick={buttonHandlers?.[index]}
-            className={`
-        w-10 sm:w-24 py-1 sm:py-2 text-xs sm:text-base font-medium
-        transition-all duration-300 shadow-lg
-        ${
-          index === 0
-            ? "bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 hover:scale-105"
-            : "bg-gradient-to-r from-orange-400 to-red-500 hover:from-orange-500 hover:to-red-600 hover:scale-105"
-        }
-      `}
+            className={`w-24 sm:w-24 py-3 sm:py-2 text-base sm:text-base font-medium transition-all duration-300 shadow-lg ${
+              index === 0
+                ? "bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 hover:scale-105"
+                : "bg-gradient-to-r from-orange-400 to-red-500 hover:from-orange-500 hover:to-red-600 hover:scale-105"
+            }`}
           >
             {label}
           </Button>
