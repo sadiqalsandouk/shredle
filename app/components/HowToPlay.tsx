@@ -20,7 +20,7 @@ export default function HowToPlay() {
           Rules
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-sm bg-orange-50/90 backdrop-blur-sm">
+      <DialogContent className="w-[90%] max-w-[320px] p-4 bg-orange-50/90 backdrop-blur-sm rounded-xl">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-center mb-4 text-orange-800">
             How to Play Shredle
