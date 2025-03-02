@@ -5,8 +5,13 @@ import { GameClientProps, GameStatus } from "../types/types"
 import { fetchGameStatus, updateGameStatus } from "../utils/api"
 import { useQuery } from "@tanstack/react-query"
 import { ScoreDisplay } from "./ScoreDisplay"
+import dynamic from "next/dynamic"
+import { useWindowSize } from "react-use"
+
+const Confetti = dynamic(() => import("react-confetti"), { ssr: false })
 
 export default function GameClient({ foodData }: GameClientProps) {
+  const { width, height } = useWindowSize()
   const {
     currentIndex,
     gameOver,
@@ -53,6 +58,13 @@ export default function GameClient({ foodData }: GameClientProps) {
   if (gameOver) {
     return (
       <div className="flex items-center justify-center p-4">
+        <Confetti
+          width={width}
+          height={height}
+          recycle={false}
+          numberOfPieces={500}
+          gravity={0.3}
+        />
         <ScoreDisplay
           score={streak}
           isGameOver={true}
