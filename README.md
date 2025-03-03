@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Shredle
 
-## Getting Started
+Shredle is a daily higher/lower calorie game inspired by Wordle. Compare two foods and guess which one has more calories!
 
-First, run the development server:
+## About
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Shredle is a fun and educational game where you compare the calorie content of different foods. Each day, you are presented with a new challenge to guess which food has more calories.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How to Play
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Visit the [Shredle website](https://www.shredle.co.uk/).
+2. You will be presented with two foods.
+3. Guess which food has more calories by clicking on it.
+4. See if you guessed correctly and learn more about the calorie content of the foods.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Deployment
 
-## Learn More
+The project is deployed on Vercel. You can play the game by visiting the [Shredle website](https://www.shredle.co.uk/).
 
-To learn more about Next.js, take a look at the following resources:
+## Acknowledgements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Inspired by Wordle
+- Built with Next.js and Tailwind CSS
+- Deployed on Vercel
+- The purpose of this project was to learn more about Next.js and have a playground to learn more and work on new features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contact
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For any questions or feedback, please contact [@sadiqdotdigital](https://twitter.com/sadiqdotdigital).
