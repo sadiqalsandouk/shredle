@@ -14,39 +14,50 @@ export function useGameLogic(foodItems: FoodItem[]) {
   const [lives, setLives] = useState(3)
 
   const handleHigher = () => {
+    if (currentIndex >= dailyFoods.length - 1) {
+      setGameOver(true)
+      return
+    }
+
     const isCorrect =
       dailyFoods[currentIndex + 1].calories >= dailyFoods[currentIndex].calories
     setFeedback(isCorrect ? "correct" : "wrong")
     setFeedbackKey((prevKey) => prevKey + 1)
     if (isCorrect) {
-      if (streak + 1 >= 5) {
-        setGameOver(true)
-      }
       setStreak(streak + 1)
-      setCurrentIndex(currentIndex + 1)
     } else {
       setLives(lives - 1)
       if (lives - 1 <= 0) {
         setGameOver(true)
       }
     }
+    setCurrentIndex(currentIndex + 1)
+    if (currentIndex + 1 >= dailyFoods.length - 1) {
+      setGameOver(true)
+    }
   }
 
   const handleLower = () => {
+    if (currentIndex >= dailyFoods.length - 1) {
+      setGameOver(true)
+      return
+    }
+
     const isCorrect =
       dailyFoods[currentIndex + 1].calories <= dailyFoods[currentIndex].calories
     setFeedback(isCorrect ? "correct" : "wrong")
+    setFeedbackKey((prevKey) => prevKey + 1)
     if (isCorrect) {
-      if (streak + 1 >= 5) {
-        setGameOver(true)
-      }
       setStreak(streak + 1)
-      setCurrentIndex(currentIndex + 1)
     } else {
       setLives(lives - 1)
       if (lives - 1 <= 0) {
         setGameOver(true)
       }
+    }
+    setCurrentIndex(currentIndex + 1)
+    if (currentIndex + 1 >= dailyFoods.length - 1) {
+      setGameOver(true)
     }
   }
 
