@@ -7,6 +7,8 @@ import { useQuery } from "@tanstack/react-query"
 import { ScoreDisplay } from "./ScoreDisplay"
 import dynamic from "next/dynamic"
 import { useWindowSize } from "react-use"
+import NextImage from "next/image"
+import { useEffect } from "react"
 
 const Confetti = dynamic(() => import("react-confetti"), { ssr: false })
 
@@ -32,6 +34,13 @@ export default function GameClient({ foodData }: GameClientProps) {
     queryFn: fetchGameStatus,
     retry: false,
   })
+
+  useEffect(() => {
+    dailyFoods.slice(currentIndex + 2, currentIndex + 5).forEach((food) => {
+      const img = new window.Image()
+      img.src = food.image
+    })
+  }, [currentIndex, dailyFoods])
 
   if (checkingStatus) {
     return (
@@ -79,11 +88,13 @@ export default function GameClient({ foodData }: GameClientProps) {
       <div className="flex justify-center px-2 w-full">
         <div className="flex gap-2 sm:gap-4">
           <CardComponent
+            key={dailyFoods[currentIndex].id}
             foodItemName={dailyFoods[currentIndex].name}
             foodItemCalories={dailyFoods[currentIndex].calories}
             foodItemImage={dailyFoods[currentIndex].image}
           />
           <CardComponent
+            key={dailyFoods[currentIndex + 1].id}
             foodItemName={dailyFoods[currentIndex + 1].name}
             foodItemCalories={dailyFoods[currentIndex + 1].calories}
             foodItemImage={dailyFoods[currentIndex + 1].image}
@@ -92,6 +103,20 @@ export default function GameClient({ foodData }: GameClientProps) {
           />
         </div>
       </div>
+      {dailyFoods
+        .slice(currentIndex + 2, currentIndex + 5)
+        .map((food, index) => (
+          <div key={index} className="hidden">
+            <NextImage
+              src={food.image}
+              alt="preload"
+              width={280}
+              height={480}
+              unoptimized={true}
+              priority
+            />
+          </div>
+        ))}
     </div>
   )
 }

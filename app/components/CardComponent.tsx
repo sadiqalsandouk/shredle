@@ -33,11 +33,11 @@ export const CardComponent: React.FC<CardComponentProps> = ({
           <Image
             src={foodItemImage}
             alt={foodItemName}
+            unoptimized={true}
             fill
             priority
             loading="eager"
             className="object-cover"
-            sizes="(max-width: 140px) 100vw, (max-width: 280px) 100vw"
           />
         </div>
         <h3 className="font-bold text-xs sm:text-xl text-center text-orange-800">
