@@ -23,6 +23,7 @@ export default function GameClient({ foodData }: GameClientProps) {
     dailyFoods,
     feedback,
     feedbackKey,
+    lives,
   } = useGameLogic(foodData)
 
   useQuery<GameStatus>({
@@ -99,6 +100,9 @@ export default function GameClient({ foodData }: GameClientProps) {
         </div>
       )}
       <ScoreDisplay score={streak} />
+      <div className="text-xl sm:text-2xl font-bold text-orange-800 mb-2">
+        Lives: {lives}
+      </div>
       <div className="flex justify-center px-2 w-full">
         <div className="flex gap-2 sm:gap-4">
           <CardComponent
