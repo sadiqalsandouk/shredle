@@ -21,6 +21,8 @@ export default function GameClient({ foodData }: GameClientProps) {
     handleLower,
     streak,
     dailyFoods,
+    feedback,
+    feedbackKey,
   } = useGameLogic(foodData)
 
   useQuery<GameStatus>({
@@ -84,6 +86,18 @@ export default function GameClient({ foodData }: GameClientProps) {
   }
   return (
     <div className="flex flex-col items-center gap-4">
+      {feedback && (
+        <div
+          key={feedbackKey}
+          className={`py-2 px-4 text-lg sm:text-xl font-bold rounded ${
+            feedback === "correct"
+              ? "bg-green-500 text-white animate-scaleUp"
+              : "bg-red-500 text-white animate-shake"
+          }`}
+        >
+          {feedback === "correct" ? "Correct!" : "Wrong!"}
+        </div>
+      )}
       <ScoreDisplay score={streak} />
       <div className="flex justify-center px-2 w-full">
         <div className="flex gap-2 sm:gap-4">

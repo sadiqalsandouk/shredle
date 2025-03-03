@@ -9,11 +9,15 @@ export function useGameLogic(foodItems: FoodItem[]) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [streak, setStreak] = useState(0)
   const [gameOver, setGameOver] = useState(false)
+  const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null)
+  const [feedbackKey, setFeedbackKey] = useState(0)
 
   const handleHigher = () => {
-    if (
+    const isCorrect =
       dailyFoods[currentIndex + 1].calories >= dailyFoods[currentIndex].calories
-    ) {
+    setFeedback(isCorrect ? "correct" : "wrong")
+    setFeedbackKey((prevKey) => prevKey + 1)
+    if (isCorrect) {
       if (streak + 1 >= 5) {
         setGameOver(true)
       }
@@ -25,9 +29,10 @@ export function useGameLogic(foodItems: FoodItem[]) {
   }
 
   const handleLower = () => {
-    if (
+    const isCorrect =
       dailyFoods[currentIndex + 1].calories <= dailyFoods[currentIndex].calories
-    ) {
+    setFeedback(isCorrect ? "correct" : "wrong")
+    if (isCorrect) {
       if (streak + 1 >= 5) {
         setGameOver(true)
       }
@@ -45,5 +50,7 @@ export function useGameLogic(foodItems: FoodItem[]) {
     handleHigher,
     handleLower,
     dailyFoods,
+    feedback,
+    feedbackKey,
   }
 }
