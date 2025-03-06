@@ -21,12 +21,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
   return (
     <Card
       className={`w-[140px] sm:w-[280px] flex flex-col justify-between bg-white rounded-3xl border-2
-    ${
-      buttons
-        ? "border-orange-200 shadow-[0_0_20px_rgba(251,146,60,0.5)]"
-        : "border-orange-200 shadow-lg"
-    } 
-    transition-all duration-300 transform hover:-translate-y-1`}
+      }`}
     >
       <CardHeader className="flex flex-col items-center space-y-0 p-2 sm:p-4">
         <div className="w-full h-24 sm:h-48 relative rounded-2xl overflow-hidden mb-2 sm:mb-4">
