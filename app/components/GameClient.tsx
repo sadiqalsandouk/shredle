@@ -91,7 +91,7 @@ export default function GameClient({ foodData }: GameClientProps) {
       <div className="text-xl sm:text-2xl font-bold text-orange-800 mb-2">
         Lives: {lives}
       </div>
-      <div className="h-[40px] flex items-center justify-center">
+      <div className="h-[35px] flex items-center justify-center">
         {feedback && (
           <div
             key={feedbackKey}
