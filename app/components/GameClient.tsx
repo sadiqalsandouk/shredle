@@ -86,12 +86,12 @@ export default function GameClient({ foodData }: GameClientProps) {
     )
   }
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col items-center">
       <ScoreDisplay score={streak} />
-      <div className="text-xl sm:text-2xl font-bold text-orange-800 mb-2">
+      <div className="text-xl sm:text-2xl font-bold text-orange-800">
         Lives: {lives}
       </div>
-      <div className="h-[35px] flex items-center justify-center">
+      <div className="h-[60px] flex items-center justify-center">
         {feedback && (
           <div
             key={feedbackKey}
