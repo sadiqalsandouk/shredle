@@ -13,3 +13,11 @@ export interface GameStatus {
   nextReset: string
   streak?: number
 }
+
+export interface GameState {
+  currentIndex: number
+  streak: number
+  gameOver: boolean
+  lives: number
+  lastPlayedDate: string
+}

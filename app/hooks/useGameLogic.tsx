@@ -1,18 +1,69 @@
 "use client"
 
-import { useMemo, useState } from "react"
-import { FoodItem } from "../types/types"
+import { useMemo, useState, useEffect } from "react"
+import { FoodItem, GameState } from "../types/types"
 import { getDailyFoods } from "../utils/dailyFoods"
+
+const STORAGE_KEY = "shredle_game_state"
+
+function saveGameState(state: GameState) {
+  if (typeof window !== "undefined") {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+  }
+}
+
+function loadGameState(): GameState | null {
+  if (typeof window === "undefined") {
+    return null
+  }
+  const saved = localStorage.getItem(STORAGE_KEY)
+  if (!saved) return null
+  return JSON.parse(saved)
+}
 
 export function useGameLogic(foodItems: FoodItem[]) {
   const dailyFoods = useMemo(() => getDailyFoods(foodItems), [foodItems])
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [streak, setStreak] = useState(0)
-  const [gameOver, setGameOver] = useState(false)
+
+  const getInitialState = () => {
+    const savedState = loadGameState()
+    const today = new Date().toISOString().split("T")[0]
+
+    if (savedState && savedState.lastPlayedDate === today) {
+      return {
+        currentIndex: savedState.currentIndex,
+        streak: savedState.streak,
+        gameOver: savedState.gameOver,
+        lives: savedState.lives,
+      }
+    }
+
+    return {
+      currentIndex: 0,
+      streak: 0,
+      gameOver: false,
+      lives: 3,
+    }
+  }
+
+  const initialState = getInitialState()
+  const [currentIndex, setCurrentIndex] = useState(initialState.currentIndex)
+  const [streak, setStreak] = useState(initialState.streak)
+  const [gameOver, setGameOver] = useState(initialState.gameOver)
+  const [lives, setLives] = useState(initialState.lives)
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null)
   const [feedbackKey, setFeedbackKey] = useState(0)
-  const [lives, setLives] = useState(3)
   const [isProcessingGuess, setIsProcessingGuess] = useState(false)
+
+  useEffect(() => {
+    const state: GameState = {
+      currentIndex,
+      streak,
+      gameOver,
+      lives,
+      lastPlayedDate: new Date().toISOString().split("T")[0],
+    }
+    saveGameState(state)
+  }, [currentIndex, streak, gameOver, lives, dailyFoods])
 
   const endGameWithDelay = () => {
     setTimeout(() => {
