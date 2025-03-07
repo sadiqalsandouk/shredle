@@ -24,6 +24,7 @@ export default function GameClient({ foodData }: GameClientProps) {
     feedback,
     feedbackKey,
     lives,
+    isProcessingGuess,
   } = useGameLogic(foodData)
 
   useQuery<GameStatus>({
@@ -120,6 +121,7 @@ export default function GameClient({ foodData }: GameClientProps) {
             foodItemImage={dailyFoods[currentIndex + 1].image}
             buttons={["Higher", "Lower"]}
             buttonHandlers={[handleHigher, handleLower]}
+            disabled={isProcessingGuess}
           />
         </div>
       </div>

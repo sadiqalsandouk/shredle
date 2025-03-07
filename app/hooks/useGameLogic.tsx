@@ -12,6 +12,7 @@ export function useGameLogic(foodItems: FoodItem[]) {
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null)
   const [feedbackKey, setFeedbackKey] = useState(0)
   const [lives, setLives] = useState(3)
+  const [isProcessingGuess, setIsProcessingGuess] = useState(false)
 
   const endGameWithDelay = () => {
     setTimeout(() => {
@@ -20,9 +21,11 @@ export function useGameLogic(foodItems: FoodItem[]) {
   }
 
   const handleGuess = (isHigher: boolean) => {
-    if (currentIndex >= dailyFoods.length - 1) {
+    if (currentIndex >= dailyFoods.length - 1 || isProcessingGuess) {
       return
     }
+
+    setIsProcessingGuess(true)
 
     const isCorrect = isHigher
       ? dailyFoods[currentIndex + 1].calories >=
@@ -38,12 +41,14 @@ export function useGameLogic(foodItems: FoodItem[]) {
 
       if (currentIndex + 1 >= dailyFoods.length - 1) {
         endGameWithDelay()
+        setTimeout(() => setIsProcessingGuess(false), 1000)
         return
       }
 
       setTimeout(() => {
         setCurrentIndex(currentIndex + 1)
         setFeedback(null)
+        setIsProcessingGuess(false)
       }, 1000)
     } else {
       const newLives = lives - 1
@@ -51,12 +56,14 @@ export function useGameLogic(foodItems: FoodItem[]) {
 
       if (newLives <= 0 || currentIndex + 1 >= dailyFoods.length - 2) {
         endGameWithDelay()
+        setTimeout(() => setIsProcessingGuess(false), 1000)
         return
       }
 
       setTimeout(() => {
         setCurrentIndex(currentIndex + 1)
         setFeedback(null)
+        setIsProcessingGuess(false)
       }, 1000)
     }
   }
@@ -74,5 +81,6 @@ export function useGameLogic(foodItems: FoodItem[]) {
     feedback,
     feedbackKey,
     lives,
+    isProcessingGuess,
   }
 }

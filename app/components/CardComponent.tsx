@@ -9,6 +9,7 @@ type CardComponentProps = {
   buttonHandlers?: ((
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void)[]
+  disabled?: boolean
 }
 
 export const CardComponent: React.FC<CardComponentProps> = ({
@@ -17,6 +18,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
   foodItemImage,
   buttons,
   buttonHandlers,
+  disabled,
 }) => {
   return (
     <Card
@@ -69,6 +71,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
           <Button
             key={index}
             onClick={buttonHandlers?.[index]}
+            disabled={disabled}
             className={`w-24 sm:w-24 py-3 sm:py-2 text-base sm:text-base font-medium 
               transition-all duration-150 shadow-lg 
               active:transform active:scale-95 active:shadow-md
