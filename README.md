@@ -23,7 +23,3 @@ The project is deployed on Vercel. You can play the game by visiting the [Shredl
 - Built with Next.js and Tailwind CSS
 - Deployed on Vercel
 - The purpose of this project was to learn more about Next.js and have a playground to learn more and work on new features
-
-## Contact
-
-For any questions or feedback, please contact [@sadiqdotdigital](https://twitter.com/sadiqdotdigital).
