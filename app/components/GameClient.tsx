@@ -71,13 +71,15 @@ export default function GameClient({ foodData }: GameClientProps) {
   if (gameOver) {
     return (
       <div className="flex items-center justify-center p-4">
-        <Confetti
-          width={width}
-          height={height}
-          recycle={false}
-          numberOfPieces={500}
-          gravity={0.3}
-        />
+        {streak === 5 && (
+          <Confetti
+            width={width}
+            height={height}
+            recycle={false}
+            numberOfPieces={500}
+            gravity={0.3}
+          />
+        )}
         <ScoreDisplay
           score={streak}
           isGameOver={true}
