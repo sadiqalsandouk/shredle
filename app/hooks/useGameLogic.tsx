@@ -105,7 +105,7 @@ export function useGameLogic(foodItems: FoodItem[]) {
       const newLives = lives - 1
       setLives(newLives)
 
-      if (newLives <= 0 || currentIndex + 1 >= dailyFoods.length - 2) {
+      if (newLives <= 0 || currentIndex + 1 >= dailyFoods.length - 1) {
         endGameWithDelay()
         setTimeout(() => setIsProcessingGuess(false), 1000)
         return
