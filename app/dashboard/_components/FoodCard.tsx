@@ -84,8 +84,6 @@ export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
           2
         )
       )
-
-      window.location.reload()
     } catch (error: unknown) {
       console.error("Error deleting food:", error)
       window.alert(
@@ -104,6 +102,7 @@ export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
       )
     } finally {
       setIsDeleting(false)
+      window.location.reload()
     }
   }
 
