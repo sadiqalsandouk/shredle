@@ -1,7 +1,7 @@
 import { GameStatus } from "../types/types"
 
 export const fetchGameStatus = async (): Promise<GameStatus> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
+  const response = await fetch("/api/game", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -22,7 +22,7 @@ export const fetchGameStatus = async (): Promise<GameStatus> => {
 }
 
 export const updateGameStatus = async (streak: number): Promise<GameStatus> => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}`, {
+  const response = await fetch("/api/game", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
