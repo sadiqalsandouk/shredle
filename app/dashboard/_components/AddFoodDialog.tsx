@@ -1,0 +1,279 @@
+"use client"
+
+import React, { useState, ChangeEvent, FormEvent } from "react"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { PlusCircle, Loader2 } from "lucide-react"
+import { createClient } from "@/app/supabase/client"
+
+// Define form data structure
+interface FoodFormData {
+  name: string
+  calories: string | number
+  protein: string | number
+}
+
+// Props interface
+interface AddFoodDialogProps {
+  onFoodAdded?: () => void
+}
+
+const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
+  const supabase = createClient()
+  const [open, setOpen] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
+
+  const [formData, setFormData] = useState<FoodFormData>({
+    name: "",
+    calories: "",
+    protein: "",
+  })
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData({
+      ...formData,
+      [name]: name === "name" ? value : Number(value) || "",
+    })
+  }
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      setImageFile(file)
+      const reader = new FileReader()
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        setImagePreview(e.target?.result as string)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const resetForm = (): void => {
+    setFormData({
+      name: "",
+      calories: "",
+      protein: "",
+    })
+    setImageFile(null)
+    setImagePreview(null)
+  }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    if (
+      !formData.name ||
+      !formData.calories ||
+      !formData.protein ||
+      !imageFile
+    ) {
+      window.alert(
+        JSON.stringify(
+          {
+            title: "Missing fields",
+            description: "Please fill all required fields and upload an image.",
+            variant: "destructive",
+          },
+          null,
+          2
+        )
+      )
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      // Step 1: Upload the image to Supabase Storage
+      const fileName = `${Date.now()}-${imageFile.name}`
+      console.log(imageFile)
+      const { error: imageError } = await supabase.storage
+        .from("food-images")
+        .upload(fileName, imageFile)
+
+      console.log("image upload failed", imageError)
+
+      if (imageError) throw imageError
+
+      // Get the public URL for the uploaded image
+      const { data: publicUrlData } = supabase.storage
+        .from("food-images")
+        .getPublicUrl(fileName)
+
+      const imageUrl = publicUrlData.publicUrl
+
+      console.log("failed to get image url")
+
+      // Step 2: Insert the food data with the image URL
+      const id = Math.floor(Math.random() * 10000)
+      const { error } = await supabase
+        .from("shredleFoods")
+        .insert({
+          id,
+          name: formData.name,
+          calories: Number(formData.calories),
+          protein: Number(formData.protein),
+          image: imageUrl,
+        })
+        .select()
+
+      console.log("failed to inesert food", error)
+
+      if (error) throw error
+
+      window.alert(
+        JSON.stringify(
+          {
+            title: "Success!",
+            description: `${formData.name} has been added to your food list.`,
+          },
+          null,
+          2
+        )
+      )
+
+      // Call the onFoodAdded callback to refresh the food list
+      if (onFoodAdded) onFoodAdded()
+
+      // Close the dialog and reset the form
+      setOpen(false)
+      resetForm()
+    } catch (error: unknown) {
+      console.error("Error adding food:", error)
+      window.alert(
+        JSON.stringify(
+          {
+            title: "Error",
+            description:
+              error instanceof Error
+                ? error.message
+                : "Failed to add food. Please try again.",
+            variant: "destructive",
+          },
+          null,
+          2
+        )
+      )
+    } finally {
+      setLoading(false)
+      window.location.reload()
+    }
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button className="flex items-center gap-2">
+          <PlusCircle className="w-4 h-4" />
+          Add New Food
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>Add New Food</DialogTitle>
+          <DialogDescription>
+            Enter the details of the food you want to add to your database.
+          </DialogDescription>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="grid gap-4 py-2">
+            <div className="grid gap-2">
+              <Label htmlFor="name">Food Name</Label>
+              <Input
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="e.g. Grilled Chicken"
+                required
+              />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="calories">Calories</Label>
+                <Input
+                  id="calories"
+                  name="calories"
+                  type="number"
+                  value={formData.calories}
+                  onChange={handleInputChange}
+                  placeholder="e.g. 165"
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="protein">Protein (g)</Label>
+                <Input
+                  id="protein"
+                  name="protein"
+                  type="number"
+                  value={formData.protein}
+                  onChange={handleInputChange}
+                  placeholder="e.g. 31"
+                  required
+                />
+              </div>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="image">Food Image</Label>
+              <Input
+                id="image"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="cursor-pointer"
+                required
+              />
+              {imagePreview && (
+                <div className="mt-2 relative w-24 h-24 rounded-md overflow-hidden border border-gray-200">
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => {
+                setOpen(false)
+                resetForm()
+              }}
+            >
+              Cancel
+            </Button>
+            <Button type="submit" disabled={loading}>
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Saving...
+                </>
+              ) : (
+                "Add Food"
+              )}
+            </Button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  )
+}
+
+export default AddFoodDialog

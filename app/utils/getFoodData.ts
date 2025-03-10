@@ -1,7 +1,8 @@
-import { supabase } from "./supabase"
+import { createClient } from "../supabase/server"
 
 export async function getFoodData() {
   try {
+    const supabase = await createClient()
     const { data: foodData, error } = await supabase
       .from("shredleFoods")
       .select("id, name, calories, image")
