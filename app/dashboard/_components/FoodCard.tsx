@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Trash2 } from "lucide-react"
-import { supabase } from "../../utils/supabase" // Update this path to match your project
+import { supabase } from "../../utils/supabase"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -101,7 +101,7 @@ export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
   }
 
   return (
-    <div className="flex flex-col bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 relative">
+    <div className="size-48 flex flex-col bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 relative">
       <div className="absolute top-2 right-2 z-10">
         <AlertDialog>
           <AlertDialogTrigger asChild>
@@ -135,7 +135,7 @@ export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
         </AlertDialog>
       </div>
 
-      <div className="h-48 overflow-hidden">
+      <div className="overflow-hidden">
         <img
           src={food.image}
           alt={food.name}

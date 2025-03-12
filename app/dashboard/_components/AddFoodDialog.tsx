@@ -167,105 +167,107 @@ const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
   }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className="flex items-center gap-2">
-          <PlusCircle className="w-4 h-4" />
-          Add New Food
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Add New Food</DialogTitle>
-          <DialogDescription>
-            Enter the details of the food you want to add to your database.
-          </DialogDescription>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid gap-4 py-2">
-            <div className="grid gap-2">
-              <Label htmlFor="name">Food Name</Label>
-              <Input
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="e.g. Grilled Chicken"
-                required
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
+    <div className="flex justify-center">
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button className="flex items-center mt-20 gap-2">
+            <PlusCircle className="w-4 h-4" />
+            Add New Food
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Add New Food</DialogTitle>
+            <DialogDescription>
+              Enter the details of the food you want to add to your database.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid gap-4 py-2">
               <div className="grid gap-2">
-                <Label htmlFor="calories">Calories</Label>
+                <Label htmlFor="name">Food Name</Label>
                 <Input
-                  id="calories"
-                  name="calories"
-                  type="number"
-                  value={formData.calories}
+                  id="name"
+                  name="name"
+                  value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="e.g. 165"
+                  placeholder="e.g. Grilled Chicken"
                   required
                 />
               </div>
-              <div className="grid gap-2">
-                <Label htmlFor="protein">Protein (g)</Label>
-                <Input
-                  id="protein"
-                  name="protein"
-                  type="number"
-                  value={formData.protein}
-                  onChange={handleInputChange}
-                  placeholder="e.g. 31"
-                  required
-                />
-              </div>
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="image">Food Image</Label>
-              <Input
-                id="image"
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="cursor-pointer"
-                required
-              />
-              {imagePreview && (
-                <div className="mt-2 relative w-24 h-24 rounded-md overflow-hidden border border-gray-200">
-                  <img
-                    src={imagePreview}
-                    alt="Preview"
-                    className="w-full h-full object-cover"
+              <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="calories">Calories</Label>
+                  <Input
+                    id="calories"
+                    name="calories"
+                    type="number"
+                    value={formData.calories}
+                    onChange={handleInputChange}
+                    placeholder="e.g. 165"
+                    required
                   />
                 </div>
-              )}
+                <div className="grid gap-2">
+                  <Label htmlFor="protein">Protein (g)</Label>
+                  <Input
+                    id="protein"
+                    name="protein"
+                    type="number"
+                    value={formData.protein}
+                    onChange={handleInputChange}
+                    placeholder="e.g. 31"
+                    required
+                  />
+                </div>
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="image">Food Image</Label>
+                <Input
+                  id="image"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="cursor-pointer"
+                  required
+                />
+                {imagePreview && (
+                  <div className="mt-2 relative w-24 h-24 rounded-md overflow-hidden border border-gray-200">
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-          <DialogFooter>
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => {
-                setOpen(false)
-                resetForm()
-              }}
-            >
-              Cancel
-            </Button>
-            <Button type="submit" disabled={loading}>
-              {loading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Saving...
-                </>
-              ) : (
-                "Add Food"
-              )}
-            </Button>
-          </DialogFooter>
-        </form>
-      </DialogContent>
-    </Dialog>
+            <DialogFooter>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setOpen(false)
+                  resetForm()
+                }}
+              >
+                Cancel
+              </Button>
+              <Button type="submit" disabled={loading}>
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Saving...
+                  </>
+                ) : (
+                  "Add Food"
+                )}
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+    </div>
   )
 }
 
