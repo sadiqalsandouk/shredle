@@ -16,14 +16,12 @@ import { Label } from "@/components/ui/label"
 import { PlusCircle, Loader2 } from "lucide-react"
 import { createClient } from "@/app/supabase/client"
 
-// Define form data structure
 interface FoodFormData {
   name: string
   calories: string | number
   protein: string | number
 }
 
-// Props interface
 interface AddFoodDialogProps {
   onFoodAdded?: () => void
 }
@@ -97,7 +95,6 @@ const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
     setLoading(true)
 
     try {
-      // Step 1: Upload the image to Supabase Storage
       const fileName = `${Date.now()}-${imageFile.name}`
       console.log(imageFile)
       const { error: imageError } = await supabase.storage
@@ -108,7 +105,6 @@ const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
 
       if (imageError) throw imageError
 
-      // Get the public URL for the uploaded image
       const { data: publicUrlData } = supabase.storage
         .from("food-images")
         .getPublicUrl(fileName)
@@ -117,7 +113,6 @@ const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
 
       console.log("failed to get image url")
 
-      // Step 2: Insert the food data with the image URL
       const id = Math.floor(Math.random() * 10000)
       const { error } = await supabase
         .from("shredleFoods")
@@ -145,10 +140,8 @@ const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
         )
       )
 
-      // Call the onFoodAdded callback to refresh the food list
       if (onFoodAdded) onFoodAdded()
 
-      // Close the dialog and reset the form
       setOpen(false)
       resetForm()
     } catch (error: unknown) {
