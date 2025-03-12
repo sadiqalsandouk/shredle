@@ -7,7 +7,6 @@ import { useQuery } from "@tanstack/react-query"
 import { ScoreDisplay } from "./ScoreDisplay"
 import dynamic from "next/dynamic"
 import { useWindowSize } from "react-use"
-import NextImage from "next/image"
 import { useEffect } from "react"
 
 const Confetti = dynamic(() => import("react-confetti"), { ssr: false })
