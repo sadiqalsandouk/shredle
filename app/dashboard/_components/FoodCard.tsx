@@ -31,8 +31,6 @@ export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
   const [isDeleting, setIsDeleting] = useState<boolean>(false)
 
   const extractFileNameFromUrl = (url: string): string | null => {
-    // Extract the file name from the Supabase URL
-    // Example URL: https://xyz.supabase.co/storage/v1/object/public/food-images/1234567890-filename.jpg
     try {
       const urlParts = url.split("/")
       return urlParts[urlParts.length - 1]
@@ -46,7 +44,6 @@ export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
     try {
       setIsDeleting(true)
 
-      // 1. Delete the image from storage
       const fileName = extractFileNameFromUrl(food.image)
 
       if (fileName) {
@@ -56,11 +53,9 @@ export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
 
         if (storageError) {
           console.error("Error deleting image from storage:", storageError)
-          // Continue with DB deletion even if image deletion fails
         }
       }
 
-      // 2. Delete the food item from the database
       console.log(food)
       const { error: dbError } = await supabase
         .from("shredleFoods")
@@ -69,7 +64,6 @@ export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
 
       if (dbError) throw dbError
 
-      // 3. Notify the parent component that a food was deleted
       if (onFoodDeleted) {
         onFoodDeleted()
       }
