@@ -131,14 +131,7 @@ export default function GameClient({ foodData }: GameClientProps) {
         .slice(currentIndex + 2, currentIndex + 5)
         .map((food, index) => (
           <div key={index} className="hidden">
-            <NextImage
-              src={food.image}
-              alt="preload"
-              width={280}
-              height={480}
-              unoptimized={true}
-              priority
-            />
+            <img src={food.image} alt="preload" />
           </div>
         ))}
     </div>

@@ -27,13 +27,9 @@ export const CardComponent: React.FC<CardComponentProps> = ({
     >
       <CardHeader className="flex flex-col items-center space-y-0 p-2 sm:p-4">
         <div className="w-full h-24 sm:h-48 relative rounded-2xl overflow-hidden mb-2 sm:mb-4">
-          <Image
+          <img
             src={foodItemImage}
             alt={foodItemName}
-            unoptimized={true}
-            fill
-            priority
-            loading="eager"
             className="object-cover"
           />
         </div>
