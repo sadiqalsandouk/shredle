@@ -1,4 +1,7 @@
 import { motion } from "framer-motion"
+import { Share2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { toast } from "sonner"
 
 interface GameResult {
   name1: string
@@ -26,6 +29,51 @@ export function GameOverScreen({
     month: "short",
     day: "numeric",
   })
+
+  const generateShareMessage = () => {
+    const scoreEmojis = Array(total)
+      .fill("⬜")
+      .map((emoji, i) => (i < score ? "🟩" : emoji))
+      .join("")
+
+    return `Shredle ${date}\n${score}/${total}\n${scoreEmojis}\nPlay at shredle.co.uk`
+  }
+
+  const handleShare = async () => {
+    const shareMessage = generateShareMessage()
+    const shareUrl = "https://shredle.co.uk"
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `Shredle - ${date}`,
+          text: shareMessage,
+          url: shareUrl,
+        })
+      } catch (err) {
+        console.error("Error sharing:", err)
+        await fallbackToClipboard(shareMessage, shareUrl)
+      }
+    } else {
+      if (navigator.clipboard) {
+        await fallbackToClipboard(shareMessage, shareUrl)
+      } else {
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
+          shareMessage + "\n" + shareUrl
+        )}`
+        window.open(whatsappUrl, "_blank")
+      }
+    }
+  }
+
+  const fallbackToClipboard = async (message: string, url: string) => {
+    try {
+      await navigator.clipboard.writeText(`${message}\n${url}`)
+      toast("Results copied to clipboard!")
+    } catch (err) {
+      console.error("Failed to copy to clipboard:", err)
+    }
+  }
 
   return (
     <motion.div
@@ -113,6 +161,14 @@ export function GameOverScreen({
             {message}
           </p>
         )}
+
+        <Button
+          onClick={handleShare}
+          className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center gap-2"
+        >
+          <Share2 className="w-4 h-4" />
+          Share Score
+        </Button>
 
         <div className="pt-2 text-xs font-medium text-gray-400 flex items-center justify-center gap-1">
           Play at
