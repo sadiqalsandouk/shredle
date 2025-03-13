@@ -13,7 +13,7 @@ export default function GameHeader() {
           >
             <span className="text-2xl sm:text-3xl">🍔</span>
             <span
-              className="bg-gradient-to-r from-orange-600 to-orange-800 
+              className="bg-gradient-to-r from-orange-600 to-orange-700 
               bg-clip-text text-transparent hover:text-orange-800"
             >
               Shredle
