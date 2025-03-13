@@ -41,34 +41,32 @@ export function GameOverScreen({
 
   const handleShare = async () => {
     const shareMessage = generateShareMessage()
-    const shareUrl = "https://shredle.co.uk"
 
     if (navigator.share) {
       try {
         await navigator.share({
           title: `Shredle - ${date}`,
           text: shareMessage,
-          url: shareUrl,
         })
       } catch (err) {
         console.error("Error sharing:", err)
-        await fallbackToClipboard(shareMessage, shareUrl)
+        await fallbackToClipboard(shareMessage)
       }
     } else {
       if (navigator.clipboard) {
-        await fallbackToClipboard(shareMessage, shareUrl)
+        await fallbackToClipboard(shareMessage)
       } else {
         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
-          shareMessage + "\n" + shareUrl
+          shareMessage
         )}`
         window.open(whatsappUrl, "_blank")
       }
     }
   }
 
-  const fallbackToClipboard = async (message: string, url: string) => {
+  const fallbackToClipboard = async (message: string) => {
     try {
-      await navigator.clipboard.writeText(`${message}\n${url}`)
+      await navigator.clipboard.writeText(`${message}`)
       toast("Results copied to clipboard!")
     } catch (err) {
       console.error("Failed to copy to clipboard:", err)
