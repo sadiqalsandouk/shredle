@@ -36,7 +36,7 @@ export function GameOverScreen({
       .map((emoji, i) => (i < score ? "🟩" : emoji))
       .join("")
 
-    return `Shredle ${date}\n${score}/${total}\n${scoreEmojis}`
+    return `Shredle: ${date}\n${score}/${total}\n${scoreEmojis}\n`
   }
 
   const handleShare = async () => {
