@@ -23,7 +23,7 @@ export function ScoreDisplay({
           {[...Array(total)].map((_, i) => (
             <div
               key={i}
-              className={`text-xl sm:text-2xl transition-all duration-500 transform
+              className={`text-2xl sm:text-2xl transition-all duration-500 transform
                 ${i < score ? "scale-110 sm:scale-125" : "opacity-40"}
                 ${i === score - 1 ? "animate-bounce" : ""}`}
             >

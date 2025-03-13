@@ -41,7 +41,7 @@ export function GameOverScreen({
           <p className="text-sm text-gray-600 font-medium">{date}</p>
         </div>
 
-        <div className="flex justify-center space-x-2">
+        <div className="flex justify-center space-x-8">
           {[...Array(total)].map((_, i) => (
             <motion.div
               key={i}
@@ -65,7 +65,7 @@ export function GameOverScreen({
             <span className="text-orange-300">/{total}</span>
           </div>
           <div className="text-xs font-medium text-orange-600/80">
-            {score === total ? "Perfect Score! 🎉" : "Final Score"}
+            Final Score
           </div>
         </div>
         {gameHistory.length > 0 && (
