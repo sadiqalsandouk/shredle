@@ -61,7 +61,7 @@ export default function GameClient({ foodData }: GameClientProps) {
         <div className="text-center">
           <GameOverScreen
             score={gameState.streak ?? 0}
-            message="Game Over! Think you can do better tomorrow?"
+            message="Game Over! Come back tomorrow for a new challenge"
             gameHistory={gameState.gameHistory || []}
           />
         </div>
@@ -83,7 +83,7 @@ export default function GameClient({ foodData }: GameClientProps) {
         )}
         <GameOverScreen
           score={streak}
-          message="Game Over! Think you can do better tomorrow?"
+          message="Game Over! Come back tomorrow for a new challenge"
           gameHistory={gameHistory}
         />
       </div>
