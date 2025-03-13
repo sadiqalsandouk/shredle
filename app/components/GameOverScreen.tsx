@@ -59,7 +59,7 @@ export function GameOverScreen({
         await fallbackToClipboard(shareMessage, shareUrl)
       } else {
         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
-          shareMessage + "\n" + shareUrl
+          `${shareMessage}\n\n${shareUrl}`
         )}`
         window.open(whatsappUrl, "_blank")
       }
@@ -68,7 +68,7 @@ export function GameOverScreen({
 
   const fallbackToClipboard = async (message: string, url: string) => {
     try {
-      await navigator.clipboard.writeText(`${message}\n${url}`)
+      await navigator.clipboard.writeText(`${message}\n\n${url}`)
       toast("Results copied to clipboard!")
     } catch (err) {
       console.error("Failed to copy to clipboard:", err)
