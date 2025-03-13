@@ -3,23 +3,7 @@
 import { useMemo, useState, useEffect } from "react"
 import { FoodItem, GameState } from "../types/types"
 import { getDailyFoods } from "../utils/dailyFoods"
-
-const STORAGE_KEY = "shredle_game_state"
-
-function saveGameState(state: GameState) {
-  if (typeof window !== "undefined") {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
-  }
-}
-
-function loadGameState(): GameState | null {
-  if (typeof window === "undefined") {
-    return null
-  }
-  const saved = localStorage.getItem(STORAGE_KEY)
-  if (!saved) return null
-  return JSON.parse(saved)
-}
+import { loadGameState, saveGameState } from "../utils/storage"
 
 export function useGameLogic(foodItems: FoodItem[]) {
   const dailyFoods = useMemo(() => getDailyFoods(foodItems), [foodItems])
@@ -34,6 +18,7 @@ export function useGameLogic(foodItems: FoodItem[]) {
         streak: savedState.streak,
         gameOver: savedState.gameOver,
         lives: savedState.lives,
+        gameHistory: savedState.gameHistory || [],
       }
     }
 
@@ -42,10 +27,12 @@ export function useGameLogic(foodItems: FoodItem[]) {
       streak: 0,
       gameOver: false,
       lives: 3,
+      gameHistory: [],
     }
   }
 
   const initialState = getInitialState()
+
   const [currentIndex, setCurrentIndex] = useState(initialState.currentIndex)
   const [streak, setStreak] = useState(initialState.streak)
   const [gameOver, setGameOver] = useState(initialState.gameOver)
@@ -53,6 +40,15 @@ export function useGameLogic(foodItems: FoodItem[]) {
   const [feedback, setFeedback] = useState<"correct" | "wrong" | null>(null)
   const [feedbackKey, setFeedbackKey] = useState(0)
   const [isProcessingGuess, setIsProcessingGuess] = useState(false)
+  const [gameHistory, setGameHistory] = useState<
+    Array<{
+      name1: string
+      calories1: number
+      name2: string
+      calories2: number
+      wasCorrect: boolean
+    }>
+  >([])
 
   useEffect(() => {
     const state: GameState = {
@@ -61,9 +57,10 @@ export function useGameLogic(foodItems: FoodItem[]) {
       gameOver,
       lives,
       lastPlayedDate: new Date().toISOString().split("T")[0],
+      gameHistory,
     }
     saveGameState(state)
-  }, [currentIndex, streak, gameOver, lives, dailyFoods])
+  }, [currentIndex, streak, gameOver, lives, gameHistory])
 
   const endGameWithDelay = () => {
     setTimeout(() => {
@@ -83,6 +80,17 @@ export function useGameLogic(foodItems: FoodItem[]) {
         dailyFoods[currentIndex].calories
       : dailyFoods[currentIndex + 1].calories <=
         dailyFoods[currentIndex].calories
+
+    setGameHistory((prev) => [
+      ...prev,
+      {
+        name1: dailyFoods[currentIndex].name,
+        calories1: dailyFoods[currentIndex].calories,
+        name2: dailyFoods[currentIndex + 1].name,
+        calories2: dailyFoods[currentIndex + 1].calories,
+        wasCorrect: isCorrect,
+      },
+    ])
 
     setFeedback(isCorrect ? "correct" : "wrong")
     setFeedbackKey((prevKey) => prevKey + 1)
@@ -133,5 +141,6 @@ export function useGameLogic(foodItems: FoodItem[]) {
     feedbackKey,
     lives,
     isProcessingGuess,
+    gameHistory,
   }
 }

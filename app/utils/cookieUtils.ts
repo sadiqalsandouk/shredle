@@ -1,7 +1,12 @@
 import { cookies } from "next/headers"
 import { getUTCMidnight } from "./getUTCMidnight"
+import { GameResult } from "../types/types"
 
-export function setGameCookie(now: Date, streak: number) {
+export function setGameCookie(
+  now: Date,
+  streak: number,
+  gameHistory: GameResult[]
+) {
   const nowUTC = new Date(
     Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
   )
@@ -13,13 +18,18 @@ export function setGameCookie(now: Date, streak: number) {
     name: "gameState",
     value: JSON.stringify({
       lastPlayed: nowUTC,
-      streak: streak,
+      streak,
+      gameHistory,
     }),
     expires: expires,
   })
 }
 
-export function getGameCookie(): { streak: number; lastPlayed: string } | null {
+export function getGameCookie(): {
+  streak: number
+  lastPlayed: string
+  gameHistory: GameResult[]
+} | null {
   const cookieStore = cookies()
   const gameCookie = cookieStore.get("gameState")
 

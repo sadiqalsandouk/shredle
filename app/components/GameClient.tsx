@@ -8,6 +8,7 @@ import { ScoreDisplay } from "./ScoreDisplay"
 import dynamic from "next/dynamic"
 import { useWindowSize } from "react-use"
 import { useEffect } from "react"
+import { GameOverScreen } from "./GameOverScreen"
 
 const Confetti = dynamic(() => import("react-confetti"), { ssr: false })
 
@@ -24,11 +25,12 @@ export default function GameClient({ foodData }: GameClientProps) {
     feedbackKey,
     lives,
     isProcessingGuess,
+    gameHistory,
   } = useGameLogic(foodData)
 
   useQuery<GameStatus>({
     queryKey: ["gameStatus"],
-    queryFn: () => updateGameStatus(streak),
+    queryFn: () => updateGameStatus(streak, gameHistory),
     enabled: gameOver,
   })
 
@@ -57,10 +59,10 @@ export default function GameClient({ foodData }: GameClientProps) {
     return (
       <div className="flex items-center justify-center p-4">
         <div className="text-center">
-          <ScoreDisplay
+          <GameOverScreen
             score={gameState.streak ?? 0}
-            isGameOver={true}
             message="You have already played today! Come back tomorrow for a new challenge"
+            gameHistory={gameState.gameHistory || []}
           />
         </div>
       </div>
@@ -79,10 +81,10 @@ export default function GameClient({ foodData }: GameClientProps) {
             gravity={0.3}
           />
         )}
-        <ScoreDisplay
+        <GameOverScreen
           score={streak}
-          isGameOver={true}
           message="Game Over! Come back tomorrow for a new challenge"
+          gameHistory={gameHistory}
         />
       </div>
     )

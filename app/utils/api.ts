@@ -1,4 +1,4 @@
-import { GameStatus } from "../types/types"
+import { GameResult, GameStatus } from "../types/types"
 
 export const fetchGameStatus = async (): Promise<GameStatus> => {
   const response = await fetch("/api/game", {
@@ -21,13 +21,16 @@ export const fetchGameStatus = async (): Promise<GameStatus> => {
   return data
 }
 
-export const updateGameStatus = async (streak: number): Promise<GameStatus> => {
+export const updateGameStatus = async (
+  streak: number,
+  gameHistory: GameResult[]
+): Promise<GameStatus> => {
   const response = await fetch("/api/game", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ streak }),
+    body: JSON.stringify({ streak, gameHistory }),
     credentials: "include",
   })
 

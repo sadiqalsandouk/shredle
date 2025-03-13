@@ -19,10 +19,15 @@ const config: Config = {
           "0%": { transform: "scale(0.7)" },
           "100%": { transform: "scale(1)" },
         },
+        scale: {
+          "0%": { transform: "scale(0)" },
+          "100%": { transform: "scale(1)" },
+        },
       },
       animation: {
         shake: "shake 0.5s ease-in-out",
         scaleUp: "scaleUp 0.1s ease-in-out forwards",
+        scale: "scale 0.3s ease-in-out",
       },
       colors: {
         background: "hsl(var(--background))",

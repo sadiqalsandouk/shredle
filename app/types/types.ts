@@ -5,6 +5,14 @@ export interface FoodItem {
   image: string
 }
 
+export interface GameResult {
+  name1: string
+  calories1: number
+  name2: string
+  calories2: number
+  wasCorrect: boolean
+}
+
 export interface GameClientProps {
   foodData: FoodItem[]
 }
@@ -12,6 +20,7 @@ export interface GameStatus {
   message: string
   nextReset: string
   streak?: number
+  gameHistory?: GameResult[]
 }
 
 export interface GameState {
@@ -20,6 +29,7 @@ export interface GameState {
   gameOver: boolean
   lives: number
   lastPlayedDate: string
+  gameHistory: GameResult[]
 }
 
 export interface IFoodCardProps {

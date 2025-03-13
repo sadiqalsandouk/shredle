@@ -17,6 +17,7 @@ export async function GET(req: Request) {
         message: "User cannot play",
         nextReset: utcMidnight.toISOString(),
         streak: gameState.streak || 0,
+        gameHistory: gameState.gameHistory || [],
       },
       { status: 200 }
     )
@@ -32,12 +33,14 @@ export async function POST(req: Request) {
   const mockDateHeader = req.headers.get("X-Mock-Date")
   const now = mockDateHeader ? new Date(mockDateHeader) : new Date()
   const utcMidnight = getUTCMidnight(now)
-  const { streak } = await req.json()
+  const { streak, gameHistory } = await req.json()
 
-  setGameCookie(now, streak)
+  setGameCookie(now, streak, gameHistory)
 
   return NextResponse.json({
     message: "Game completed",
     nextReset: utcMidnight.toISOString(),
+    streak,
+    gameHistory,
   })
 }
