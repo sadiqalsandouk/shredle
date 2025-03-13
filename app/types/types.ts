@@ -21,3 +21,14 @@ export interface GameState {
   lives: number
   lastPlayedDate: string
 }
+
+export interface IFoodCardProps {
+  food: {
+    id: string
+    name: string
+    calories: number
+    protein: number
+    image: string
+  }
+  onFoodDeleted?: () => void
+}

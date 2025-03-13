@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { PlusCircle, Loader2 } from "lucide-react"
 import { createClient } from "@/app/supabase/client"
+import { toast } from "sonner"
 
 interface FoodFormData {
   name: string
@@ -23,7 +24,7 @@ interface FoodFormData {
 }
 
 interface AddFoodDialogProps {
-  onFoodAdded?: () => void
+  onFoodAdded?: () => Promise<void>
 }
 
 const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
@@ -78,17 +79,9 @@ const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
       !formData.protein ||
       !imageFile
     ) {
-      window.alert(
-        JSON.stringify(
-          {
-            title: "Missing fields",
-            description: "Please fill all required fields and upload an image.",
-            variant: "destructive",
-          },
-          null,
-          2
-        )
-      )
+      toast.error("Missing fields", {
+        description: "Please fill all required fields and upload an image.",
+      })
       return
     }
 
@@ -96,12 +89,9 @@ const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
 
     try {
       const fileName = `${Date.now()}-${imageFile.name}`
-      console.log(imageFile)
       const { error: imageError } = await supabase.storage
         .from("food-images")
         .upload(fileName, imageFile)
-
-      console.log("image upload failed", imageError)
 
       if (imageError) throw imageError
 
@@ -110,8 +100,6 @@ const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
         .getPublicUrl(fileName)
 
       const imageUrl = publicUrlData.publicUrl
-
-      console.log("failed to get image url")
 
       const id = Math.floor(Math.random() * 10000)
       const { error } = await supabase
@@ -125,44 +113,33 @@ const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
         })
         .select()
 
-      console.log("failed to inesert food", error)
-
       if (error) throw error
 
-      window.alert(
-        JSON.stringify(
-          {
-            title: "Success!",
-            description: `${formData.name} has been added to your food list.`,
-          },
-          null,
-          2
-        )
-      )
+      toast.success("Success", {
+        description: `${formData.name} has been added to your food list.`,
+        className: "bg-white text-gray-800",
+        descriptionClassName: "text-gray-600",
+      })
 
-      if (onFoodAdded) onFoodAdded()
+      if (onFoodAdded) {
+        await onFoodAdded()
+      }
 
       setOpen(false)
       resetForm()
     } catch (error: unknown) {
       console.error("Error adding food:", error)
-      window.alert(
-        JSON.stringify(
-          {
-            title: "Error",
-            description:
-              error instanceof Error
-                ? error.message
-                : "Failed to add food. Please try again.",
-            variant: "destructive",
-          },
-          null,
-          2
-        )
-      )
+
+      toast.error("Error", {
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to add food. Please try again.",
+        className: "bg-white text-gray-800",
+        descriptionClassName: "text-gray-600",
+      })
     } finally {
       setLoading(false)
-      window.location.reload()
     }
   }
 

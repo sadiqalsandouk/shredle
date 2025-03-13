@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Trash2 } from "lucide-react"
-import { supabase } from "../../utils/supabase"
+import { createClient } from "@/app/supabase/client"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,19 +15,11 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
-
-interface IFoodCardProps {
-  food: {
-    id: string
-    name: string
-    calories: number
-    protein: number
-    image: string
-  }
-  onFoodDeleted?: () => void
-}
+import { toast } from "sonner"
+import { IFoodCardProps } from "@/app/types/types"
 
 export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
+  const supabase = createClient()
   const [isDeleting, setIsDeleting] = useState<boolean>(false)
 
   const extractFileNameFromUrl = (url: string): string | null => {
@@ -56,7 +48,6 @@ export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
         }
       }
 
-      console.log(food)
       const { error: dbError } = await supabase
         .from("shredleFoods")
         .delete()
@@ -64,39 +55,22 @@ export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
 
       if (dbError) throw dbError
 
+      toast.success("Food deleted successfully", {
+        description: `${food.name} has been deleted from your food list.`,
+      })
+
+      // Call onFoodDeleted after successful deletion
       if (onFoodDeleted) {
         onFoodDeleted()
       }
-
-      window.alert(
-        JSON.stringify(
-          {
-            title: "Success!",
-            description: `${food.name} has been deleted from your food list.`,
-          },
-          null,
-          2
-        )
-      )
     } catch (error: unknown) {
       console.error("Error deleting food:", error)
-      window.alert(
-        JSON.stringify(
-          {
-            title: "Error",
-            description:
-              error instanceof Error
-                ? error.message
-                : "Failed to delete food. Please try again.",
-            variant: "destructive",
-          },
-          null,
-          2
-        )
-      )
+      toast.error("Failed to delete food", {
+        description:
+          error instanceof Error ? error.message : "Please try again.",
+      })
     } finally {
       setIsDeleting(false)
-      window.location.reload()
     }
   }
 

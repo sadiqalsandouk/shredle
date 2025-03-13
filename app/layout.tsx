@@ -4,6 +4,7 @@ import GameHeader from "./components/GameHeader"
 import Footer from "./components/Footer"
 import ClientProvider from "./components/ClientProvider"
 import { Analytics } from "@vercel/analytics/react"
+import { Toaster } from "@/components/ui/sonner"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,6 +31,12 @@ export default function RootLayout({
           <GameHeader />
           <main className="flex-1 flex justify-center items-center">
             {children}
+            <Toaster
+              theme="light"
+              position="top-right"
+              expand={false}
+              richColors
+            />
             <Analytics />
           </main>
           <Footer />
