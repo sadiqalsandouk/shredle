@@ -88,7 +88,7 @@ const AddFoodDialog: React.FC<AddFoodDialogProps> = ({ onFoodAdded }) => {
     setLoading(true)
 
     try {
-      const fileName = `${Date.now()}-${imageFile.name}`
+      const fileName = `${imageFile.name}`
       const { error: imageError } = await supabase.storage
         .from("food-images")
         .upload(fileName, imageFile)
