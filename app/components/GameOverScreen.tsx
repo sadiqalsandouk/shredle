@@ -68,7 +68,6 @@ export function GameOverScreen({
             {score === total ? "Perfect Score! 🎉" : "Final Score"}
           </div>
         </div>
-
         {gameHistory.length > 0 && (
           <div className="space-y-2 mt-4">
             {gameHistory.map((result, index) => (
@@ -79,41 +78,30 @@ export function GameOverScreen({
                 transition={{ delay: index * 0.1 }}
                 className={`p-2 rounded-lg border text-sm ${
                   result.wasCorrect
-                    ? "bg-green-50/50 border-green-100"
-                    : "bg-red-50/50 border-red-100"
+                    ? "bg-green-50/50 border-green-200"
+                    : "bg-red-50/50 border-red-200"
                 }`}
               >
-                <div className="grid grid-cols-[minmax(0,1fr),auto,minmax(0,1fr)] gap-x-4 items-start">
-                  <div className="text-left space-y-0.5">
-                    <p className="font-semibold text-gray-900 text-xs sm:text-sm leading-tight break-words pr-1">
+                <div className="grid grid-cols-[1fr,auto,1fr] gap-x-2 items-start">
+                  <div className="text-left space-y-0.5 min-w-[120px] sm:min-w-[150px]">
+                    <p className="font-semibold text-gray-900 text-xs sm:text-sm leading-tight break-words pr-1 min-h-[2.5em]">
                       {result.name1}
                     </p>
                     <p className="text-xs font-medium text-gray-600">
                       {result.calories1.toLocaleString()} cal
                     </p>
                   </div>
-                  <div className="text-xs font-medium text-gray-400 pt-1 px-1">
+                  <div className="text-xs font-medium text-gray-400 pt-1 px-2">
                     vs
                   </div>
-                  <div className="text-right space-y-0.5">
-                    <p className="font-semibold text-gray-900 text-xs sm:text-sm leading-tight break-words pl-1">
+                  <div className="text-right space-y-0.5 min-w-[120px] sm:min-w-[150px]">
+                    <p className="font-semibold text-gray-900 text-xs sm:text-sm leading-tight break-words pl-1 min-h-[2.5em]">
                       {result.name2}
                     </p>
                     <p className="text-xs font-medium text-gray-600">
                       {result.calories2.toLocaleString()} cal
                     </p>
                   </div>
-                </div>
-                <div className="text-xs mt-1 flex justify-center">
-                  {result.wasCorrect ? (
-                    <span className="text-green-600 font-medium flex items-center gap-0.5">
-                      <span className="text-sm">✓</span> Correct
-                    </span>
-                  ) : (
-                    <span className="text-red-600 font-medium flex items-center gap-0.5">
-                      <span className="text-sm">✗</span> Wrong
-                    </span>
-                  )}
                 </div>
               </motion.div>
             ))}
