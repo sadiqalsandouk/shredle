@@ -1,47 +1,60 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useQuery, useQueryClient } from "@tanstack/react-query"
 import FoodCard from "./_components/FoodCard"
 import AddFoodDialog from "./_components/AddFoodDialog"
 import { createClient } from "../supabase/client"
 import { IFoodCardProps } from "../types/types"
+import { Loader2 } from "lucide-react"
 
 type Food = IFoodCardProps["food"]
 
 export default function DashboardPage() {
-  const [foods, setFoods] = useState<Food[]>([])
   const supabase = createClient()
+  const queryClient = useQueryClient()
 
-  const fetchFoods = async () => {
-    const { data, error } = await supabase
-      .from("shredleFoods")
-      .select("*")
-      .order("created_at", { ascending: false })
+  const {
+    data: foods = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["foods"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("shredleFoods")
+        .select("*")
+        .order("created_at", { ascending: false })
 
-    if (error) {
-      console.error("Error fetching foods:", error)
-      return
-    }
+      if (error) throw error
+      return data as Food[]
+    },
+  })
 
-    if (data) {
-      setFoods(data)
-    }
-  }
-
-  // Add this function to handle food deletion
   const handleFoodDeleted = (deletedFoodId: string | number) => {
-    setFoods((prevFoods) =>
-      prevFoods.filter((food) => food.id !== deletedFoodId)
+    queryClient.setQueryData(["foods"], (oldData: Food[] = []) =>
+      oldData.filter((food) => food.id !== deletedFoodId)
     )
   }
 
-  useEffect(() => {
-    fetchFoods()
-  }, [])
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-gray-500" />
+      </div>
+    )
+  }
+
+  if (error) {
+    return <div>Error loading foods</div>
+  }
 
   return (
     <div>
-      <AddFoodDialog onFoodAdded={fetchFoods} />
+      <AddFoodDialog
+        onFoodAdded={() =>
+          queryClient.invalidateQueries({ queryKey: ["foods"] })
+        }
+      />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6">
         {foods.map((food) => (
