@@ -132,7 +132,7 @@ export function GameOverScreen({
               >
                 <div className="grid grid-cols-[1fr,auto,1fr] gap-x-2 items-start">
                   <div className="text-left space-y-0.5 min-w-[120px] sm:min-w-[150px]">
-                    <p className="font-semibold text-gray-900 text-xs sm:text-sm leading-tight break-words pr-1 min-h-[2.5em]">
+                    <p className="text-gray-900 text-xs sm:text-sm leading-tight break-words pr-1 min-h-[2.5em]">
                       {result.name1}
                     </p>
                     <p className="text-xs font-medium text-gray-600">
@@ -143,7 +143,7 @@ export function GameOverScreen({
                     vs
                   </div>
                   <div className="text-right space-y-0.5 min-w-[120px] sm:min-w-[150px]">
-                    <p className="font-semibold text-gray-900 text-xs sm:text-sm leading-tight break-words pl-1 min-h-[2.5em]">
+                    <p className="text-gray-900 text-xs sm:text-sm leading-tight break-words pl-1 min-h-[2.5em]">
                       {result.name2}
                     </p>
                     <p className="text-xs font-medium text-gray-600">
@@ -157,7 +157,7 @@ export function GameOverScreen({
         )}
 
         {message && (
-          <p className="text-gray-600 font-medium text-xs sm:text-sm px-4 py-2 bg-gray-50/50 rounded-lg border border-gray-100">
+          <p className="text-gray-600 font-medium text-xs px-4 py-2 bg-gray-50/50 rounded-lg border border-gray-100">
             {message}
           </p>
         )}

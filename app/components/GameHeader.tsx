@@ -1,5 +1,7 @@
 import Link from "next/link"
 import HowToPlay from "./HowToPlay"
+import { PoppinsFontHeader } from "../utils/font"
+import { PoppinsFont } from "../utils/font"
 
 export default function GameHeader() {
   return (
@@ -13,14 +15,14 @@ export default function GameHeader() {
           >
             <span className="text-2xl sm:text-3xl">🍔</span>
             <span
-              className="bg-gradient-to-r from-orange-600 to-orange-700 
-              bg-clip-text text-transparent hover:text-orange-800"
+              className={`bg-gradient-to-r from-orange-600 to-orange-700 
+              bg-clip-text text-transparent hover:text-orange-800 font-bold ${PoppinsFontHeader.className}`}
             >
               Shredle
             </span>
           </Link>
 
-          <div className="flex items-center gap-4">
+          <div className={`flex items-center gap-4 ${PoppinsFont.className}`}>
             <HowToPlay />
           </div>
         </div>

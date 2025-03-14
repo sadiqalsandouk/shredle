@@ -5,6 +5,7 @@ import Footer from "./components/Footer"
 import ClientProvider from "./components/ClientProvider"
 import { Analytics } from "@vercel/analytics/react"
 import { Toaster } from "@/components/ui/sonner"
+import { PoppinsFont } from "./utils/font"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,7 +30,9 @@ export default function RootLayout({
       >
         <ClientProvider>
           <GameHeader />
-          <main className="flex-1 flex justify-center items-center">
+          <main
+            className={`flex-1 flex justify-center items-center ${PoppinsFont.className}`}
+          >
             {children}
             <Toaster
               theme="light"

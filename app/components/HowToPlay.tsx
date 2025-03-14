@@ -8,16 +8,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
+import { PoppinsFont } from "../utils/font"
 
 export default function HowToPlay() {
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          variant="ghost"
-          className="text-lg text-orange-700 hover:text-orange-900 hover:bg-orange-100/50"
+          variant="outline"
+          className={`${PoppinsFont.className} px-4 py-2 text-lg font-medium text-orange-700 hover:text-orange-900 border-2 rounded-lg shadow-sm}`}
         >
-          Rules
+          📋 Rules
         </Button>
       </DialogTrigger>
       <DialogContent className="w-[90%] max-w-[320px] p-4 bg-orange-50/90 backdrop-blur-sm rounded-xl">
@@ -27,7 +28,7 @@ export default function HowToPlay() {
           </DialogTitle>
         </DialogHeader>
         <DialogDescription className="text-orange-900/90">
-          <div className="space-y-6">
+          <div className={`${PoppinsFont.className} space-y-10}`}>
             <div>
               <h3 className="font-semibold text-lg mb-2 text-orange-800">
                 🎯 Goal
@@ -36,7 +37,7 @@ export default function HowToPlay() {
             </div>
 
             <div>
-              <h3 className="font-semibold text-lg mb-2 text-orange-800">
+              <h3 className="font-semibold text-lg mb-2 mt-7 text-orange-800">
                 📋 Rules
               </h3>
               <ul className="list-disc pl-4 space-y-2">
@@ -50,7 +51,7 @@ export default function HowToPlay() {
             </div>
 
             <div>
-              <h3 className="font-semibold text-lg mb-2 text-orange-800">
+              <h3 className="font-semibold text-lg mb-2 text-orange-800 mt-7">
                 🏆 Score
               </h3>
               <ul className="list-disc pl-4 space-y-2">
