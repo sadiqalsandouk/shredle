@@ -60,14 +60,17 @@ export function PasswordGate({
     setError("")
     setIsSending(true)
 
+    const isLocalDevelopment = window.location.hostname === "localhost"
+
+    const redirectPath = redirectUrl || "dashboard"
+
     try {
       const { error } = await supabase.auth.signInWithOtp({
         email,
         options: {
-          emailRedirectTo:
-            redirectUrl != null
-              ? `${window.location.origin}/${redirectUrl}`
-              : window.location.href,
+          emailRedirectTo: isLocalDevelopment
+            ? `http://localhost:3000/${redirectPath}`
+            : `${window.location.origin}/${redirectPath}`,
         },
       })
 
