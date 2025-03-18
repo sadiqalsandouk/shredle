@@ -50,6 +50,9 @@ export default function DashboardPage() {
 
   return (
     <div>
+      <div className="absolute top-4 right-6 bg-neutral-100 rounded-full px-4 py-2 text-sm font-bold">
+        Total Foods: {foods.length}
+      </div>
       <AddFoodDialog
         onFoodAdded={() =>
           queryClient.invalidateQueries({ queryKey: ["foods"] })
