@@ -11,7 +11,6 @@ export async function GET(req: Request) {
     Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
   )
 
-  // If user has already played today, return their existing game history
   if (gameState?.lastPlayed && new Date(gameState.lastPlayed) >= todayUTC) {
     return NextResponse.json(
       {
@@ -24,13 +23,12 @@ export async function GET(req: Request) {
     )
   }
 
-  // If this is a new game, get the existing game history from cookie
   const existingHistory = gameState?.gameHistory || []
 
   return NextResponse.json({
     message: "User can play",
     nextReset: utcMidnight.toISOString(),
-    gameHistory: existingHistory, // Include existing history in response
+    gameHistory: existingHistory,
   })
 }
 
@@ -40,7 +38,6 @@ export async function POST(req: Request) {
   const utcMidnight = getUTCMidnight(now)
   const { streak, gameHistory } = await req.json()
 
-  // Get existing game state to preserve history
   const existingState = getGameCookie()
   const mergedHistory =
     gameHistory.length > 0 ? gameHistory : existingState?.gameHistory || []
