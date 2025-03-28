@@ -5,14 +5,10 @@ export const metadata: Metadata = {
   title: "Shredle | Admin dashboard",
 }
 
-export default function RootLayout({
+export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <PasswordGate>
-      <div>{children}</div>
-    </PasswordGate>
-  )
+  return <PasswordGate>{children}</PasswordGate>
 }

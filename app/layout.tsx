@@ -28,8 +28,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gradient-to-b from-orange-50 via-white to-orange-50 pattern-food pattern-orange-100 pattern-opacity-10 pattern-lg`}
       >
+        <GameHeader />
         <ClientProvider>
-          <GameHeader />
           <main
             className={`flex-1 flex justify-center items-center ${PoppinsFont.className}`}
           >
@@ -42,8 +42,8 @@ export default function RootLayout({
             />
             <Analytics />
           </main>
-          <Footer />
         </ClientProvider>
+        <Footer />
       </body>
     </html>
   )

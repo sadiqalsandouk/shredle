@@ -59,7 +59,6 @@ export default function FoodCard({ food, onFoodDeleted }: IFoodCardProps) {
         description: `${food.name} has been deleted from your food list.`,
       })
 
-      // Call onFoodDeleted after successful deletion
       if (onFoodDeleted) {
         onFoodDeleted()
       }

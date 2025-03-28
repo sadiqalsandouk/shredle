@@ -7,7 +7,6 @@ import { useQuery } from "@tanstack/react-query"
 import { ScoreDisplay } from "./ScoreDisplay"
 import dynamic from "next/dynamic"
 import { useWindowSize } from "react-use"
-import { useEffect } from "react"
 import { GameOverScreen } from "./GameOverScreen"
 
 const Confetti = dynamic(() => import("react-confetti"), { ssr: false })
@@ -39,13 +38,6 @@ export default function GameClient({ foodData }: GameClientProps) {
     queryFn: fetchGameStatus,
     retry: false,
   })
-
-  useEffect(() => {
-    dailyFoods.slice(currentIndex + 2, currentIndex + 5).forEach((food) => {
-      const img = new window.Image()
-      img.src = food.image
-    })
-  }, [currentIndex, dailyFoods])
 
   if (checkingStatus) {
     return (

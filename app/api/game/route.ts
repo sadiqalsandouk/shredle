@@ -17,7 +17,7 @@ export async function GET(req: Request) {
         message: "User cannot play",
         nextReset: utcMidnight.toISOString(),
         streak: gameState.streak || 0,
-        gameHistory: gameState.gameHistory || [], // Preserve existing history
+        gameHistory: gameState.gameHistory || [],
       },
       { status: 200 }
     )
