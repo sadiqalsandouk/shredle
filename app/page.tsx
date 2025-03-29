@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import { getFoodData } from "./utils/getFoodData"
-import GameServer from "./components/GameServer"
+import GameClient from "./components/GameClient"
 
 export const metadata: Metadata = {
   title: "Shredle",
@@ -9,5 +9,5 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const res = await getFoodData()
-  return <GameServer foodData={res.foodData} />
+  return <GameClient foodData={res.foodData} />
 }
