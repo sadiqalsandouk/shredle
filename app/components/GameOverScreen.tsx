@@ -2,6 +2,10 @@ import { motion } from "framer-motion"
 import { Share2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
+import { useState, useEffect } from "react"
+import { ScoreSubmitForm } from "./ScoreSubmitForm"
+import { useQuery } from "@tanstack/react-query"
+import { fetchLeaderboard } from "../utils/api"
 
 interface GameResult {
   name1: string
@@ -28,11 +32,49 @@ export function GameOverScreen({
   isStreak = false,
   onReset,
 }: GameOverScreenProps) {
+  const [scoreSubmitted, setScoreSubmitted] = useState(false)
   const foodEmojis = ["🍎", "🥑", "🥕", "🥦", "🍌"]
   const date = new Date().toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
   })
+
+  // Fetch top 3 scores for streak mode
+  const { data: leaderboardData, isLoading } = useQuery({
+    queryKey: ["leaderboard", 3],
+    queryFn: () => fetchLeaderboard(3),
+    enabled: isStreak,
+    refetchOnWindowFocus: false,
+  })
+
+  // Check if score was already submitted
+  useEffect(() => {
+    if (isStreak) {
+      // Use the date to create a unique ID for today's game
+      const today = new Date().toISOString().split("T")[0]
+      const gameId = `streak-${today}-${score}`
+      const submittedScores = localStorage.getItem("submittedScores") || "{}"
+      const parsedScores = JSON.parse(submittedScores)
+
+      if (parsedScores[gameId]) {
+        setScoreSubmitted(true)
+      }
+    }
+  }, [isStreak, score])
+
+  // Mark score as submitted
+  const handleScoreSubmitted = () => {
+    if (isStreak) {
+      const today = new Date().toISOString().split("T")[0]
+      const gameId = `streak-${today}-${score}`
+      const submittedScores = localStorage.getItem("submittedScores") || "{}"
+      const parsedScores = JSON.parse(submittedScores)
+
+      parsedScores[gameId] = true
+      localStorage.setItem("submittedScores", JSON.stringify(parsedScores))
+      setScoreSubmitted(true)
+    }
+  }
 
   const generateShareMessage = () => {
     if (isStreak) {
@@ -82,6 +124,11 @@ export function GameOverScreen({
       console.error("Failed to copy to clipboard:", err)
     }
   }
+
+  // Filter to only show incorrect guesses in streak mode
+  const filteredGameHistory = isStreak
+    ? gameHistory.filter((result) => !result.wasCorrect)
+    : gameHistory
 
   return (
     <motion.div
@@ -140,9 +187,15 @@ export function GameOverScreen({
             {isStreak ? "Final Streak" : "Final Score"}
           </div>
         </div>
-        {gameHistory.length > 0 && (
+        {filteredGameHistory.length > 0 && (
           <div className="space-y-2 mt-4">
-            {gameHistory.map((result, index) => (
+            {isStreak && (
+              <h3 className="text-base font-medium text-gray-700">
+                Where you went wrong:
+              </h3>
+            )}
+
+            {filteredGameHistory.map((result, index) => (
               <motion.div
                 key={index}
                 initial={{ x: -20, opacity: 0 }}
@@ -186,29 +239,95 @@ export function GameOverScreen({
           </p>
         )}
 
-        <Button
-          onClick={handleShare}
-          className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center gap-2"
-        >
-          <Share2 className="w-4 h-4" />
-          Share Score
-        </Button>
+        {isStreak && (
+          <div className="mt-6 space-y-4">
+            {!scoreSubmitted && score > 0 ? (
+              <div className="border-t border-gray-100 pt-4">
+                <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                  Submit Your Score
+                </h3>
+                <ScoreSubmitForm
+                  score={score}
+                  onComplete={handleScoreSubmitted}
+                />
+              </div>
+            ) : null}
+
+            {/* Top 3 Leaderboard Section */}
+            {!isLoading &&
+              leaderboardData?.data &&
+              leaderboardData.data.length > 0 && (
+                <div className="mt-4 border-t border-gray-100 pt-4">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                    Top Streaks
+                  </h3>
+                  <div className="space-y-2">
+                    {leaderboardData.data.slice(0, 3).map((entry, index) => (
+                      <div
+                        key={entry.id || index}
+                        className={`flex items-center p-2 rounded-md ${
+                          index === 0
+                            ? "bg-yellow-50 border border-yellow-100"
+                            : index === 1
+                            ? "bg-gray-50 border border-gray-100"
+                            : index === 2
+                            ? "bg-orange-50 border border-orange-100"
+                            : ""
+                        }`}
+                      >
+                        <div className="w-8 font-bold text-lg">
+                          {index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉"}
+                        </div>
+                        <div className="flex-1 text-left">
+                          <p className="font-medium text-sm">
+                            {entry.player_name}
+                          </p>
+                        </div>
+                        <div className="text-xl font-bold flex items-center gap-1 text-orange-600">
+                          {entry.score}
+                          <span className="text-base">🔥</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="text-xs text-gray-500 mt-2">
+                    <a
+                      href="/leaderboard"
+                      className="text-orange-600 hover:underline"
+                    >
+                      View full leaderboard →
+                    </a>
+                  </div>
+                </div>
+              )}
+
+            {onReset && (
+              <button
+                onClick={onReset}
+                className="mt-4 w-full py-3 bg-orange-600 hover:bg-orange-700 
+                           text-white rounded-lg font-semibold transition-colors
+                           shadow-md"
+              >
+                Play Again
+              </button>
+            )}
+          </div>
+        )}
+
+        {!isStreak && (
+          <Button
+            onClick={handleShare}
+            className="w-full bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg flex items-center justify-center gap-2"
+          >
+            <Share2 className="w-4 h-4" />
+            Share Score
+          </Button>
+        )}
 
         <div className="pt-2 text-xs font-medium text-gray-400 flex items-center justify-center gap-1">
           Play at
           <span className="text-orange-500">shredle.co.uk</span>
         </div>
-
-        {isStreak && onReset && (
-          <button
-            onClick={onReset}
-            className="mt-6 w-full py-3 bg-orange-600 hover:bg-orange-700 
-                       text-white rounded-lg font-semibold transition-colors
-                       shadow-md"
-          >
-            Play Again
-          </button>
-        )}
       </div>
     </motion.div>
   )

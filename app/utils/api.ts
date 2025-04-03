@@ -41,3 +41,47 @@ export const updateGameStatus = async (
   const data = await response.json()
   return data
 }
+
+export const fetchLeaderboard = async (limit = 10, mode = "streak") => {
+  try {
+    const response = await fetch(`/api/leaderboard?limit=${limit}&mode=${mode}`)
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      console.error("Leaderboard fetch error:", errorData)
+      throw new Error(`Failed to fetch leaderboard: ${response.status}`)
+    }
+
+    return response.json()
+  } catch (error) {
+    console.error("Fetch leaderboard error:", error)
+    throw error
+  }
+}
+
+export const submitScore = async (
+  playerName: string,
+  score: number,
+  gameMode = "streak"
+) => {
+  try {
+    const response = await fetch("/api/leaderboard", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ playerName, score, gameMode }),
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      console.error("Score submission error:", errorData)
+      throw new Error(`Failed to submit score: ${response.status}`)
+    }
+
+    return response.json()
+  } catch (error) {
+    console.error("Submit score error:", error)
+    throw error
+  }
+}

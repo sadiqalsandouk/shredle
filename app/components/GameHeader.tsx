@@ -9,9 +9,11 @@ import { useState, useEffect } from "react"
 export default function GameHeader() {
   const pathname = usePathname()
   const isStreakMode = pathname === "/streak"
+  const isLeaderboard = pathname === "/leaderboard"
   const [showNew, setShowNew] = useState(false)
   const [mounted, setMounted] = useState(false)
 
+  // Only run after mount to prevent hydration issues
   useEffect(() => {
     setMounted(true)
     const hasSeenStreak = localStorage.getItem("hasSeenStreakMode")
@@ -19,6 +21,7 @@ export default function GameHeader() {
       setShowNew(true)
     }
 
+    // If they visit the streak page, mark it as seen
     if (isStreakMode) {
       localStorage.setItem("hasSeenStreakMode", "true")
       setShowNew(false)
@@ -26,7 +29,7 @@ export default function GameHeader() {
   }, [isStreakMode])
 
   return (
-    <header className="">
+    <header className="border-b border-gray-100">
       <div className="max-w-4xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link
@@ -44,22 +47,23 @@ export default function GameHeader() {
           </Link>
 
           <div className={`flex items-center gap-4 ${PoppinsFont.className}`}>
-            <div className="flex gap-2">
+            <div className="flex items-center">
               <Link
                 href="/"
-                className={`px-3 py-1 rounded-lg transition-colors
+                className={`px-3 py-1 rounded-lg transition-colors h-8 flex items-center
                   ${
-                    !isStreakMode
+                    !isStreakMode && !isLeaderboard
                       ? "bg-orange-100 text-orange-800 font-semibold"
                       : "text-gray-600 hover:bg-gray-100"
                   }`}
               >
                 Daily
               </Link>
-              <div className="relative">
+
+              <div className="relative mx-2">
                 <Link
                   href="/streak"
-                  className={`px-3 py-1 rounded-lg transition-colors
+                  className={`px-3 py-1 rounded-lg transition-colors h-8 flex items-center
                     ${
                       isStreakMode
                         ? "bg-orange-100 text-orange-800 font-semibold"
@@ -77,8 +81,23 @@ export default function GameHeader() {
                   </div>
                 )}
               </div>
+
+              <Link
+                href="/leaderboard"
+                className={`px-3 py-1 rounded-lg transition-colors h-8 flex items-center
+                  ${
+                    isLeaderboard
+                      ? "bg-orange-100 text-orange-800 font-semibold"
+                      : "text-gray-600 hover:bg-gray-100"
+                  }`}
+              >
+                Leaderboard
+              </Link>
             </div>
-            <HowToPlay />
+
+            <div className="ml-2">
+              <HowToPlay />
+            </div>
           </div>
         </div>
       </div>
