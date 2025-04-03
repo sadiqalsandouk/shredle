@@ -27,7 +27,7 @@ export default function HowToPlay({ isMobile = false }: HowToPlayProps) {
           Rules
         </button>
       </DialogTrigger>
-      <DialogContent className="w-[85%] max-w-[250px] sm:w-[90%] sm:max-w-[320px] p-2 sm:p-4 bg-orange-50/90 dark:bg-gray-800/95 backdrop-blur-sm rounded-xl max-h-[80vh] sm:max-h-none overflow-y-auto">
+      <DialogContent className="w-[85%] max-w-[250px] sm:w-[90%] sm:max-w-[520px] p-2 sm:p-4 bg-orange-50/90 dark:bg-gray-800/95 backdrop-blur-sm rounded-xl max-h-[80vh] sm:max-h-none overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-lg sm:text-2xl font-bold text-center mb-2 sm:mb-4 text-orange-800 dark:text-orange-300">
             How to Play Shredle
