@@ -28,7 +28,7 @@ export default function GameHeader() {
   }, [isStreakMode])
 
   return (
-    <header className="sticky top-0 bg-orange-50/95 dark:bg-gray-900/95 backdrop-blur-sm z-50">
+    <header className="sticky top-0 bg-orange-50/95 dark:bg-gray-950/95 backdrop-blur-sm z-50">
       <div className="max-w-4xl mx-auto px-3 py-3">
         <div className="flex items-center justify-between">
           <Link
@@ -130,7 +130,7 @@ export default function GameHeader() {
         <div
           className={`
             absolute left-0 right-0 bg-gradient-to-b from-orange-50/95 to-white 
-            dark:from-gray-900/95 dark:to-gray-800/95 border-t border-orange-100/50 
+            dark:from-gray-950/95 dark:to-gray-800/95 border-t border-orange-100/50 
             dark:border-gray-700/50 shadow-lg sm:hidden overflow-hidden transition-all 
             duration-300 ease-in-out backdrop-blur-sm
             ${isMenuOpen ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0"}
