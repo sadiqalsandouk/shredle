@@ -13,19 +13,30 @@ export interface GameState {
   }>
 }
 
-const STORAGE_KEY = "shredle_game_state"
+export function saveGameState(
+  state: GameState,
+  mode: "daily" | "streak" = "daily"
+) {
+  if (typeof window === "undefined") return
 
-export function saveGameState(state: GameState) {
-  if (typeof window !== "undefined") {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+  try {
+    const key = mode === "daily" ? "calorieGameState" : "calorieGameStreakState"
+    localStorage.setItem(key, JSON.stringify(state))
+  } catch (e) {
+    console.error("Failed to save game state", e)
   }
 }
 
-export function loadGameState(): GameState | null {
-  if (typeof window === "undefined") {
+export function loadGameState(
+  mode: "daily" | "streak" = "daily"
+): GameState | null {
+  if (typeof window === "undefined") return null
+  try {
+    const key = mode === "daily" ? "calorieGameState" : "calorieGameStreakState"
+    const savedState = localStorage.getItem(key)
+    return savedState ? JSON.parse(savedState) : null
+  } catch (e) {
+    console.error("Failed to load game state", e)
     return null
   }
-  const saved = localStorage.getItem(STORAGE_KEY)
-  if (!saved) return null
-  return JSON.parse(saved)
 }

@@ -16,6 +16,8 @@ interface GameOverScreenProps {
   total?: number
   message?: string
   gameHistory?: GameResult[]
+  isStreak?: boolean
+  onReset?: () => void
 }
 
 export function GameOverScreen({
@@ -23,6 +25,8 @@ export function GameOverScreen({
   total = 5,
   message,
   gameHistory = [],
+  isStreak = false,
+  onReset,
 }: GameOverScreenProps) {
   const foodEmojis = ["🍎", "🥑", "🥕", "🥦", "🍌"]
   const date = new Date().toLocaleDateString("en-US", {
@@ -31,6 +35,10 @@ export function GameOverScreen({
   })
 
   const generateShareMessage = () => {
+    if (isStreak) {
+      return `Shredle Streak - ${date}\nI got ${score} correct in a row! 🔥\nPlay now at `
+    }
+
     const scoreEmojis = Array(total)
       .fill("⬜")
       .map((emoji, i) => (i < score ? "🟩" : emoji))
@@ -90,30 +98,46 @@ export function GameOverScreen({
         </div>
 
         <div className="flex justify-center space-x-8">
-          {[...Array(total)].map((_, i) => (
+          {isStreak ? (
             <motion.div
-              key={i}
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: i * 0.1 }}
-              className={`text-2xl transition-all duration-300 ${
-                i < score
-                  ? "transform scale-110 opacity-100"
-                  : "opacity-30 grayscale"
-              }`}
+              className="text-4xl"
             >
-              {foodEmojis[i]}
+              🔥
             </motion.div>
-          ))}
+          ) : (
+            [...Array(total)].map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: i * 0.1 }}
+                className={`text-2xl transition-all duration-300 ${
+                  i < score
+                    ? "transform scale-110 opacity-100"
+                    : "opacity-30 grayscale"
+                }`}
+              >
+                {foodEmojis[i]}
+              </motion.div>
+            ))
+          )}
         </div>
 
         <div className="flex flex-col items-center">
-          <div className="text-3xl font-black text-orange-600">
-            {score}
-            <span className="text-orange-300">/{total}</span>
-          </div>
+          {isStreak ? (
+            <div className="flex items-center">
+              <div className="text-4xl font-black text-orange-600">{score}</div>
+            </div>
+          ) : (
+            <div className="text-3xl font-black text-orange-600">
+              {score}
+              <span className="text-orange-300">/{total}</span>
+            </div>
+          )}
           <div className="text-xs font-medium text-orange-600/80">
-            Final Score
+            {isStreak ? "Final Streak" : "Final Score"}
           </div>
         </div>
         {gameHistory.length > 0 && (
@@ -174,6 +198,17 @@ export function GameOverScreen({
           Play at
           <span className="text-orange-500">shredle.co.uk</span>
         </div>
+
+        {isStreak && onReset && (
+          <button
+            onClick={onReset}
+            className="mt-6 w-full py-3 bg-orange-600 hover:bg-orange-700 
+                       text-white rounded-lg font-semibold transition-colors
+                       shadow-md"
+          >
+            Play Again
+          </button>
+        )}
       </div>
     </motion.div>
   )

@@ -59,6 +59,22 @@ export default function HowToPlay() {
                 <li>New game every day</li>
               </ul>
             </div>
+
+            <div>
+              <h3 className="font-semibold text-lg mb-2 text-orange-800 mt-7">
+                🎮 Game Modes
+              </h3>
+              <ul className="list-disc pl-4 space-y-2">
+                <li>
+                  <span className="font-medium">Daily Challenge:</span> 5 foods,
+                  same for everyone each day
+                </li>
+                <li>
+                  <span className="font-medium">Streak Mode:</span> Keep
+                  guessing until you get one wrong!
+                </li>
+              </ul>
+            </div>
           </div>
         </DialogDescription>
       </DialogContent>
