@@ -7,7 +7,6 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url)
     const limit = parseInt(searchParams.get("limit") || "10")
-    const mode = searchParams.get("mode") || "streak"
 
     const supabase = await createClient()
 
@@ -42,8 +41,6 @@ export async function GET(req: Request) {
     const { data, error } = await supabase
       .from("leaderboard")
       .select("*")
-      // Only filter by game_mode if the column exists
-      // .eq("game_mode", mode) - Let's comment this out for now
       .order("score", { ascending: false })
       .limit(limit)
 
@@ -74,7 +71,7 @@ export async function GET(req: Request) {
 // POST endpoint to submit a new score
 export async function POST(req: Request) {
   try {
-    const { playerName, score, gameMode = "streak" } = await req.json()
+    const { playerName, score } = await req.json()
 
     // Server-side validation
     const validation = validateUsername(playerName)

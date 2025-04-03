@@ -15,6 +15,13 @@ interface GameResult {
   wasCorrect: boolean
 }
 
+interface LeaderboardEntry {
+  id: number
+  player_name: string
+  score: number
+  date: string
+}
+
 interface GameOverScreenProps {
   score: number
   total?: number
@@ -262,33 +269,35 @@ export function GameOverScreen({
                     Top Streaks
                   </h3>
                   <div className="space-y-2">
-                    {leaderboardData.data.slice(0, 3).map((entry, index) => (
-                      <div
-                        key={entry.id || index}
-                        className={`flex items-center p-2 rounded-md ${
-                          index === 0
-                            ? "bg-yellow-50 border border-yellow-100"
-                            : index === 1
-                            ? "bg-gray-50 border border-gray-100"
-                            : index === 2
-                            ? "bg-orange-50 border border-orange-100"
-                            : ""
-                        }`}
-                      >
-                        <div className="w-8 font-bold text-lg">
-                          {index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉"}
+                    {leaderboardData.data
+                      .slice(0, 3)
+                      .map((entry: LeaderboardEntry, index: number) => (
+                        <div
+                          key={entry.id || index}
+                          className={`flex items-center p-2 rounded-md ${
+                            index === 0
+                              ? "bg-yellow-50 border border-yellow-100"
+                              : index === 1
+                              ? "bg-gray-50 border border-gray-100"
+                              : index === 2
+                              ? "bg-orange-50 border border-orange-100"
+                              : ""
+                          }`}
+                        >
+                          <div className="w-8 font-bold text-lg">
+                            {index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉"}
+                          </div>
+                          <div className="flex-1 text-left">
+                            <p className="font-medium text-sm">
+                              {entry.player_name}
+                            </p>
+                          </div>
+                          <div className="text-xl font-bold flex items-center gap-1 text-orange-600">
+                            {entry.score}
+                            <span className="text-base">🔥</span>
+                          </div>
                         </div>
-                        <div className="flex-1 text-left">
-                          <p className="font-medium text-sm">
-                            {entry.player_name}
-                          </p>
-                        </div>
-                        <div className="text-xl font-bold flex items-center gap-1 text-orange-600">
-                          {entry.score}
-                          <span className="text-base">🔥</span>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
                   </div>
                   <div className="text-xs text-gray-500 mt-2">
                     <a

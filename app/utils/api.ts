@@ -42,9 +42,9 @@ export const updateGameStatus = async (
   return data
 }
 
-export const fetchLeaderboard = async (limit = 10, mode = "streak") => {
+export const fetchLeaderboard = async (limit = 10) => {
   try {
-    const response = await fetch(`/api/leaderboard?limit=${limit}&mode=${mode}`)
+    const response = await fetch(`/api/leaderboard?limit=${limit}`)
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
@@ -59,18 +59,14 @@ export const fetchLeaderboard = async (limit = 10, mode = "streak") => {
   }
 }
 
-export const submitScore = async (
-  playerName: string,
-  score: number,
-  gameMode = "streak"
-) => {
+export const submitScore = async (playerName: string, score: number) => {
   try {
     const response = await fetch("/api/leaderboard", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ playerName, score, gameMode }),
+      body: JSON.stringify({ playerName, score }),
     })
 
     if (!response.ok) {

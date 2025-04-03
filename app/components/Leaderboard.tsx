@@ -11,13 +11,17 @@ interface LeaderboardEntry {
   date: string
 }
 
-export default function Leaderboard() {
-  const [limit, setLimit] = useState(10)
+interface LeaderboardProps {
+  limit?: number
+}
 
-  const { data, isLoading, error, isError } = useQuery({
-    queryKey: ["leaderboard", limit],
-    queryFn: () => fetchLeaderboard(limit),
-    retry: 1, // Only retry once
+export default function Leaderboard({ limit = 10 }: LeaderboardProps) {
+  const [showMore, setShowMore] = useState(limit)
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["leaderboard", showMore],
+    queryFn: () => fetchLeaderboard(showMore),
+    retry: 1,
     refetchOnWindowFocus: false,
   })
 
@@ -86,10 +90,10 @@ export default function Leaderboard() {
         </div>
       )}
 
-      {entries.length >= limit && (
+      {entries.length >= showMore && (
         <div className="p-4 text-center">
           <button
-            onClick={() => setLimit((prev) => prev + 10)}
+            onClick={() => setShowMore((prev) => prev + 10)}
             className="text-orange-500 hover:text-orange-700 text-sm font-medium"
           >
             Show more
