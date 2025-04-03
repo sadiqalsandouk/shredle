@@ -15,28 +15,28 @@ export default function HowToPlay() {
       <DialogTrigger asChild>
         <button
           className={`px-3 py-1 rounded-lg transition-colors h-8 flex items-center
-            text-gray-600 hover:bg-gray-100`}
+            text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800`}
         >
           Rules
         </button>
       </DialogTrigger>
-      <DialogContent className="w-[90%] max-w-[320px] p-4 bg-orange-50/90 backdrop-blur-sm rounded-xl">
+      <DialogContent className="w-[90%] max-w-[320px] p-4 bg-orange-50/90 dark:bg-gray-800/95 backdrop-blur-sm rounded-xl">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-center mb-4 text-orange-800">
+          <DialogTitle className="text-2xl font-bold text-center mb-4 text-orange-800 dark:text-orange-300">
             How to Play Shredle
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription className="text-orange-900/90">
+        <DialogDescription className="text-orange-900/90 dark:text-gray-200">
           <div className={`${PoppinsFont.className} space-y-10}`}>
             <div>
-              <h3 className="font-semibold text-lg mb-2 text-orange-800">
+              <h3 className="font-semibold text-lg mb-2 text-orange-800 dark:text-orange-300">
                 🎯 Goal
               </h3>
               <p>Compare two foods and guess which one has more calories!</p>
             </div>
 
             <div>
-              <h3 className="font-semibold text-lg mb-2 mt-7 text-orange-800">
+              <h3 className="font-semibold text-lg mb-2 mt-7 text-orange-800 dark:text-orange-300">
                 📋 Rules
               </h3>
               <ul className="list-disc pl-4 space-y-2">
@@ -50,7 +50,7 @@ export default function HowToPlay() {
             </div>
 
             <div>
-              <h3 className="font-semibold text-lg mb-2 text-orange-800 mt-7">
+              <h3 className="font-semibold text-lg mb-2 text-orange-800 dark:text-orange-300 mt-7">
                 🏆 Score
               </h3>
               <ul className="list-disc pl-4 space-y-2">
@@ -60,7 +60,7 @@ export default function HowToPlay() {
             </div>
 
             <div>
-              <h3 className="font-semibold text-lg mb-2 text-orange-800 mt-7">
+              <h3 className="font-semibold text-lg mb-2 text-orange-800 dark:text-orange-300 mt-7">
                 🎮 Game Modes
               </h3>
               <ul className="list-disc pl-4 space-y-2">

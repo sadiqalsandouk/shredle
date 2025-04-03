@@ -141,14 +141,16 @@ export function GameOverScreen({
     <motion.div
       initial={{ opacity: 1, scale: 0.93 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="bg-gradient-to-b from-white to-gray-50 p-4 sm:p-6 rounded-2xl shadow-xl max-w-md w-full mx-auto border border-gray-100"
+      className="bg-gradient-to-b from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-4 sm:p-6 rounded-2xl shadow-xl max-w-md w-full mx-auto border border-gray-100 dark:border-gray-700"
     >
       <div className="text-center space-y-4">
         <div className="space-y-1">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight">
             Shredle
           </h1>
-          <p className="text-sm text-gray-600 font-medium">{date}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+            {date}
+          </p>
         </div>
 
         <div className="flex justify-center space-x-8">
@@ -182,15 +184,18 @@ export function GameOverScreen({
         <div className="flex flex-col items-center">
           {isStreak ? (
             <div className="flex items-center">
-              <div className="text-4xl font-black text-orange-600">{score}</div>
+              <div className="text-4xl font-black text-orange-600 dark:text-orange-500">
+                {score}
+              </div>
             </div>
           ) : (
-            <div className="text-3xl font-black text-orange-600">
+            <div className="text-3xl font-black text-orange-600 dark:text-orange-500">
               {score}
-              <span className="text-orange-300">/{total}</span>
+              <span className="text-orange-300">/</span>
+              <span className="dark:text-orange-300">{total}</span>
             </div>
           )}
-          <div className="text-xs font-medium text-orange-600/80">
+          <div className="text-xs font-medium text-orange-600/80 dark:text-orange-400/80">
             {isStreak ? "Final Streak" : "Final Score"}
           </div>
         </div>
@@ -204,27 +209,27 @@ export function GameOverScreen({
                 transition={{ delay: index * 0.1 }}
                 className={`p-2 rounded-lg border text-sm ${
                   result.wasCorrect
-                    ? "bg-green-50/50 border-green-200"
-                    : "bg-red-50/50 border-red-200"
+                    ? "bg-green-50/50 border-green-200 dark:bg-green-900/30 dark:border-green-800"
+                    : "bg-red-50/50 border-red-200 dark:bg-red-900/30 dark:border-red-800"
                 }`}
               >
                 <div className="grid grid-cols-[1fr,auto,1fr] gap-x-2 items-start">
                   <div className="text-left space-y-0.5 min-w-[120px] sm:min-w-[150px]">
-                    <p className="text-gray-900 text-xs sm:text-sm leading-tight break-words pr-1 min-h-[2.5em]">
+                    <p className="text-gray-900 dark:text-gray-100 text-xs sm:text-sm leading-tight break-words pr-1 min-h-[2.5em]">
                       {result.name1}
                     </p>
-                    <p className="text-xs font-medium text-gray-600">
+                    <p className="text-xs font-medium text-gray-600 dark:text-gray-400">
                       {result.calories1.toLocaleString()} cal
                     </p>
                   </div>
-                  <div className="text-xs font-medium text-gray-400 pt-1 px-2">
+                  <div className="text-xs font-medium text-gray-400 dark:text-gray-500 pt-1 px-2">
                     vs
                   </div>
                   <div className="text-right space-y-0.5 min-w-[120px] sm:min-w-[150px]">
-                    <p className="text-gray-900 text-xs sm:text-sm leading-tight break-words pl-1 min-h-[2.5em]">
+                    <p className="text-gray-900 dark:text-gray-100 text-xs sm:text-sm leading-tight break-words pl-1 min-h-[2.5em]">
                       {result.name2}
                     </p>
-                    <p className="text-xs font-medium text-gray-600">
+                    <p className="text-xs font-medium text-gray-600 dark:text-gray-400">
                       {result.calories2.toLocaleString()} cal
                     </p>
                   </div>
@@ -235,7 +240,7 @@ export function GameOverScreen({
         )}
 
         {message && (
-          <p className="text-gray-600 font-medium text-xs px-4 py-2 bg-gray-50/50 rounded-lg border border-gray-100">
+          <p className="text-gray-600 dark:text-gray-300 font-medium text-xs px-4 py-2 bg-gray-50/50 dark:bg-gray-800/50 rounded-lg border border-gray-100 dark:border-gray-700">
             {message}
           </p>
         )}
@@ -243,8 +248,8 @@ export function GameOverScreen({
         {isStreak && (
           <div className="mt-6 space-y-4">
             {!scoreSubmitted && score > 0 ? (
-              <div className="border-t border-gray-100 pt-4">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">
+              <div className="border-t border-gray-100 dark:border-gray-700 pt-4">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
                   Submit Your Score
                 </h3>
                 <ScoreSubmitForm
@@ -259,7 +264,7 @@ export function GameOverScreen({
               leaderboardData?.data &&
               leaderboardData.data.length > 0 && (
                 <div className="mt-4 pt-4">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">
+                  <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
                     Top Streaks
                   </h3>
                   <div className="space-y-2">
@@ -270,11 +275,11 @@ export function GameOverScreen({
                           key={entry.id || index}
                           className={`flex items-center p-2 rounded-md ${
                             index === 0
-                              ? "bg-yellow-50 border border-yellow-100"
+                              ? "dark:bg-gray-800 dark:border-gray-700 bg-yellow-50 border border-yellow-100"
                               : index === 1
-                              ? "bg-gray-50 border border-gray-100"
+                              ? "dark:bg-gray-800 dark:border-gray-700 bg-gray-50 border border-gray-100"
                               : index === 2
-                              ? "bg-orange-50 border border-orange-100"
+                              ? "dark:bg-gray-800 dark:border-gray-700 bg-orange-50 border border-orange-100"
                               : ""
                           }`}
                         >

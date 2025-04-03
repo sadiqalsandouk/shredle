@@ -6,6 +6,7 @@ import ClientProvider from "./components/ClientProvider"
 import { Analytics } from "@vercel/analytics/react"
 import { Toaster } from "@/components/ui/sonner"
 import { PoppinsFont } from "./utils/font"
+import NextThemeProvider from "./components/NextThemeProvider"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,26 +25,28 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gradient-to-b from-orange-50 via-white to-orange-50 pattern-food pattern-orange-100 pattern-opacity-10 pattern-lg`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gradient-to-b from-orange-50 via-white to-orange-50 pattern-food pattern-orange-100 pattern-opacity-10 pattern-lg dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 dark:pattern-gray-800 dark:pattern-opacity-5`}
       >
-        <GameHeader />
-        <ClientProvider>
-          <main
-            className={`flex-1 flex justify-center items-center ${PoppinsFont.className}`}
-          >
-            {children}
-            <Toaster
-              theme="light"
-              position="top-right"
-              expand={false}
-              richColors
-            />
-            <Analytics />
-          </main>
-        </ClientProvider>
-        <Footer />
+        <NextThemeProvider>
+          <GameHeader />
+          <ClientProvider>
+            <main
+              className={`flex-1 flex justify-center items-center ${PoppinsFont.className}`}
+            >
+              {children}
+              <Toaster
+                theme="system"
+                position="top-right"
+                expand={false}
+                richColors
+              />
+              <Analytics />
+            </main>
+          </ClientProvider>
+          <Footer />
+        </NextThemeProvider>
       </body>
     </html>
   )

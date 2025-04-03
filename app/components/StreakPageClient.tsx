@@ -22,10 +22,10 @@ export default function StreakPageClient({
   return (
     <div className="flex flex-col items-center">
       <div className="mb-8 text-center animate-fade-in">
-        <h1 className="text-2xl sm:text-3xl font-bold text-orange-800 mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-orange-800 dark:text-orange-300 mb-2">
           Streak Mode
         </h1>
-        <p className="text-sm sm:text-base text-gray-700">
+        <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
           How many correct guesses can you make in a row?
         </p>
       </div>

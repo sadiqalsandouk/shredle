@@ -63,10 +63,12 @@ export default function StreakGameClient({
   if (cheatAttempted) {
     return (
       <div className="flex items-center justify-center p-4">
-        <div className="bg-white rounded-xl shadow-xl p-6 w-full max-w-md text-center">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 w-full max-w-md text-center">
           <div className="text-5xl mb-4">🍔😭💔</div>
-          <h2 className="text-xl font-bold text-red-600 mb-3">Game Reset</h2>
-          <p className="text-gray-700 mb-6">
+          <h2 className="text-xl font-bold text-red-600 dark:text-red-400 mb-3">
+            Game Reset
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-6">
             Refreshing during streak mode resets the game!
           </p>
           <button

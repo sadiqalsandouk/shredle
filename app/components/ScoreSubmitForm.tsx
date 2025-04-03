@@ -77,7 +77,9 @@ export function ScoreSubmitForm({ score, onComplete }: ScoreSubmitFormProps) {
           onChange={handleNameChange}
           className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500
             ${
-              validationError ? "border-red-400 bg-red-50" : "border-gray-300"
+              validationError
+                ? "border-red-400 bg-red-50 dark:bg-red-900/20 dark:border-red-700"
+                : "border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             }`}
           placeholder="Enter your name"
           maxLength={20}
@@ -85,9 +87,11 @@ export function ScoreSubmitForm({ score, onComplete }: ScoreSubmitFormProps) {
           disabled={isSubmitting}
         />
         {validationError ? (
-          <p className="text-red-500 text-xs mt-1">{validationError}</p>
+          <p className="text-red-500 dark:text-red-400 text-xs mt-1">
+            {validationError}
+          </p>
         ) : (
-          <p className="text-gray-500 text-xs mt-1">
+          <p className="text-gray-500 dark:text-gray-400 text-xs mt-1">
             Your name will be visible on the leaderboard
           </p>
         )}
@@ -97,7 +101,7 @@ export function ScoreSubmitForm({ score, onComplete }: ScoreSubmitFormProps) {
         <button
           type="submit"
           disabled={isSubmitting || !!validationError}
-          className={`className="mt-4 w-full py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-colors shadow-md
+          className={`w-full py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-colors shadow-md
             ${
               isSubmitting || !!validationError
                 ? "opacity-70 cursor-not-allowed"

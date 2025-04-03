@@ -18,7 +18,7 @@ export function ScoreDisplay({
   return (
     <div className="flex flex-col items-center gap-4 mb-6">
       <div className="flex flex-col items-center gap-3">
-        <div className="text-xl sm:text-2xl font-bold text-orange-800 mb-2">
+        <div className="text-xl sm:text-2xl font-bold text-orange-800 dark:text-orange-300 mb-2">
           {isGameOver
             ? "Today's Score:"
             : streakMode
@@ -49,7 +49,7 @@ export function ScoreDisplay({
       </div>
       {message && (
         <div
-          className="text-base sm:text-lg text-gray-600 font-medium 
+          className="text-base sm:text-lg text-gray-600 dark:text-gray-300 font-medium 
           animate-fade-in text-center px-4"
         >
           {message}
