@@ -90,7 +90,7 @@ export default function GameHeader() {
               >
                 Leaderboard
               </Link>
-              <HowToPlay />
+              <HowToPlay isMobile={false} />
             </div>
 
             <div className="ml-2">
@@ -146,7 +146,7 @@ export default function GameHeader() {
             >
               Leaderboard
             </Link>
-            <HowToPlay />
+            <HowToPlay isMobile={true} />
           </nav>
         </div>
       </div>
