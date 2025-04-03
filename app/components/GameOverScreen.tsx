@@ -57,13 +57,15 @@ export function GameOverScreen({
   // Check if score was already submitted
   useEffect(() => {
     if (isStreak) {
-      // Use the date to create a unique ID for today's game
-      const today = new Date().toISOString().split("T")[0]
-      const gameId = `streak-${today}-${score}`
+      // Get the current game session ID from the game state
+      // This ID should be passed down from the parent component
+      const gameSessionId =
+        localStorage.getItem("currentGameSessionId") || `streak-${Date.now()}`
+
       const submittedScores = localStorage.getItem("submittedScores") || "{}"
       const parsedScores = JSON.parse(submittedScores)
 
-      if (parsedScores[gameId]) {
+      if (parsedScores[gameSessionId]) {
         setScoreSubmitted(true)
       }
     }
@@ -72,12 +74,13 @@ export function GameOverScreen({
   // Mark score as submitted
   const handleScoreSubmitted = () => {
     if (isStreak) {
-      const today = new Date().toISOString().split("T")[0]
-      const gameId = `streak-${today}-${score}`
+      const gameSessionId =
+        localStorage.getItem("currentGameSessionId") || `streak-${Date.now()}`
+
       const submittedScores = localStorage.getItem("submittedScores") || "{}"
       const parsedScores = JSON.parse(submittedScores)
 
-      parsedScores[gameId] = true
+      parsedScores[gameSessionId] = true
       localStorage.setItem("submittedScores", JSON.stringify(parsedScores))
       setScoreSubmitted(true)
     }

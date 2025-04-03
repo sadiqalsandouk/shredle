@@ -17,8 +17,16 @@ export function useGameLogic(
   const [cheatAttempted, setCheatAttempted] = useState(false)
 
   useEffect(() => {
-    if (mode === "streak" && isFirstRender.current) {
+    if (isFirstRender.current && mode === "streak") {
       isFirstRender.current = false
+
+      // Generate a game session ID if none exists
+      if (!localStorage.getItem("currentGameSessionId")) {
+        const gameSessionId = `streak-${Date.now()}-${Math.floor(
+          Math.random() * 1000
+        )}`
+        localStorage.setItem("currentGameSessionId", gameSessionId)
+      }
 
       const cheatFlag = localStorage.getItem("streakRefreshCheat")
       if (cheatFlag) {
@@ -206,6 +214,11 @@ export function useGameLogic(
 
     localStorage.removeItem("streakRefreshCheat")
     setCheatAttempted(false)
+
+    const gameSessionId = `streak-${Date.now()}-${Math.floor(
+      Math.random() * 1000
+    )}`
+    localStorage.setItem("currentGameSessionId", gameSessionId)
 
     const randomSeed = Math.floor(Math.random() * 1000000).toString()
     setStreakFoods(seededShuffle([...foodItems], randomSeed).slice(0, 100))
