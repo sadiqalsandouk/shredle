@@ -103,7 +103,7 @@ export function ScoreSubmitForm({ score, onComplete }: ScoreSubmitFormProps) {
         <button
           type="submit"
           disabled={isSubmitting || !!validationError}
-          className={`w-full py-2 bg-orange-500 text-white rounded-md font-medium 
+          className={`className="mt-4 w-full py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-semibold transition-colors shadow-md
             ${
               isSubmitting || !!validationError
                 ? "opacity-70 cursor-not-allowed"
