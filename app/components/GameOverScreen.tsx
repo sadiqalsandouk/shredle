@@ -196,12 +196,6 @@ export function GameOverScreen({
         </div>
         {filteredGameHistory.length > 0 && (
           <div className="space-y-2 mt-4">
-            {isStreak && (
-              <h3 className="text-base font-medium text-gray-700">
-                Where you went wrong:
-              </h3>
-            )}
-
             {filteredGameHistory.map((result, index) => (
               <motion.div
                 key={index}
