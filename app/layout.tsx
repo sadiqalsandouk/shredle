@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     siteName: "Shredle",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "Shredle Game Preview",
+        alt: "Shredle - Can you guess which food has more calories?",
       },
     ],
     locale: "en_US",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     title: "Shredle - Daily Calorie Guessing Game",
     description:
       "Challenge your nutrition knowledge with this addictive daily game!",
-    images: ["/og-image.jpg"],
+    images: ["/opengraph-image.png"],
     creator: "@sadiqdotdigital",
   },
   robots: {
@@ -68,13 +68,11 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       "max-video-preview": -1,
-      "max-image-preview": "large",
+      "max-image-preview": "none",
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-site-verification", // Add your Google verification code
-  },
+  verification: {},
 }
 
 export default function RootLayout({

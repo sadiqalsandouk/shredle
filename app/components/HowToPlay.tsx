@@ -13,11 +13,7 @@ export default function HowToPlay() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button
-          className="w-full px-4 py-3 rounded-xl transition-colors text-left 
-text-gray-700 hover:bg-orange-100/50 dark:text-gray-200 
-dark:hover:bg-orange-900/20 font-medium"
-        >
+        <button className="px-3 py-1.5 rounded-lg transition-colors text-sm font-medium text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800">
           Rules
         </button>
       </DialogTrigger>

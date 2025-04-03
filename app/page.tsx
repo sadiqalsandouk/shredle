@@ -25,7 +25,7 @@ const jsonLd = {
   },
   author: {
     "@type": "Person",
-    name: "Sadiq Digital",
+    name: "SadiqDotDigital",
   },
   aggregateRating: {
     "@type": "AggregateRating",
