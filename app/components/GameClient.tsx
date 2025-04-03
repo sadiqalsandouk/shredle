@@ -64,7 +64,7 @@ export default function GameClient({ foodData }: GameClientProps) {
     <div className="flex flex-col items-center">
       {gameOver ? (
         <div className="flex flex-col items-center">
-          {streak > 0 && (
+          {streak == 5 && (
             <Confetti
               width={width}
               height={height}

@@ -33,12 +33,12 @@ export default function RootLayout({
           <GameHeader />
           <ClientProvider>
             <main
-              className={`flex-1 flex justify-center items-center ${PoppinsFont.className}`}
+              className={`flex-1 flex justify-center items-center p-2 sm:p-4 ${PoppinsFont.className}`}
             >
               {children}
               <Toaster
                 theme="system"
-                position="top-right"
+                position="bottom-center"
                 expand={false}
                 richColors
               />

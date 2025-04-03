@@ -68,10 +68,10 @@ export const CardComponent: React.FC<CardComponentProps> = ({
               <Button
                 key={button}
                 variant="default"
-                className={`w-full text-[10px] sm:text-sm py-1 sm:py-2 ${
+                className={`${
                   button === "Higher"
-                    ? "bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white"
-                    : "bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600 text-white"
+                    ? "bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white text-lg"
+                    : "bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600 text-white text-lg"
                 }`}
                 onClick={buttonHandlers[index]}
                 disabled={disabled}
