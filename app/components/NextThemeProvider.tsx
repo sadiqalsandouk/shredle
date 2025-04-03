@@ -9,7 +9,12 @@ export default function NextThemeProvider({
   children: ReactNode
 }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem={false}
+      disableTransitionOnChange
+    >
       {children}
     </ThemeProvider>
   )

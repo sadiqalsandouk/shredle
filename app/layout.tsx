@@ -90,7 +90,7 @@ export default function RootLayout({
           <GameHeader />
           <ClientProvider>
             <main
-              className={`flex-1 flex justify-center items-center p-2 sm:p-4 ${PoppinsFont.className}`}
+              className={`flex-1 flex justify-center items-center pt-0 px-2 pb-2 sm:p-4 ${PoppinsFont.className}`}
             >
               {children}
               <Toaster
