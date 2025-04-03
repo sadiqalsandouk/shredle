@@ -248,7 +248,7 @@ export function GameOverScreen({
         {isStreak && (
           <div className="mt-6 space-y-4">
             {!scoreSubmitted && score > 0 ? (
-              <div className="border-t border-gray-100 dark:border-gray-700 pt-4">
+              <div className="pt-4">
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
                   Submit Your Score
                 </h3>

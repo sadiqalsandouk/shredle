@@ -81,14 +81,7 @@ export default function GameClient({ foodData }: GameClientProps) {
         </div>
       ) : (
         <div className="flex flex-col items-center">
-          <ScoreDisplay
-            score={streak}
-            message={
-              streak === 0
-                ? "Start playing! Compare calories in 100g of each food."
-                : undefined
-            }
-          />
+          <ScoreDisplay score={streak} />
 
           <div className="h-16 flex items-center justify-center">
             {feedback && (
