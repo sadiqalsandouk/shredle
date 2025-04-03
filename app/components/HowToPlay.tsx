@@ -7,19 +7,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
 import { PoppinsFont } from "../utils/font"
 
 export default function HowToPlay() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button
-          variant="outline"
-          className={`${PoppinsFont.className} px-4 py-2 text-lg font-medium text-orange-700 hover:text-orange-900 border-2 rounded-lg shadow-sm}`}
+        <button
+          className={`px-3 py-1 rounded-lg transition-colors h-8 flex items-center
+            text-gray-600 hover:bg-gray-100`}
         >
-          📋 Rules
-        </Button>
+          Rules
+        </button>
       </DialogTrigger>
       <DialogContent className="w-[90%] max-w-[320px] p-4 bg-orange-50/90 backdrop-blur-sm rounded-xl">
         <DialogHeader>

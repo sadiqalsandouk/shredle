@@ -258,7 +258,7 @@ export function GameOverScreen({
             {!isLoading &&
               leaderboardData?.data &&
               leaderboardData.data.length > 0 && (
-                <div className="mt-4 border-t border-gray-100 pt-4">
+                <div className="mt-4 pt-4">
                   <h3 className="text-lg font-semibold text-gray-800 mb-3">
                     Top Streaks
                   </h3>

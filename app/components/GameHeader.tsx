@@ -29,7 +29,7 @@ export default function GameHeader() {
   }, [isStreakMode])
 
   return (
-    <header className="border-b border-gray-100">
+    <header>
       <div className="max-w-4xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link
@@ -46,7 +46,7 @@ export default function GameHeader() {
             </span>
           </Link>
 
-          <div className={`flex items-center gap-4 ${PoppinsFont.className}`}>
+          <div className={`flex items-center gap-0 ${PoppinsFont.className}`}>
             <div className="flex items-center">
               <Link
                 href="/"
@@ -93,10 +93,10 @@ export default function GameHeader() {
               >
                 Leaderboard
               </Link>
-            </div>
 
-            <div className="ml-2">
-              <HowToPlay />
+              <div className="ml-2">
+                <HowToPlay />
+              </div>
             </div>
           </div>
         </div>

@@ -70,12 +70,6 @@ export function ScoreSubmitForm({ score, onComplete }: ScoreSubmitFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4 w-full">
       <div>
-        <label
-          htmlFor="playerName"
-          className="block text-sm font-medium text-gray-700 mb-1"
-        >
-          Your Name
-        </label>
         <input
           type="text"
           id="playerName"
