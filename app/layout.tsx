@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { Toaster } from "@/components/ui/sonner"
 import { PoppinsFont } from "./utils/font"
 import NextThemeProvider from "./components/NextThemeProvider"
+import { Metadata } from "next"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,6 +19,63 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 })
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.shredle.co.uk"),
+  title: {
+    default: "Shredle - A Wordle Inspired Calories Higher/Lower Game",
+    template: "%s | Shredle",
+  },
+  description:
+    "Compare foods and guess which has more calories in this addictive daily game. Challenge your nutrition knowledge and compete with friends!",
+  keywords: [
+    "food game",
+    "calorie game",
+    "nutrition game",
+    "higher lower game",
+    "daily game",
+    "wordle-like",
+  ],
+  openGraph: {
+    title: "Shredle - A Wordle Inspired Calories Higher/Lower Game",
+    description:
+      "Compare foods and guess which has more calories in this addictive daily game. Challenge your nutrition knowledge!",
+    url: "https://www.shredle.co.uk",
+    siteName: "Shredle",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Shredle Game Preview",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shredle - Daily Calorie Guessing Game",
+    description:
+      "Challenge your nutrition knowledge with this addictive daily game!",
+    images: ["/og-image.jpg"],
+    creator: "@sadiqdotdigital",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-site-verification", // Add your Google verification code
+  },
+}
 
 export default function RootLayout({
   children,

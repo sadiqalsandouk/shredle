@@ -2,11 +2,9 @@
 import Link from "next/link"
 import HowToPlay from "./HowToPlay"
 import { PoppinsFontHeader } from "../utils/font"
-import { PoppinsFont } from "../utils/font"
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 import ThemeToggle from "./ThemeToggle"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 
 export default function GameHeader() {
   const pathname = usePathname()
@@ -15,9 +13,7 @@ export default function GameHeader() {
   const [showNew, setShowNew] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [howToPlayOpen, setHowToPlayOpen] = useState(false)
 
-  // Only run after mount to prevent hydration issues
   useEffect(() => {
     setMounted(true)
     const hasSeenStreak = localStorage.getItem("hasSeenStreakMode")
@@ -25,23 +21,16 @@ export default function GameHeader() {
       setShowNew(true)
     }
 
-    // If they visit the streak page, mark it as seen
     if (isStreakMode) {
       localStorage.setItem("hasSeenStreakMode", "true")
       setShowNew(false)
     }
   }, [isStreakMode])
 
-  const handleRulesClick = () => {
-    setHowToPlayOpen(true)
-    setIsMenuOpen(false)
-  }
-
   return (
     <header className="sticky top-0 bg-orange-50/95 dark:bg-gray-900/95 backdrop-blur-sm z-50">
       <div className="max-w-4xl mx-auto px-3 py-3">
         <div className="flex items-center justify-between">
-          {/* Logo */}
           <Link
             href="/"
             className="inline-flex items-center gap-1.5 text-2xl font-bold"
@@ -55,7 +44,6 @@ export default function GameHeader() {
             </span>
           </Link>
 
-          {/* Navigation */}
           <div className="flex items-center gap-2">
             <Link
               href="/"
@@ -90,7 +78,6 @@ export default function GameHeader() {
               )}
             </div>
 
-            {/* Desktop Navigation */}
             <div className="hidden sm:flex items-center gap-2">
               <Link
                 href="/leaderboard"
@@ -106,12 +93,10 @@ export default function GameHeader() {
               <HowToPlay />
             </div>
 
-            {/* Theme Toggle - Always visible */}
             <div className="ml-2">
               <ThemeToggle />
             </div>
 
-            {/* Mobile Hamburger Menu */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="ml-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 sm:hidden"
@@ -142,7 +127,6 @@ export default function GameHeader() {
           </div>
         </div>
 
-        {/* Mobile Menu with themed styling */}
         <div
           className={`
             absolute left-0 right-0 bg-gradient-to-b from-orange-50/95 to-white 
