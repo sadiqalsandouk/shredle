@@ -7,7 +7,7 @@ export default function LeaderboardPage() {
         Streak Leaderboard
       </h1>
       <p className="text-center text-gray-600 mb-8">
-        See who has the longest streaks in Shredle!
+        See who has the highest score in Shredle!
       </p>
       <Leaderboard limit={20} />
     </div>
