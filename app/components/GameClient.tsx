@@ -24,6 +24,7 @@ export default function GameClient({ foodData }: GameClientProps) {
     feedbackKey,
     isProcessingGuess,
     gameHistory,
+    lives,
   } = useGameLogic(foodData)
 
   useQuery<GameStatus>({
@@ -81,7 +82,7 @@ export default function GameClient({ foodData }: GameClientProps) {
         </div>
       ) : (
         <div className="flex flex-col items-center">
-          <ScoreDisplay score={streak} />
+          <ScoreDisplay score={streak} lives={lives} />
 
           <div className="h-16 flex items-center justify-center">
             {feedback && (
