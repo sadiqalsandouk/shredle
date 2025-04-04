@@ -89,7 +89,7 @@ export default function RootLayout({
       className="min-h-full bg-orange-100 dark:bg-gray-950"
     >
       <head>
-        <AdSense pId="pub-4495583753910327" />
+        <AdSense pId="4495583753910327" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gradient-to-b from-orange-50 via-white to-orange-50 pattern-food pattern-orange-100 pattern-opacity-10 pattern-lg dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 dark:pattern-gray-800 dark:pattern-opacity-5`}

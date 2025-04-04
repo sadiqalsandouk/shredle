@@ -1,4 +1,3 @@
-import Script from "next/script"
 import React from "react"
 
 type AdsenseTypes = {
@@ -7,12 +6,11 @@ type AdsenseTypes = {
 
 const AdSense = ({ pId }: AdsenseTypes) => {
   return (
-    <Script
+    <script
       async
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${pId}`}
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${pId}`}
       crossOrigin="anonymous"
-      strategy="afterInteractive"
-    />
+    ></script>
   )
 }
 
