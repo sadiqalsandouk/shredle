@@ -14,12 +14,18 @@ Allow: /streak
 Disallow: /dashboard
 Disallow: /admin
 
-# Block image indexing
-User-agent: Googlebot-Image
-Disallow: /
+# Allow AdSense to crawl everything
+User-agent: Mediapartners-Google
+Allow: /
 
-# Block image previews
+# Modified image rules - allow Googlebot full access for verification
 User-agent: Googlebot
+Allow: /
+
+# Block image indexing but allow crawling for verification
+User-agent: Googlebot-Image
+Allow: /ads.txt
+Allow: /app-ads.txt
 Disallow: /*.jpg$
 Disallow: /*.jpeg$
 Disallow: /*.png$
