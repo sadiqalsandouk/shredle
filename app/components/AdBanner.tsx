@@ -2,9 +2,9 @@
 
 import React, { useEffect } from "react"
 
-// Declare the adsbygoogle type for the global window object
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     adsbygoogle: any[]
   }
 }
