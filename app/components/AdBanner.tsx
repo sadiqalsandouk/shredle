@@ -2,7 +2,14 @@
 
 import React, { useEffect } from "react"
 
-type AdBannerTypes = {
+// Declare the adsbygoogle type for the global window object
+declare global {
+  interface Window {
+    adsbygoogle: any[]
+  }
+}
+
+type AdBannerProps = {
   dataAdSlot: string
   dataAdFormat: string
   dataFullWidthResponsive: boolean
@@ -12,14 +19,12 @@ const AdBanner = ({
   dataAdSlot,
   dataAdFormat,
   dataFullWidthResponsive,
-}: AdBannerTypes) => {
+}: AdBannerProps) => {
   useEffect(() => {
     try {
-      ;((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
-        {}
-      )
-    } catch (error: any) {
-      console.log(error.message)
+      ;(window.adsbygoogle = window.adsbygoogle || []).push({})
+    } catch (error) {
+      console.log(error instanceof Error ? error.message : String(error))
     }
   }, [])
 
