@@ -86,7 +86,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className="min-h-full bg-orange-100 dark:bg-gray-950"
+      className="min-h-full bg-orange-50 dark:bg-gray-950"
     >
       <head>
         <AdSense pId="pub-4495583753910327" />
