@@ -12,10 +12,10 @@ export default function Contact() {
   return (
     <FooterPagesLayout title="Contact">
       <div className="space-y-8">
-        <p className="text-orange-800">
+        <p className="text-gray-700 dark:text-gray-300">
           Have questions, feedback, or spotted a bug?
         </p>
-        <div className="space-y-4">
+        <div className="text-gray-700 dark:text-gray-300 space-y-4">
           <Link
             href="https://twitter.com/sadiqdotdigital"
             target="_blank"
@@ -23,15 +23,15 @@ export default function Contact() {
             className="block group"
           >
             <div
-              className="bg-white/80 rounded-lg p-4 shadow-sm 
+              className="bg-white/80 dark:bg-gray-800/80 rounded-lg p-4 shadow-sm 
               transition-all duration-300 
-              group-hover:shadow-md group-hover:bg-white/90 
+              group-hover:shadow-md group-hover:bg-white/90 dark:group-hover:bg-gray-700/90
               group-hover:-translate-y-0.5"
             >
-              <h2 className="text-lg font-semibold text-orange-800 flex items-center gap-2 mb-2">
+              <h2 className="text-lg font-semibold text-orange-800 dark:text-orange-300 flex items-center gap-2 mb-2">
                 <X className="w-5 h-5" />
               </h2>
-              <span className="text-orange-700 group-hover:text-orange-900">
+              <span className="group-hover:text-orange-900 text-gray-700 dark:text-gray-300 dark:group-hover:text-orange-300">
                 @sadiqdotdigital
               </span>
             </div>

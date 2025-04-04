@@ -1,0 +1,30 @@
+# https://www.shredle.co.uk/robots.txt
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Main pages
+Allow: /privacy
+Allow: /terms
+Allow: /contact
+Allow: /leaderboard
+Allow: /streak
+
+# Block admin/dashboard routes
+Disallow: /dashboard
+Disallow: /admin
+
+# Block image indexing
+User-agent: Googlebot-Image
+Disallow: /
+
+# Block image previews
+User-agent: Googlebot
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+Disallow: /*.png$
+Disallow: /*.gif$
+Disallow: /*.webp$
+
+# Sitemaps
+Sitemap: https://www.shredle.co.uk/sitemap.xml 

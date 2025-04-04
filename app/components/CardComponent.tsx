@@ -21,7 +21,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
 }) => {
   return (
     <Card
-      className={`w-[140px] sm:w-[280px] flex flex-col justify-between bg-white rounded-3xl border-2
+      className={`w-[140px] sm:w-[280px] flex flex-col justify-between bg-white dark:bg-gray-800 rounded-3xl border-2 dark:border-gray-700
       }`}
     >
       <CardHeader className="flex flex-col items-center space-y-0 p-2 sm:p-4">
@@ -32,28 +32,28 @@ export const CardComponent: React.FC<CardComponentProps> = ({
             className="object-cover"
           />
         </div>
-        <h3 className="font-bold text-xs sm:text-xl text-center text-orange-800">
+        <h3 className="font-bold text-xs sm:text-xl text-center text-orange-800 dark:text-orange-300">
           {foodItemName}
         </h3>
-        <h1 className="text-[10px] sm:text-sm text-center text-orange-600/80 italic">
+        <h1 className="text-[10px] sm:text-sm text-center text-orange-600/80 dark:text-orange-400/80 italic">
           (100g)
         </h1>
       </CardHeader>
       <CardContent className="text-center flex-1 flex items-center justify-center p-2 sm:p-6">
         {!buttons ? (
           <div className="space-y-1 sm:space-y-2">
-            <p className="text-xs sm:text-sm font-medium text-orange-600/80">
+            <p className="text-xs sm:text-sm font-medium text-orange-600/80 dark:text-orange-400/80">
               Calories
             </p>
-            <p className="text-2xl sm:text-4xl font-bold text-orange-800 font-display">
+            <p className="text-2xl sm:text-4xl font-bold text-orange-800 dark:text-orange-300 font-display">
               {foodItemCalories}
             </p>
           </div>
         ) : (
           <div className="space-y-2 sm:space-y-4">
             <div className="relative">
-              <div className="h-12 w-12 sm:h-20 sm:w-20 rounded-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center mx-auto animate-bounce-slow shadow-inner">
-                <p className="text-3xl sm:text-5xl font-bold text-orange-500">
+              <div className="h-12 w-12 sm:h-20 sm:w-20 rounded-full bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/60 dark:to-orange-800/60 flex items-center justify-center mx-auto animate-bounce-slow shadow-inner">
+                <p className="text-3xl sm:text-5xl font-bold text-orange-500 dark:text-orange-300">
                   ?
                 </p>
               </div>
@@ -61,24 +61,26 @@ export const CardComponent: React.FC<CardComponentProps> = ({
           </div>
         )}
       </CardContent>
-      <CardFooter className="flex flex-col sm:flex-row justify-center p-2 sm:p-4 gap-2 sm:gap-4">
-        {buttons?.map((label, index) => (
-          <Button
-            key={index}
-            onClick={buttonHandlers?.[index]}
-            disabled={disabled}
-            className={`w-24 sm:w-24 py-3 sm:py-2 text-base sm:text-base font-medium 
-              transition-all duration-150 shadow-lg 
-              active:transform active:scale-95 active:shadow-md
-              ${
-                index === 0
-                  ? "bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 hover:scale-105"
-                  : "bg-gradient-to-r from-orange-400 to-red-500 hover:from-orange-500 hover:to-red-600 hover:scale-105"
-              }`}
-          >
-            {label}
-          </Button>
-        ))}
+      <CardFooter className="p-2 sm:p-4">
+        {buttons && buttonHandlers && (
+          <div className="w-full flex flex-col gap-1 sm:gap-2">
+            {buttons.map((button, index) => (
+              <Button
+                key={button}
+                variant="default"
+                className={`${
+                  button === "Higher"
+                    ? "bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white text-lg"
+                    : "bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600 text-white text-lg"
+                }`}
+                onClick={buttonHandlers[index]}
+                disabled={disabled}
+              >
+                {button}
+              </Button>
+            ))}
+          </div>
+        )}
       </CardFooter>
     </Card>
   )
