@@ -28,7 +28,7 @@ export default function GameHeader() {
   }, [isStreakMode])
 
   return (
-    <header className="bg-orange-50/95 dark:bg-gray-950/95 backdrop-blur-sm">
+    <header className="bg-orange-50/95 dark:bg-gray-950/95 backdrop-blur-sm relative z-50">
       <div className="max-w-4xl mx-auto px-3 py-3">
         <div className="flex items-center justify-between">
           <Link
@@ -127,26 +127,47 @@ export default function GameHeader() {
           </div>
         </div>
 
+        {isMenuOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm z-[90]"
+            onClick={() => setIsMenuOpen(false)}
+          />
+        )}
+
         <div
           className={`
-            absolute left-0 right-0 bg-gradient-to-b from-orange-50/95 to-white 
-            dark:from-gray-950/95 dark:to-gray-800/95 border-t border-orange-100/50 
-            dark:border-gray-700/50 shadow-lg sm:hidden overflow-hidden transition-all 
-            duration-300 ease-in-out backdrop-blur-sm
-            ${isMenuOpen ? "max-h-[200px] opacity-100" : "max-h-0 opacity-0"}
+            fixed top-[57px] left-0 right-0 bg-white/95 dark:bg-gray-900/95 z-[100]
+            border-t border-orange-100 dark:border-gray-700 shadow-xl 
+            sm:hidden overflow-hidden transition-all 
+            duration-300 ease-in-out
+            ${
+              isMenuOpen
+                ? "max-h-[220px] opacity-100 pt-2 pb-4"
+                : "max-h-0 opacity-0 pointer-events-none"
+            }
           `}
+          style={{
+            boxShadow: isMenuOpen
+              ? "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)"
+              : "none",
+          }}
         >
-          <nav className="px-3 py-2 space-y-1">
+          <nav className="px-4 py-3 space-y-3">
             <Link
               href="/leaderboard"
-              className="block px-4 py-3 rounded-xl transition-colors text-gray-700 
-                hover:bg-orange-100/50 dark:text-gray-200 dark:hover:bg-orange-900/20
-                font-medium"
+              className="block px-5 py-3.5 rounded-xl transition-colors text-gray-700 
+                hover:bg-orange-100/80 dark:text-gray-200 dark:hover:bg-orange-900/30
+                font-medium relative z-[101] text-base"
               onClick={() => setIsMenuOpen(false)}
             >
               Leaderboard
             </Link>
-            <HowToPlay isMobile={true} />
+            <div
+              className="relative z-[101]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <HowToPlay isMobile={true} />
+            </div>
           </nav>
         </div>
       </div>

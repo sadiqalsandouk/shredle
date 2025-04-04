@@ -2,7 +2,6 @@ import React from "react"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -33,7 +32,7 @@ export default function HowToPlay({ isMobile = false }: HowToPlayProps) {
             How to Play Shredle
           </DialogTitle>
         </DialogHeader>
-        <DialogDescription className="text-orange-900/90 dark:text-gray-200 text-xs sm:text-base">
+        <div className="text-orange-900/90 dark:text-gray-200 text-xs sm:text-base">
           <div className={`${PoppinsFont.className} space-y-3 sm:space-y-6`}>
             <div>
               <h3 className="font-semibold text-sm sm:text-lg mb-1 sm:mb-3 text-orange-800 dark:text-orange-300">
@@ -82,7 +81,7 @@ export default function HowToPlay({ isMobile = false }: HowToPlayProps) {
               </ul>
             </div>
           </div>
-        </DialogDescription>
+        </div>
       </DialogContent>
     </Dialog>
   )
