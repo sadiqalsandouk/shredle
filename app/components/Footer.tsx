@@ -12,6 +12,30 @@ export default function Footer() {
         </Link>
         <Link
           className="text-orange-700 hover:text-orange-900 dark:text-orange-400 dark:hover:text-orange-300 transition-colors duration-200"
+          href="/about"
+        >
+          About
+        </Link>
+        <Link
+          className="text-orange-700 hover:text-orange-900 dark:text-orange-400 dark:hover:text-orange-300 transition-colors duration-200"
+          href="/nutrition-guide"
+        >
+          Nutrition Guide
+        </Link>
+        <Link
+          className="text-orange-700 hover:text-orange-900 dark:text-orange-400 dark:hover:text-orange-300 transition-colors duration-200"
+          href="/calorie-guide"
+        >
+          Calorie Guide
+        </Link>
+        <Link
+          className="text-orange-700 hover:text-orange-900 dark:text-orange-400 dark:hover:text-orange-300 transition-colors duration-200"
+          href="/healthy-eating"
+        >
+          Healthy Eating
+        </Link>
+        <Link
+          className="text-orange-700 hover:text-orange-900 dark:text-orange-400 dark:hover:text-orange-300 transition-colors duration-200"
           href="/privacy"
         >
           Privacy
