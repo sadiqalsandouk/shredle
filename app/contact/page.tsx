@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import FooterPagesLayout from "../components/FooterPagesLayout"
-import { Mail, X } from "lucide-react"
+import { Mail } from "lucide-react"
 import Link from "next/link"
 
 export const metadata: Metadata = {
