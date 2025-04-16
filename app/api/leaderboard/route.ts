@@ -10,8 +10,8 @@ export async function GET(req: Request) {
 
     const supabase = await createClient()
 
-    // Let's check if the leaderboard table exists
-    // If not, we'll create it on the fly
+    // Let&apos;s check if the leaderboard table exists
+    // If not, we&apos;ll create it on the fly
     const { error: tableExistsError } = await supabase
       .from("leaderboard")
       .select("id")
@@ -20,7 +20,7 @@ export async function GET(req: Request) {
     if (tableExistsError) {
       console.log("Table might not exist, creating it:", tableExistsError)
 
-      // Create table if it doesn't exist
+      // Create table if it doesn&apos;t exist
       const { error: createTableError } = await supabase.rpc(
         "create_leaderboard_table_if_not_exists"
       )
@@ -100,7 +100,7 @@ export async function POST(req: Request) {
         console.error("Failed to create leaderboard table:", createError)
         return NextResponse.json(
           {
-            error: "Couldn't submit score. Please try again later.",
+            error: "Couldn&apos;t submit score. Please try again later.",
             details: createError.message,
           },
           { status: 500 }

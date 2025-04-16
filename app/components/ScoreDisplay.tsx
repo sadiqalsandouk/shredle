@@ -23,7 +23,7 @@ export function ScoreDisplay({
       <div className="flex flex-col items-center gap-3">
         <div className="text-xl sm:text-2xl font-bold text-orange-800 dark:text-orange-300 mb-2">
           {isGameOver
-            ? "Today's Score:"
+            ? "Today&apos;s Score:"
             : streakMode
             ? "Current Streak:"
             : "Score:"}{" "}

@@ -31,10 +31,10 @@ export default function About() {
             make nutrition education engaging and accessible to everyone.
           </p>
           <p className="text-gray-700 dark:text-gray-300">
-            Each day, you'll compare different foods and guess which has more
-            calories. Through regular play, you'll develop an intuitive
-            understanding of the energy content in common foods, helping you
-            make more informed dietary choices.
+            Each day, you&apos;ll compare different foods and guess which has
+            more calories. Through regular play, you&apos;ll develop an
+            intuitive understanding of the energy content in common foods,
+            helping you make more informed dietary choices.
           </p>
         </section>
 
@@ -44,10 +44,10 @@ export default function About() {
           </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-4">
             A calorie is a unit of energy. In nutrition, we typically use
-            kilocalories (kcal), though they're commonly referred to simply as
-            "calories." One kilocalorie represents the amount of energy needed
-            to raise the temperature of one kilogram of water by one degree
-            Celsius.
+            kilocalories (kcal), though they&apos;re commonly referred to simply
+            as &quot;calories.&quot; One kilocalorie represents the amount of
+            energy needed to raise the temperature of one kilogram of water by
+            one degree Celsius.
           </p>
           <p className="text-gray-700 dark:text-gray-300 mb-4">
             The calorie content of food indicates how much energy your body can
@@ -113,7 +113,7 @@ export default function About() {
               rel="noopener noreferrer"
               className="text-orange-600 hover:text-orange-800 dark:text-orange-400 dark:hover:text-orange-300 underline"
             >
-              USDA's Nutrition website
+              USDA&apos;s Nutrition website
             </a>{" "}
             or consult with a registered dietitian.
           </p>
