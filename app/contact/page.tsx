@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 import FooterPagesLayout from "../components/FooterPagesLayout"
-import { X } from "lucide-react"
+import { Mail, X } from "lucide-react"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -17,7 +17,7 @@ export default function Contact() {
         </p>
         <div className="text-gray-700 dark:text-gray-300 space-y-4">
           <Link
-            href="https://twitter.com/sadiqdotdigital"
+            href="mailto:sadiqdotdigital@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
             className="block group"
@@ -29,10 +29,10 @@ export default function Contact() {
               group-hover:-translate-y-0.5"
             >
               <h2 className="text-lg font-semibold text-orange-800 dark:text-orange-300 flex items-center gap-2 mb-2">
-                <X className="w-5 h-5" />
+                <Mail className="w-5 h-5" />
               </h2>
               <span className="group-hover:text-orange-900 text-gray-700 dark:text-gray-300 dark:group-hover:text-orange-300">
-                @sadiqdotdigital
+                sadiqdotdigital@gmail.com
               </span>
             </div>
           </Link>
