@@ -101,7 +101,7 @@ export default function Leaderboard({ initialPage = 1 }: LeaderboardProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
                 className={`flex items-center p-4 ${
-                  index < 3
+                  (currentPage - 1) * itemsPerPage + index < 3
                     ? "bg-orange-50 dark:bg-orange-900/20"
                     : "dark:bg-gray-800"
                 }`}
@@ -154,7 +154,7 @@ export default function Leaderboard({ initialPage = 1 }: LeaderboardProps) {
                     animate={{ opacity: 1 }}
                     transition={{ delay: index * 0.05 }}
                     className={
-                      index < 3
+                      (currentPage - 1) * itemsPerPage + index < 3
                         ? "bg-orange-50/50 dark:bg-orange-900/10"
                         : "hover:bg-gray-50 dark:hover:bg-gray-750"
                     }
