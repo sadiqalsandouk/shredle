@@ -7,11 +7,16 @@ export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url)
     const limit = parseInt(searchParams.get("limit") || "10")
+    const page = parseInt(searchParams.get("page") || "1")
+
+    // For backward compatibility, if we get a large limit, we'll assume it's for frontend pagination
+    // This supports the current client-side pagination implementation
+    const queryLimit = limit > 50 ? limit : limit * 3
 
     const supabase = await createClient()
 
-    // Let&apos;s check if the leaderboard table exists
-    // If not, we&apos;ll create it on the fly
+    // Let's check if the leaderboard table exists
+    // If not, we'll create it on the fly
     const { error: tableExistsError } = await supabase
       .from("leaderboard")
       .select("id")
@@ -20,7 +25,7 @@ export async function GET(req: Request) {
     if (tableExistsError) {
       console.log("Table might not exist, creating it:", tableExistsError)
 
-      // Create table if it doesn&apos;t exist
+      // Create table if it doesn't exist
       const { error: createTableError } = await supabase.rpc(
         "create_leaderboard_table_if_not_exists"
       )
@@ -37,12 +42,21 @@ export async function GET(req: Request) {
       }
     }
 
+    // Get total count for pagination
+    const { count, error: countError } = await supabase
+      .from("leaderboard")
+      .select("*", { count: "exact", head: true })
+
+    if (countError) {
+      console.error("Error getting count:", countError)
+    }
+
     // Now try to fetch the data
     const { data, error } = await supabase
       .from("leaderboard")
       .select("*")
       .order("score", { ascending: false })
-      .limit(limit)
+      .limit(queryLimit)
 
     if (error) {
       console.error("Leaderboard fetch error:", error)
@@ -55,7 +69,15 @@ export async function GET(req: Request) {
       )
     }
 
-    return NextResponse.json({ data })
+    return NextResponse.json({
+      data,
+      pagination: {
+        total: count || 0,
+        page,
+        limit,
+        totalPages: count ? Math.ceil(count / limit) : 0,
+      },
+    })
   } catch (error) {
     console.error("Leaderboard route error:", error)
     return NextResponse.json(

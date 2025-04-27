@@ -42,9 +42,9 @@ export const updateGameStatus = async (
   return data
 }
 
-export const fetchLeaderboard = async (limit = 10) => {
+export const fetchLeaderboard = async (limit = 10, page = 1) => {
   try {
-    const response = await fetch(`/api/leaderboard?limit=${limit}`)
+    const response = await fetch(`/api/leaderboard?limit=${limit}&page=${page}`)
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))

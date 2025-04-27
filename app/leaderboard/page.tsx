@@ -9,7 +9,7 @@ export default function LeaderboardPage() {
       <p className="text-center text-gray-600 dark:text-gray-300 mb-8">
         See who has the highest score in Shredle!
       </p>
-      <Leaderboard limit={20} />
+      <Leaderboard />
     </div>
   )
 }
