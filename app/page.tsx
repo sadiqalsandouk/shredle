@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import { getFoodData } from "./utils/getFoodData"
 import GameClient from "./components/GameClient"
+import FAQ from "./components/FAQ"
 
 export const metadata: Metadata = {
   title: "Shredle - Daily Food Calorie Guessing Game",
@@ -42,7 +43,10 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <GameClient foodData={res.foodData} />
+      <div className="flex flex-col items-center w-full">
+        <GameClient foodData={res.foodData} />
+        <FAQ />
+      </div>
     </>
   )
 }

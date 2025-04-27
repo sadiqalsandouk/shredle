@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic"
 import { getFoodData } from "../utils/getFoodData"
+import FAQ from "../components/FAQ"
 
 const StreakGameClient = dynamic(
   () => import("../components/StreakGameClient"),
@@ -12,6 +13,7 @@ export default async function StreakPage() {
   return (
     <div className="flex flex-col items-center">
       <StreakGameClient foodData={res.foodData} />
+      <FAQ />
     </div>
   )
 }

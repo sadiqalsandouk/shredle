@@ -1,39 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.shredle.co.uk</loc>
-    <lastmod>2024-03-20</lastmod>
+    <loc>https://www.shredle.co.uk/</loc>
+    <lastmod>2024-05-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.shredle.co.uk/streak</loc>
-    <lastmod>2024-03-20</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.shredle.co.uk/leaderboard</loc>
-    <lastmod>2024-03-20</lastmod>
-    <changefreq>hourly</changefreq>
+    <loc>https://www.shredle.co.uk/about</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.shredle.co.uk/privacy</loc>
-    <lastmod>2024-03-20</lastmod>
+    <loc>https://www.shredle.co.uk/nutrition-guide</loc>
+    <lastmod>2024-05-19</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shredle.co.uk/calorie-guide</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shredle.co.uk/healthy-eating</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shredle.co.uk/food-facts</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shredle.co.uk/food-science</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shredle.co.uk/cooking-calories</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.shredle.co.uk/streak</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.shredle.co.uk/leaderboard</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.shredle.co.uk/privacy</loc>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.shredle.co.uk/terms</loc>
-    <lastmod>2024-03-20</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.shredle.co.uk/contact</loc>
-    <lastmod>2024-03-20</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2024-05-19</lastmod>
+    <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
 </urlset> 

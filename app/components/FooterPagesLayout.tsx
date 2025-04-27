@@ -10,9 +10,15 @@ export default function FooterPagesLayout({
   children,
 }: FooterPagesLayoutProps) {
   return (
-    <div className="text-orange-800 dark:text-orange-300 max-w-2xl mx-auto container mx-auto py-8 px-10">
-      <h1 className="text-xl font-bold mb-4">{title}</h1>
-      <div>{children}</div>
+    <div className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 md:px-8">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden">
+        <div className="border-b border-orange-100 dark:border-gray-700">
+          <h1 className="text-2xl sm:text-3xl font-bold py-6 px-6 text-orange-700 dark:text-orange-400">
+            {title}
+          </h1>
+        </div>
+        <div className="p-6 text-gray-700 dark:text-gray-300">{children}</div>
+      </div>
     </div>
   )
 }
