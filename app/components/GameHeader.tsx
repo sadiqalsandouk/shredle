@@ -50,7 +50,10 @@ export default function GameHeader() {
   }, [isProteinMode])
 
   return (
-    <header className="bg-orange-50/95 dark:bg-gray-950/95 backdrop-blur-sm relative z-50">
+    <header 
+      className="backdrop-blur-sm relative z-50" 
+      style={{ backgroundColor: isDarkMode ? '#0f172a' : '#fefaf7' }}
+    >
       <div className="max-w-4xl mx-auto px-3 py-3">
         <div className="flex items-center justify-between">
           <Link

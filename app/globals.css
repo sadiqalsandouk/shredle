@@ -79,7 +79,24 @@ body {
   * {
     @apply border-border;
   }
+  html {
+    background-color: #fefaf7;
+  }
+  html.dark {
+    background-color: #0f172a;
+  }
   body {
-    @apply bg-background text-foreground;
+    background-color: #fefaf7;
+  }
+  body.dark {
+    background-color: #0f172a;
+  }
+  
+  /* Ensure dark mode has proper background */
+  .dark {
+    background-color: #0f172a !important;
+  }
+  .dark body {
+    background-color: #0f172a !important;
   }
 }

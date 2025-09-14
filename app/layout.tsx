@@ -86,7 +86,8 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className="min-h-full bg-orange-100 dark:bg-gray-950"
+      className="min-h-full"
+      style={{ backgroundColor: '#fefaf7' }}
     >
       <head>
         <AdSense pId="4495583753910327" />
@@ -105,6 +106,43 @@ export default function RootLayout({
                   'security_storage':'granted'
                 });
               })();
+              
+              // Set consistent background colors only for light mode
+              function setBackgroundColors() {
+                const isDark = document.documentElement.classList.contains('dark');
+                
+                if (!isDark) {
+                  // Only apply light peach background in light mode
+                  const bgColor = '#fefaf7';
+                  document.documentElement.style.backgroundColor = bgColor;
+                  document.body.style.backgroundColor = bgColor;
+                  
+                  // Also set on any main content containers
+                  const mainContainers = document.querySelectorAll('main, .main-content, .game-container');
+                  mainContainers.forEach(container => {
+                    container.style.backgroundColor = bgColor;
+                  });
+                } else {
+                  // In dark mode, let the CSS handle the background
+                  document.documentElement.style.backgroundColor = '';
+                  document.body.style.backgroundColor = '';
+                  
+                  const mainContainers = document.querySelectorAll('main, .main-content, .game-container');
+                  mainContainers.forEach(container => {
+                    container.style.backgroundColor = '';
+                  });
+                }
+              }
+              
+              // Set initial colors
+              setBackgroundColors();
+              
+              // Watch for theme changes
+              const observer = new MutationObserver(setBackgroundColors);
+              observer.observe(document.documentElement, {
+                attributes: true,
+                attributeFilter: ['class']
+              });
             `,
           }}
         />
@@ -139,8 +177,11 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gradient-to-b from-orange-50 via-white to-orange-50 pattern-food pattern-orange-100 pattern-opacity-10 pattern-lg dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 dark:pattern-gray-800 dark:pattern-opacity-5`}
-        style={{ margin: 0 }}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        style={{ 
+          margin: 0,
+          backgroundColor: '#fefaf7'
+        }}
       >
         <NextThemeProvider>
           <GameHeader />
