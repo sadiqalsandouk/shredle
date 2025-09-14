@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import FooterPagesLayout from "../components/FooterPagesLayout"
+import AuthorBox from "../components/AuthorBox"
 
 export const metadata: Metadata = {
   title: "Healthy Eating Guide - Balanced Nutrition for Everyone",
@@ -16,9 +17,25 @@ export const metadata: Metadata = {
 }
 
 export default function HealthyEating() {
+  const PUBLISHED = "2024-05-01"
+  const UPDATED = "2025-09-14"
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Healthy Eating Guide - Balanced Nutrition for Everyone",
+    author: { "@type": "Person", name: "Sadiq" },
+    datePublished: PUBLISHED,
+    dateModified: UPDATED,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://www.shredle.co.uk/healthy-eating",
+    },
+  }
   return (
     <FooterPagesLayout title="Healthy Eating Guide">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="space-y-6">
+        <div className="text-sm text-gray-600 dark:text-gray-400">By <span className="font-medium">Sadiq</span> • Published {PUBLISHED} • Updated {UPDATED}</div>
         <section>
           <h2 className="text-xl font-bold mb-3 text-orange-700 dark:text-orange-400">
             Principles of Healthy Eating
@@ -189,6 +206,7 @@ export default function HealthyEating() {
             nutritional quality of your diet matters most for long-term health.
           </p>
         </section>
+        <AuthorBox published={PUBLISHED} updated={UPDATED} />
       </div>
     </FooterPagesLayout>
   )

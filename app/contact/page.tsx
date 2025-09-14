@@ -27,7 +27,7 @@ export default function Contact() {
             Get in Touch with Shredle
           </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-6">
-            We're here to help make your nutrition education journey with Shredle as engaging and informative as possible. Whether you have questions about the game, suggestions for improvement, technical issues, or just want to share your experience, we'd love to hear from you.
+            We&apos;re here to help make your nutrition education journey with Shredle as engaging and informative as possible. Whether you have questions about the game, suggestions for improvement, technical issues, or just want to share your experience, we&apos;d love to hear from you.
           </p>
           <div className="bg-white/60 dark:bg-gray-800/60 p-3 rounded-lg text-sm text-gray-700 dark:text-gray-300">
             I read and reply to emails personally. If you spotted a weird calorie comparison or have a feature idea, send it over—those are the messages that make Shredle better for everyone.

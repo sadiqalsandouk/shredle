@@ -10,6 +10,7 @@ export default function GameHeader() {
   const pathname = usePathname()
   const isStreakMode = pathname === "/streak"
   const isLeaderboard = pathname === "/leaderboard"
+  const isResources = pathname?.startsWith("/nutrition-guide") || pathname?.startsWith("/calorie-guide") || pathname?.startsWith("/healthy-eating")
   const [showNew, setShowNew] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -90,6 +91,16 @@ export default function GameHeader() {
               >
                 Leaderboard
               </Link>
+              <Link
+                href="/nutrition-guide"
+                className={`px-3 py-1.5 rounded-lg transition-colors text-sm font-medium ${
+                  isResources
+                    ? "bg-orange-100 text-orange-800 font-semibold dark:bg-orange-900/30 dark:text-orange-300"
+                    : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                }`}
+              >
+                Resources
+              </Link>
               <HowToPlay isMobile={false} />
             </div>
 
@@ -161,6 +172,15 @@ export default function GameHeader() {
               onClick={() => setIsMenuOpen(false)}
             >
               Leaderboard
+            </Link>
+            <Link
+              href="/nutrition-guide"
+              className="block px-5 py-3.5 rounded-xl transition-colors text-gray-700 
+                hover:bg-orange-100/80 dark:text-gray-200 dark:hover:bg-orange-900/30
+                font-medium relative z-[101] text-base"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Resources
             </Link>
             <div
               className="relative z-[101]"

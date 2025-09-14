@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import FooterPagesLayout from "../components/FooterPagesLayout"
 import Link from "next/link"
+import AuthorBox from "../components/AuthorBox"
 
 export const metadata: Metadata = {
   title: "Cooking Calories - How Preparation Methods Affect Food Energy",
@@ -18,9 +19,25 @@ export const metadata: Metadata = {
 }
 
 export default function CookingCalories() {
+  const PUBLISHED = "2024-05-01"
+  const UPDATED = "2025-09-14"
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "Cooking Calories - How Preparation Methods Affect Food Energy",
+    author: { "@type": "Person", name: "Sadiq" },
+    datePublished: PUBLISHED,
+    dateModified: UPDATED,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "https://www.shredle.co.uk/cooking-calories",
+    },
+  }
   return (
     <FooterPagesLayout title="Cooking Calories">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="space-y-6">
+        <div className="text-sm text-gray-600 dark:text-gray-400">By <span className="font-medium">Sadiq</span> • Published {PUBLISHED} • Updated {UPDATED}</div>
         <section>
           <h2 className="text-xl font-bold mb-3 text-orange-700 dark:text-orange-400">
             How Cooking Affects Calorie Content
@@ -289,6 +306,7 @@ export default function CookingCalories() {
             information is intended for educational purposes only.
           </p>
         </div>
+        <AuthorBox published={PUBLISHED} updated={UPDATED} />
       </div>
     </FooterPagesLayout>
   )

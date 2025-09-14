@@ -22,15 +22,7 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
-# Block image indexing but allow crawling for verification
-User-agent: Googlebot-Image
-Allow: /ads.txt
-Allow: /app-ads.txt
-Disallow: /*.jpg$
-Disallow: /*.jpeg$
-Disallow: /*.png$
-Disallow: /*.gif$
-Disallow: /*.webp$
+# Allow image indexing for richer results
 
 # Sitemaps
 Sitemap: https://www.shredle.co.uk/sitemap.xml 

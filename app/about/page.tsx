@@ -21,6 +21,7 @@ export default function About() {
   return (
     <FooterPagesLayout title="About Shredle">
       <div className="space-y-6">
+        <div className="text-sm text-gray-600 dark:text-gray-400">By <span className="font-medium">Sadiq</span> • Published 2024-05-01 • Updated 2025-09-14</div>
         <section>
           <h2 className="text-xl font-bold mb-3 text-orange-700 dark:text-orange-400">
             What is Shredle?
@@ -35,6 +36,16 @@ export default function About() {
             more calories. Through regular play, you&apos;ll develop an
             intuitive understanding of the energy content in common foods,
             helping you make more informed dietary choices.
+          </p>
+        </section>
+
+        <section className="bg-white/70 dark:bg-gray-800/70 p-5 rounded-lg">
+          <h2 className="text-xl font-bold mb-3 text-orange-700 dark:text-orange-400">Who Runs Shredle</h2>
+          <p className="text-gray-700 dark:text-gray-300 mb-2">
+            Shredle is created and maintained by <strong>Sadiq</strong>, a developer passionate about building approachable learning tools. The project is based in the United Kingdom.
+          </p>
+          <p className="text-gray-700 dark:text-gray-300">
+            Contact: <a href="mailto:sadiqdotdigital@gmail.com" className="underline text-orange-700 dark:text-orange-400">sadiqdotdigital@gmail.com</a>
           </p>
         </section>
 

@@ -9,7 +9,7 @@ import { PoppinsFont } from "./utils/font"
 import NextThemeProvider from "./components/NextThemeProvider"
 import { Metadata } from "next"
 import AdSense from "./components/AdSense"
-import AdBanner from "./components/AdBanner"
+import ConsentBanner from "./components/ConsentBanner"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
       "max-video-preview": -1,
-      "max-image-preview": "none",
+      "max-image-preview": "large",
       "max-snippet": -1,
     },
   },
@@ -90,6 +90,53 @@ export default function RootLayout({
     >
       <head>
         <AdSense pId="4495583753910327" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(){
+                window.dataLayer = window.dataLayer || [];
+                function g(){dataLayer.push(arguments)}
+                g('consent','default',{
+                  'ad_storage':'denied',
+                  'analytics_storage':'denied',
+                  'ad_user_data':'denied',
+                  'ad_personalization':'denied',
+                  'functionality_storage':'granted',
+                  'security_storage':'granted'
+                });
+              })();
+            `,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'Shredle',
+              url: 'https://www.shredle.co.uk',
+              logo: 'https://www.shredle.co.uk/opengraph-image.png',
+              sameAs: [],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'Shredle',
+              url: 'https://www.shredle.co.uk',
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: 'https://www.shredle.co.uk/?q={search_term_string}',
+                'query-input': 'required name=search_term_string',
+              },
+            }),
+          }}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gradient-to-b from-orange-50 via-white to-orange-50 pattern-food pattern-orange-100 pattern-opacity-10 pattern-lg dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 dark:pattern-gray-800 dark:pattern-opacity-5`}
@@ -113,24 +160,9 @@ export default function RootLayout({
                   <Analytics />
                 </main>
               </div>
-
-              <div className="hidden xl:block fixed left-10 top-1/4 w-[160px] h-[600px]">
-                <AdBanner
-                  dataAdSlot="6595333514"
-                  dataAdFormat="vertical"
-                  dataFullWidthResponsive={false}
-                />
-              </div>
-
-              <div className="hidden xl:block fixed right-10 top-1/4 w-[160px] h-[600px]">
-                <AdBanner
-                  dataAdSlot="6595333514"
-                  dataAdFormat="vertical"
-                  dataFullWidthResponsive={false}
-                />
-              </div>
             </div>
           </ClientProvider>
+          <ConsentBanner />
           <Footer />
         </NextThemeProvider>
       </body>
