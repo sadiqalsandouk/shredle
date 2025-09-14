@@ -50,11 +50,12 @@ export default function GameHeader() {
   }, [isProteinMode])
 
   return (
-    <header 
-      className="backdrop-blur-sm relative z-50" 
-      style={{ backgroundColor: isDarkMode ? '#0f172a' : '#fefaf7' }}
-    >
-      <div className="max-w-4xl mx-auto px-2 sm:px-3 py-3">
+    <>
+      <header 
+        className="backdrop-blur-sm relative z-50" 
+        style={{ backgroundColor: isDarkMode ? '#0f172a' : '#fefaf7' }}
+      >
+        <div className="max-w-4xl mx-auto px-2 sm:px-3 py-3">
         <div className="flex items-center justify-between">
           <Link
             href="/"
@@ -140,7 +141,7 @@ export default function GameHeader() {
               <HowToPlay isMobile={false} />
             </div>
 
-            <div className="ml-2">
+            <div className="ml-2 hidden sm:block">
               <ThemeToggle />
             </div>
 
@@ -174,115 +175,111 @@ export default function GameHeader() {
           </div>
         </div>
 
-        {/* Sidebar Overlay */}
-        {isMenuOpen && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[9998] sm:hidden"
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              width: '100vw',
-              height: '100vh',
-              zIndex: 9998,
-            }}
-            onClick={() => setIsMenuOpen(false)}
-          />
-        )}
+        </div>
+      </header>
 
-        {/* Sidebar */}
+      {/* Sidebar Overlay */}
+      {isMenuOpen && (
         <div
-          className={`
-            fixed top-0 left-0 h-screen w-72 max-w-[80vw] z-[9999]
-            shadow-2xl border-r border-gray-200 dark:border-gray-600
-            sm:hidden transform transition-transform duration-300 ease-in-out
-            ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}
-          `}
+          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[9998] sm:hidden"
           style={{
-            backgroundColor: isDarkMode ? '#1f2937' : 'white',
-            height: '100vh',
-            width: '288px',
-            maxWidth: '80vw',
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            zIndex: 9999,
+            position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+            width: '100vw', height: '100vh', zIndex: 9998,
           }}
-        >
-          {/* Sidebar Header */}
-          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-600">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">🍔</span>
-              <span className="text-xl font-bold text-gray-800 dark:text-gray-200">
-                Menu
-              </span>
-            </div>
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400"
-              aria-label="Close menu"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+          onClick={() => setIsMenuOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <div
+        className={`
+          fixed top-0 left-0 w-72 max-w-[80vw] z-[9999]
+          shadow-2xl border-r border-gray-200 dark:border-gray-600
+          sm:hidden transform transition-transform duration-300 ease-in-out
+          flex flex-col mobile-sidebar
+          ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}
+        `}
+        style={{
+          backgroundColor: isDarkMode ? '#1f2937' : 'white',
+          width: '288px',
+          maxWidth: '80vw',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          bottom: 0,
+          height: '100vh',
+          minHeight: '100vh',
+          maxHeight: '100vh',
+          zIndex: 9999,
+        }}
+      >
+        {/* Sidebar Header */}
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-600">
+          <div className="flex items-center gap-2">
+            <span className="text-2xl">🍔</span>
+            <span className="text-xl font-bold text-gray-800 dark:text-gray-200">
+              Menu
+            </span>
           </div>
-
-          {/* Sidebar Navigation */}
-          <nav className="p-3 space-y-1">
-            <Link
-              href="/leaderboard"
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-base font-medium
-                ${
-                  isLeaderboard
-                    ? "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300"
-                    : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"
-                }`}
-              onClick={() => setIsMenuOpen(false)}
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+            aria-label="Close menu"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-5 h-5 text-gray-600 dark:text-gray-300"
             >
-              <span className="text-lg">🏆</span>
-              Leaderboard
-            </Link>
-            
-            <Link
-              href="/resources"
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-base font-medium
-                ${
-                  isResources
-                    ? "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300"
-                    : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"
-                }`}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <span className="text-lg">📚</span>
-              Resources
-            </Link>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
 
-            <div className="pt-2">
-              <HowToPlay isMobile={true} />
-            </div>
-          </nav>
+        {/* Sidebar Navigation */}
+        <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+          <Link
+            href="/leaderboard"
+            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-base font-medium
+              ${
+                isLeaderboard
+                  ? "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300"
+                  : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"
+              }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span className="text-lg">🏆</span>
+            Leaderboard
+          </Link>
+          <Link
+            href="/resources"
+            className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-base font-medium
+              ${
+                isResources
+                  ? "bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300"
+                  : "text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600"
+              }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span className="text-lg">📚</span>
+            Resources
+          </Link>
 
-          {/* Sidebar Footer */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 dark:border-gray-600">
-            <div className="flex items-center justify-center">
-              <ThemeToggle />
-            </div>
+          <div className="pt-2">
+            <HowToPlay isMobile={true} />
+          </div>
+        </nav>
+
+        {/* Sidebar Footer */}
+        <div className="mt-auto p-4 border-t border-gray-200 dark:border-gray-600">
+          <div className="flex items-center justify-center">
+            <ThemeToggle />
           </div>
         </div>
       </div>
-    </header>
+    </>
   )
 }
