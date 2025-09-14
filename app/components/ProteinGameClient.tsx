@@ -101,6 +101,7 @@ export default function ProteinGameClient({
           message={`Your streak was ${streak}! Can you beat it?`}
           gameHistory={gameHistory}
           isStreak={true}
+          isProteinMode={true}
           onReset={resetGame}
         />
       </div>

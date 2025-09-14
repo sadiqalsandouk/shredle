@@ -10,8 +10,10 @@ import { fetchLeaderboard } from "../utils/api"
 interface GameResult {
   name1: string
   calories1: number
+  protein1?: number
   name2: string
   calories2: number
+  protein2?: number
   wasCorrect: boolean
 }
 
@@ -28,6 +30,7 @@ interface GameOverScreenProps {
   message?: string
   gameHistory?: GameResult[]
   isStreak?: boolean
+  isProteinMode?: boolean
   onReset?: () => void
 }
 
@@ -37,6 +40,7 @@ export function GameOverScreen({
   message,
   gameHistory = [],
   isStreak = false,
+  isProteinMode = false,
   onReset,
 }: GameOverScreenProps) {
   const [scoreSubmitted, setScoreSubmitted] = useState(false)
@@ -46,10 +50,11 @@ export function GameOverScreen({
     day: "numeric",
   })
 
-  // Fetch top 3 scores for streak mode
+  // Fetch top 3 scores for streak/protein mode
+  const gameMode = isProteinMode ? "protein" : "streak"
   const { data: leaderboardData, isLoading } = useQuery({
-    queryKey: ["leaderboard", 3],
-    queryFn: () => fetchLeaderboard(3),
+    queryKey: ["leaderboard", 3, gameMode],
+    queryFn: () => fetchLeaderboard(3, 1, gameMode),
     enabled: isStreak,
     refetchOnWindowFocus: false,
   })
@@ -58,9 +63,9 @@ export function GameOverScreen({
   useEffect(() => {
     if (isStreak) {
       // Get the current game session ID from the game state
-      // This ID should be passed down from the parent component
+      const sessionKey = isProteinMode ? "currentProteinGameSessionId" : "currentGameSessionId"
       const gameSessionId =
-        localStorage.getItem("currentGameSessionId") || `streak-${Date.now()}`
+        localStorage.getItem(sessionKey) || `${gameMode}-${Date.now()}`
 
       const submittedScores = localStorage.getItem("submittedScores") || "{}"
       const parsedScores = JSON.parse(submittedScores)
@@ -69,13 +74,14 @@ export function GameOverScreen({
         setScoreSubmitted(true)
       }
     }
-  }, [isStreak, score])
+  }, [isStreak, score, isProteinMode, gameMode])
 
   // Mark score as submitted
   const handleScoreSubmitted = () => {
     if (isStreak) {
+      const sessionKey = isProteinMode ? "currentProteinGameSessionId" : "currentGameSessionId"
       const gameSessionId =
-        localStorage.getItem("currentGameSessionId") || `streak-${Date.now()}`
+        localStorage.getItem(sessionKey) || `${gameMode}-${Date.now()}`
 
       const submittedScores = localStorage.getItem("submittedScores") || "{}"
       const parsedScores = JSON.parse(submittedScores)
@@ -222,7 +228,10 @@ export function GameOverScreen({
                       {result.name1}
                     </p>
                     <p className="text-xs font-medium text-gray-600 dark:text-gray-400">
-                      {result.calories1.toLocaleString()} cal
+                      {isProteinMode 
+                        ? `${result.protein1?.toLocaleString() || 0}g protein`
+                        : `${result.calories1.toLocaleString()} cal`
+                      }
                     </p>
                   </div>
                   <div className="text-xs font-medium text-gray-400 dark:text-gray-500 pt-1 px-2">
@@ -233,7 +242,10 @@ export function GameOverScreen({
                       {result.name2}
                     </p>
                     <p className="text-xs font-medium text-gray-600 dark:text-gray-400">
-                      {result.calories2.toLocaleString()} cal
+                      {isProteinMode 
+                        ? `${result.protein2?.toLocaleString() || 0}g protein`
+                        : `${result.calories2.toLocaleString()} cal`
+                      }
                     </p>
                   </div>
                 </div>
@@ -257,6 +269,7 @@ export function GameOverScreen({
                 </h3>
                 <ScoreSubmitForm
                   score={score}
+                  gameMode={gameMode}
                   onComplete={handleScoreSubmitted}
                 />
               </div>

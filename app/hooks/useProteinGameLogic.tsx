@@ -21,16 +21,16 @@ export function useProteinGameLogic(
       isFirstRender.current = false
 
       // Generate a game session ID if none exists
-      if (!localStorage.getItem("currentGameSessionId")) {
+      if (!localStorage.getItem("currentProteinGameSessionId")) {
         const gameSessionId = `protein-${Date.now()}-${Math.floor(
           Math.random() * 1000
         )}`
-        localStorage.setItem("currentGameSessionId", gameSessionId)
+        localStorage.setItem("currentProteinGameSessionId", gameSessionId)
       }
 
-      const cheatFlag = localStorage.getItem("streakRefreshCheat")
+      const cheatFlag = localStorage.getItem("proteinRefreshCheat")
       if (cheatFlag) {
-        localStorage.removeItem("streakRefreshCheat")
+        localStorage.removeItem("proteinRefreshCheat")
         setCheatAttempted(true)
 
         localStorage.removeItem("proteinGameStreakState")
@@ -51,7 +51,7 @@ export function useProteinGameLogic(
           savedState.streak > 0 &&
           savedState.currentIndex > 0
         ) {
-          localStorage.setItem("streakRefreshCheat", "true")
+          localStorage.setItem("proteinRefreshCheat", "true")
           localStorage.removeItem("proteinGameStreakState")
 
           setCheatAttempted(true)
@@ -218,13 +218,13 @@ export function useProteinGameLogic(
   const resetGame = () => {
     if (mode !== "protein") return
 
-    localStorage.removeItem("streakRefreshCheat")
+    localStorage.removeItem("proteinRefreshCheat")
     setCheatAttempted(false)
 
     const gameSessionId = `protein-${Date.now()}-${Math.floor(
       Math.random() * 1000
     )}`
-    localStorage.setItem("currentGameSessionId", gameSessionId)
+    localStorage.setItem("currentProteinGameSessionId", gameSessionId)
 
     // Filter foods that have protein data
     const foodsWithProtein = foodItems.filter(food => food.protein != null && food.protein > 0)

@@ -18,14 +18,15 @@ interface LeaderboardProps {
 
 export default function Leaderboard({ initialPage = 1 }: LeaderboardProps) {
   const [currentPage, setCurrentPage] = useState(initialPage)
+  const [gameMode, setGameMode] = useState<"streak" | "protein">("streak")
   const itemsPerPage = 10 // Fixed at 10 entries per page
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["leaderboard", itemsPerPage, currentPage],
+    queryKey: ["leaderboard", itemsPerPage, currentPage, gameMode],
     queryFn: async () => {
       // For now, we're still using the existing API which doesn't support real pagination
       // So we'll just get enough data for a few pages
-      const result = await fetchLeaderboard(itemsPerPage * 3) // Get 3 pages worth of data
+      const result = await fetchLeaderboard(itemsPerPage * 3, 1, gameMode) // Get 3 pages worth of data
 
       // Return only the current page items
       return {
@@ -57,6 +58,11 @@ export default function Leaderboard({ initialPage = 1 }: LeaderboardProps) {
     }
   }
 
+  const handleGameModeChange = (mode: "streak" | "protein") => {
+    setGameMode(mode)
+    setCurrentPage(1) // Reset to first page when switching modes
+  }
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center p-10">
@@ -81,9 +87,35 @@ export default function Leaderboard({ initialPage = 1 }: LeaderboardProps) {
   return (
     <div className="w-full max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
       <div className="p-4 bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700">
-        <h2 className="text-xl font-bold text-white text-center">
-          Top Streaks Leaderboard
+        <h2 className="text-xl font-bold text-white text-center mb-4">
+          Top Scores Leaderboard
         </h2>
+        
+        {/* Game Mode Toggle */}
+        <div className="flex justify-center">
+          <div className="bg-white/20 rounded-lg p-1 flex">
+            <button
+              onClick={() => handleGameModeChange("streak")}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                gameMode === "streak"
+                  ? "bg-white text-orange-600 shadow-sm"
+                  : "text-white hover:bg-white/10"
+              }`}
+            >
+              🔥 Streak Mode
+            </button>
+            <button
+              onClick={() => handleGameModeChange("protein")}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                gameMode === "protein"
+                  ? "bg-white text-orange-600 shadow-sm"
+                  : "text-white hover:bg-white/10"
+              }`}
+            >
+              🥩 Protein Mode
+            </button>
+          </div>
+        </div>
       </div>
 
       {entries.length === 0 ? (
@@ -106,21 +138,21 @@ export default function Leaderboard({ initialPage = 1 }: LeaderboardProps) {
                     : "dark:bg-gray-800"
                 }`}
               >
-                <div className="w-8 font-bold text-lg text-orange-600 dark:text-orange-400">
+                <div className="w-8 font-bold text-lg text-orange-600 dark:text-orange-400 flex-shrink-0">
                   {(currentPage - 1) * itemsPerPage + index + 1}.
                 </div>
-                <div className="flex-1">
-                  <p className="font-medium dark:text-gray-200">
+                <div className="flex-1 min-w-0 px-2">
+                  <p className="font-medium dark:text-gray-200 truncate" title={entry.player_name}>
                     {entry.player_name}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     {new Date(entry.date).toLocaleDateString()}
                   </p>
                 </div>
-                <div className="text-2xl font-bold flex items-center gap-1 text-orange-600 dark:text-orange-400">
+                <div className="text-2xl font-bold flex items-center gap-1 text-orange-600 dark:text-orange-400 flex-shrink-0">
                   {entry.score}
                   <span className="text-lg text-orange-500 dark:text-orange-400">
-                    🔥
+                    {gameMode === "protein" ? "🥩" : "🔥"}
                   </span>
                 </div>
               </motion.div>
@@ -129,16 +161,16 @@ export default function Leaderboard({ initialPage = 1 }: LeaderboardProps) {
 
           {/* Desktop View */}
           <div className="hidden md:block">
-            <table className="w-full table-auto">
+            <table className="w-full table-fixed">
               <thead className="bg-orange-50 dark:bg-gray-700">
                 <tr>
                   <th className="px-4 py-3 text-left text-sm font-medium text-orange-800 dark:text-orange-300 w-16">
                     Rank
                   </th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-orange-800 dark:text-orange-300">
+                  <th className="px-4 py-3 text-left text-sm font-medium text-orange-800 dark:text-orange-300 w-48">
                     Player
                   </th>
-                  <th className="px-4 py-3 text-left text-sm font-medium text-orange-800 dark:text-orange-300">
+                  <th className="px-4 py-3 text-left text-sm font-medium text-orange-800 dark:text-orange-300 w-32">
                     Date
                   </th>
                   <th className="px-4 py-3 text-right text-sm font-medium text-orange-800 dark:text-orange-300 w-24">
@@ -162,7 +194,7 @@ export default function Leaderboard({ initialPage = 1 }: LeaderboardProps) {
                     <td className="px-4 py-3 text-orange-600 dark:text-orange-400 font-bold">
                       {(currentPage - 1) * itemsPerPage + index + 1}.
                     </td>
-                    <td className="px-4 py-3 font-medium dark:text-gray-200">
+                    <td className="px-4 py-3 font-medium dark:text-gray-200 truncate" title={entry.player_name}>
                       {entry.player_name}
                     </td>
                     <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">
@@ -172,7 +204,7 @@ export default function Leaderboard({ initialPage = 1 }: LeaderboardProps) {
                       <span className="text-xl font-bold text-orange-600 dark:text-orange-400 flex items-center justify-end gap-1">
                         {entry.score}
                         <span className="text-base text-orange-500 dark:text-orange-400">
-                          🔥
+                          {gameMode === "protein" ? "🥩" : "🔥"}
                         </span>
                       </span>
                     </td>

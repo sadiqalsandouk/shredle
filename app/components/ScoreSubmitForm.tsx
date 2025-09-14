@@ -7,10 +7,11 @@ import { validateUsername } from "../utils/profanityFilter"
 
 interface ScoreSubmitFormProps {
   score: number
+  gameMode?: string
   onComplete: () => void
 }
 
-export function ScoreSubmitForm({ score, onComplete }: ScoreSubmitFormProps) {
+export function ScoreSubmitForm({ score, gameMode = "streak", onComplete }: ScoreSubmitFormProps) {
   const [playerName, setPlayerName] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [validationError, setValidationError] = useState("")
@@ -33,7 +34,7 @@ export function ScoreSubmitForm({ score, onComplete }: ScoreSubmitFormProps) {
 
     try {
       setIsSubmitting(true)
-      await submitScore(trimmedName, score)
+      await submitScore(trimmedName, score, gameMode)
       toast.success("Score submitted successfully!")
 
       // Invalidate leaderboard queries to refresh data

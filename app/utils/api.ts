@@ -42,9 +42,9 @@ export const updateGameStatus = async (
   return data
 }
 
-export const fetchLeaderboard = async (limit = 10, page = 1) => {
+export const fetchLeaderboard = async (limit = 10, page = 1, gameMode = "streak") => {
   try {
-    const response = await fetch(`/api/leaderboard?limit=${limit}&page=${page}`)
+    const response = await fetch(`/api/leaderboard?limit=${limit}&page=${page}&gameMode=${gameMode}`)
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
@@ -59,14 +59,14 @@ export const fetchLeaderboard = async (limit = 10, page = 1) => {
   }
 }
 
-export const submitScore = async (playerName: string, score: number) => {
+export const submitScore = async (playerName: string, score: number, gameMode = "streak") => {
   try {
     const response = await fetch("/api/leaderboard", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ playerName, score }),
+      body: JSON.stringify({ playerName, score, gameMode }),
     })
 
     if (!response.ok) {

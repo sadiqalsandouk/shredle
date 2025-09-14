@@ -8,6 +8,7 @@ export async function GET(req: Request) {
     const { searchParams } = new URL(req.url)
     const limit = parseInt(searchParams.get("limit") || "10")
     const page = parseInt(searchParams.get("page") || "1")
+    const gameMode = searchParams.get("gameMode") || "streak" // "streak" for calories, "protein" for protein
 
     // For backward compatibility, if we get a large limit, we'll assume it's for frontend pagination
     // This supports the current client-side pagination implementation
@@ -51,10 +52,11 @@ export async function GET(req: Request) {
       console.error("Error getting count:", countError)
     }
 
-    // Now try to fetch the data
+    // Now try to fetch the data filtered by game mode
     const { data, error } = await supabase
       .from("leaderboard")
       .select("*")
+      .eq("game_mode", gameMode)
       .order("score", { ascending: false })
       .limit(queryLimit)
 
@@ -93,7 +95,7 @@ export async function GET(req: Request) {
 // POST endpoint to submit a new score
 export async function POST(req: Request) {
   try {
-    const { playerName, score } = await req.json()
+    const { playerName, score, gameMode = "streak" } = await req.json()
 
     // Server-side validation
     const validation = validateUsername(playerName)
@@ -130,13 +132,14 @@ export async function POST(req: Request) {
       }
     }
 
-    // Insert the score with validated name
+    // Insert the score with validated name and game mode
     const { data, error } = await supabase
       .from("leaderboard")
       .insert([
         {
           player_name: playerName.trim(),
           score: score,
+          game_mode: gameMode,
           date: new Date().toISOString(),
         },
       ])
