@@ -54,7 +54,7 @@ export default function GameHeader() {
       className="backdrop-blur-sm relative z-50" 
       style={{ backgroundColor: isDarkMode ? '#0f172a' : '#fefaf7' }}
     >
-      <div className="max-w-4xl mx-auto px-3 py-3">
+      <div className="max-w-4xl mx-auto px-2 sm:px-3 py-3">
         <div className="flex items-center justify-between">
           <Link
             href="/"
@@ -69,10 +69,10 @@ export default function GameHeader() {
             </span>
           </Link>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             <Link
               href="/"
-              className={`px-3 py-1.5 rounded-lg transition-colors text-sm font-medium
+              className={`px-2 sm:px-3 py-1.5 rounded-lg transition-colors text-xs sm:text-sm font-medium
                 ${
                   isDailyMode
                     ? "bg-orange-100 text-orange-800 font-semibold dark:bg-orange-900/30 dark:text-orange-300"
@@ -84,7 +84,7 @@ export default function GameHeader() {
 
             <Link
               href="/streak"
-              className={`px-3 py-1.5 rounded-lg transition-colors text-sm font-medium
+              className={`px-2 sm:px-3 py-1.5 rounded-lg transition-colors text-xs sm:text-sm font-medium
                 ${
                   isStreakMode
                     ? "bg-orange-100 text-orange-800 font-semibold dark:bg-orange-900/30 dark:text-orange-300"
@@ -97,7 +97,7 @@ export default function GameHeader() {
             <div className="relative">
               <Link
                 href="/protein"
-                className={`px-3 py-1.5 rounded-lg transition-colors text-sm font-medium
+                className={`px-2 sm:px-3 py-1.5 rounded-lg transition-colors text-xs sm:text-sm font-medium
                   ${
                     isProteinMode
                       ? "bg-orange-100 text-orange-800 font-semibold dark:bg-orange-900/30 dark:text-orange-300"
@@ -115,7 +115,7 @@ export default function GameHeader() {
               )}
             </div>
 
-            <div className="hidden sm:flex items-center gap-2">
+            <div className="hidden sm:flex items-center gap-1 lg:gap-2">
               <Link
                 href="/leaderboard"
                 className={`px-3 py-1.5 rounded-lg transition-colors text-sm font-medium
@@ -146,7 +146,7 @@ export default function GameHeader() {
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="ml-2 p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 sm:hidden text-gray-700 dark:text-gray-300 relative z-10 border border-gray-200 dark:border-gray-700"
+              className="ml-1 p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 sm:hidden text-gray-700 dark:text-gray-300 relative z-10 border border-gray-200 dark:border-gray-700"
               aria-label="Menu"
             >
               <svg
@@ -195,7 +195,7 @@ export default function GameHeader() {
         {/* Sidebar */}
         <div
           className={`
-            fixed top-0 left-0 h-screen w-80 max-w-[85vw] z-[9999]
+            fixed top-0 left-0 h-screen w-72 max-w-[80vw] z-[9999]
             shadow-2xl border-r border-gray-200 dark:border-gray-600
             sm:hidden transform transition-transform duration-300 ease-in-out
             ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}
@@ -203,8 +203,8 @@ export default function GameHeader() {
           style={{
             backgroundColor: isDarkMode ? '#1f2937' : 'white',
             height: '100vh',
-            width: '320px',
-            maxWidth: '85vw',
+            width: '288px',
+            maxWidth: '80vw',
             position: 'fixed',
             top: 0,
             left: 0,
@@ -241,7 +241,7 @@ export default function GameHeader() {
           </div>
 
           {/* Sidebar Navigation */}
-          <nav className="p-4 space-y-2">
+          <nav className="p-3 space-y-1">
             <Link
               href="/leaderboard"
               className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors text-base font-medium
