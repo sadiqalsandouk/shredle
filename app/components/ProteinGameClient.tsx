@@ -69,7 +69,7 @@ export default function ProteinGameClient({
             Game Reset
           </h2>
           <p className="text-gray-700 dark:text-gray-300 mb-6">
-            Refreshing during streak mode resets the game!
+            Refreshing mid-game resets the game!
           </p>
           <button
             onClick={handleReset}
