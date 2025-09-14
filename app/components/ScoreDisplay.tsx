@@ -4,6 +4,7 @@ interface ScoreDisplayProps {
   isGameOver?: boolean
   message?: string
   streakMode?: boolean
+  proteinMode?: boolean
   lives?: number
 }
 
@@ -13,6 +14,7 @@ export function ScoreDisplay({
   isGameOver = false,
   message,
   streakMode = false,
+  proteinMode = false,
   lives = 1,
 }: ScoreDisplayProps) {
   const foodEmojis = ["🍎", "🥑", "🥕", "🥦", "🍌"]
@@ -21,19 +23,19 @@ export function ScoreDisplay({
   return (
     <div className="flex flex-col items-center gap-4 mb-6">
       <div className="flex flex-col items-center gap-3">
-        <div className="text-xl sm:text-2xl font-bold text-orange-800 dark:text-orange-300 mb-2">
-          {isGameOver
-            ? "Today&apos;s Score:"
-            : streakMode
-            ? "Current Streak:"
-            : "Score:"}{" "}
+        <div className="text-4xl sm:text-5xl font-bold text-orange-800 dark:text-orange-300 mb-2">
           {score}
-          {!streakMode && `/${total}`}
         </div>
+
+        {!streakMode && (
+          <div className="text-sm text-orange-600/80 dark:text-orange-400/80 font-medium -mt-2 mb-2">
+            / {total}
+          </div>
+        )}
 
         {streakMode ? (
           <div className="flex items-center justify-center">
-            <span className="text-2xl sm:text-3xl">🔥</span>
+            <span className="text-2xl sm:text-3xl">{proteinMode ? "🥩" : "🔥"}</span>
           </div>
         ) : (
           <>

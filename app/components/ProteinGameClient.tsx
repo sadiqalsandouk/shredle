@@ -1,6 +1,6 @@
 "use client"
-import { CardComponent } from "./CardComponent"
-import { useGameLogic } from "../hooks/useGameLogic"
+import { ProteinCardComponent } from "./ProteinCardComponent"
+import { useProteinGameLogic } from "../hooks/useProteinGameLogic"
 import { FoodItem } from "../types/types"
 import { useWindowSize } from "react-use"
 import { GameOverScreen } from "./GameOverScreen"
@@ -10,7 +10,7 @@ import { useState, useEffect } from "react"
 
 const Confetti = dynamic(() => import("react-confetti"), { ssr: false })
 
-export default function StreakGameClient({
+export default function ProteinGameClient({
   foodData,
 }: {
   foodData: FoodItem[]
@@ -41,7 +41,7 @@ export default function StreakGameClient({
     gameHistory,
     resetGame,
     cheatAttempted,
-  } = useGameLogic(foodData, "streak")
+  } = useProteinGameLogic(foodData, "protein")
 
   const handleReset = () => {
     resetGame()
@@ -109,8 +109,8 @@ export default function StreakGameClient({
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-4 text-orange-700 dark:text-orange-400">Streak Mode</h1>
-      <ScoreDisplay score={streak} streakMode={true} />
+      <h1 className="text-2xl font-bold mb-4 text-orange-700 dark:text-orange-400">Protein Mode</h1>
+      <ScoreDisplay score={streak} streakMode={true} proteinMode={true} />
 
       <div className="h-[60px] flex items-center justify-center">
         {feedback && (
@@ -129,16 +129,16 @@ export default function StreakGameClient({
 
       {dailyFoods.length >= 2 && (
         <div className="flex gap-2 sm:gap-4">
-          <CardComponent
-            key={`streak-${currentIndex}-a`}
+          <ProteinCardComponent
+            key={`protein-${currentIndex}-a`}
             foodItemName={dailyFoods[currentIndex].name}
-            foodItemCalories={dailyFoods[currentIndex].calories}
+            foodItemProtein={dailyFoods[currentIndex].protein ?? 0}
             foodItemImage={dailyFoods[currentIndex].image}
           />
-          <CardComponent
-            key={`streak-${currentIndex}-b`}
+          <ProteinCardComponent
+            key={`protein-${currentIndex}-b`}
             foodItemName={dailyFoods[currentIndex + 1].name}
-            foodItemCalories={dailyFoods[currentIndex + 1].calories}
+            foodItemProtein={dailyFoods[currentIndex + 1].protein ?? 0}
             foodItemImage={dailyFoods[currentIndex + 1].image}
             buttons={["Higher", "Lower"]}
             buttonHandlers={[handleHigher, handleLower]}

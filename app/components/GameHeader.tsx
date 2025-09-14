@@ -9,24 +9,26 @@ import ThemeToggle from "./ThemeToggle"
 export default function GameHeader() {
   const pathname = usePathname()
   const isStreakMode = pathname === "/streak"
+  const isProteinMode = pathname === "/protein"
   const isLeaderboard = pathname === "/leaderboard"
-  const isResources = pathname?.startsWith("/nutrition-guide") || pathname?.startsWith("/calorie-guide") || pathname?.startsWith("/healthy-eating")
+  const isResources = pathname === "/resources" || pathname?.startsWith("/nutrition-guide") || pathname?.startsWith("/calorie-guide") || pathname?.startsWith("/healthy-eating")
+  const isDailyMode = pathname === "/" || (!isStreakMode && !isProteinMode && !isLeaderboard && !isResources)
   const [showNew, setShowNew] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-    const hasSeenStreak = localStorage.getItem("hasSeenStreakMode")
-    if (!hasSeenStreak) {
+    const hasSeenProtein = localStorage.getItem("hasSeenProteinMode")
+    if (!hasSeenProtein) {
       setShowNew(true)
     }
 
-    if (isStreakMode) {
-      localStorage.setItem("hasSeenStreakMode", "true")
+    if (isProteinMode) {
+      localStorage.setItem("hasSeenProteinMode", "true")
       setShowNew(false)
     }
-  }, [isStreakMode])
+  }, [isProteinMode])
 
   return (
     <header className="bg-orange-50/95 dark:bg-gray-950/95 backdrop-blur-sm relative z-50">
@@ -50,7 +52,7 @@ export default function GameHeader() {
               href="/"
               className={`px-3 py-1.5 rounded-lg transition-colors text-sm font-medium
                 ${
-                  !isStreakMode && !isLeaderboard
+                  isDailyMode
                     ? "bg-orange-100 text-orange-800 font-semibold dark:bg-orange-900/30 dark:text-orange-300"
                     : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
                 }`}
@@ -58,17 +60,29 @@ export default function GameHeader() {
               Daily
             </Link>
 
+            <Link
+              href="/streak"
+              className={`px-3 py-1.5 rounded-lg transition-colors text-sm font-medium
+                ${
+                  isStreakMode
+                    ? "bg-orange-100 text-orange-800 font-semibold dark:bg-orange-900/30 dark:text-orange-300"
+                    : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                }`}
+            >
+              Streak
+            </Link>
+
             <div className="relative">
               <Link
-                href="/streak"
+                href="/protein"
                 className={`px-3 py-1.5 rounded-lg transition-colors text-sm font-medium
                   ${
-                    isStreakMode
+                    isProteinMode
                       ? "bg-orange-100 text-orange-800 font-semibold dark:bg-orange-900/30 dark:text-orange-300"
                       : "text-gray-600 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
                   }`}
               >
-                Streak
+                Protein
               </Link>
               {mounted && showNew && (
                 <div className="absolute -top-2 -right-2 z-10">
@@ -92,7 +106,7 @@ export default function GameHeader() {
                 Leaderboard
               </Link>
               <Link
-                href="/nutrition-guide"
+                href="/resources"
                 className={`px-3 py-1.5 rounded-lg transition-colors text-sm font-medium ${
                   isResources
                     ? "bg-orange-100 text-orange-800 font-semibold dark:bg-orange-900/30 dark:text-orange-300"
@@ -174,7 +188,7 @@ export default function GameHeader() {
               Leaderboard
             </Link>
             <Link
-              href="/nutrition-guide"
+              href="/resources"
               className="block px-5 py-3.5 rounded-xl transition-colors text-gray-700 
                 hover:bg-orange-100/80 dark:text-gray-200 dark:hover:bg-orange-900/30
                 font-medium relative z-[101] text-base"

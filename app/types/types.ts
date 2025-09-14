@@ -2,14 +2,17 @@ export interface FoodItem {
   id: number
   name: string
   calories: number
+  protein?: number
   image: string
 }
 
 export interface GameResult {
   name1: string
   calories1: number
+  protein1?: number
   name2: string
   calories2: number
+  protein2?: number
   wasCorrect: boolean
 }
 

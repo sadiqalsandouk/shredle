@@ -15,12 +15,25 @@ export interface GameState {
 
 export function saveGameState(
   state: GameState,
-  mode: "daily" | "streak" = "daily"
+  mode: "daily" | "streak" | "protein" = "daily"
 ) {
   if (typeof window === "undefined") return
 
   try {
-    const key = mode === "daily" ? "calorieGameState" : "calorieGameStreakState"
+    let key: string
+    switch (mode) {
+      case "daily":
+        key = "calorieGameState"
+        break
+      case "streak":
+        key = "calorieGameStreakState"
+        break
+      case "protein":
+        key = "proteinGameStreakState"
+        break
+      default:
+        key = "calorieGameState"
+    }
     localStorage.setItem(key, JSON.stringify(state))
   } catch (e) {
     console.error("Failed to save game state", e)
@@ -28,11 +41,24 @@ export function saveGameState(
 }
 
 export function loadGameState(
-  mode: "daily" | "streak" = "daily"
+  mode: "daily" | "streak" | "protein" = "daily"
 ): GameState | null {
   if (typeof window === "undefined") return null
   try {
-    const key = mode === "daily" ? "calorieGameState" : "calorieGameStreakState"
+    let key: string
+    switch (mode) {
+      case "daily":
+        key = "calorieGameState"
+        break
+      case "streak":
+        key = "calorieGameStreakState"
+        break
+      case "protein":
+        key = "proteinGameStreakState"
+        break
+      default:
+        key = "calorieGameState"
+    }
     const savedState = localStorage.getItem(key)
     return savedState ? JSON.parse(savedState) : null
   } catch (e) {
