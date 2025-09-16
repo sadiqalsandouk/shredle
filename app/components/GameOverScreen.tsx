@@ -94,41 +94,72 @@ export function GameOverScreen({
 
   const generateShareMessage = () => {
     if (isStreak) {
-      return `Shredle Streak - ${date}\nI got ${score} correct in a row! 🔥\nPlay now at `
+      return `Shredle Streak - ${date}\nI got ${score} correct in a row! 🔥\n\nPlay at playshredle.com`
     }
 
-    const scoreEmojis = Array(total)
-      .fill("⬜")
-      .map((emoji, i) => (i < score ? "🟩" : emoji))
-      .join("")
+    // Generate emojis based on actual game results, not just score count
+    const scoreEmojis = gameHistory.length > 0 
+      ? gameHistory.map(result => result.wasCorrect ? "🟩" : "🟥").join("")
+      : Array(total).fill("⬜").map((emoji, i) => (i < score ? "🟩" : emoji)).join("")
 
-    return `Shredle - ${date}\n${score}/${total}\n${scoreEmojis}\nPlay now at `
+    return `Shredle - ${date}\n${score}/${total}\n${scoreEmojis}\n\nPlay at playshredle.com`
   }
 
   const handleShare = async () => {
     const shareMessage = generateShareMessage()
-    const shareUrl = "https://playshredle.com"
+    
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
 
-    if (navigator.share) {
+    if (isMobile && navigator.share) {
       try {
         await navigator.share({
           title: `Shredle - ${date}`,
           text: shareMessage,
-          url: shareUrl,
         })
+        return
       } catch (err) {
-        console.error("Error sharing:", err)
-        await fallbackToClipboard(`${shareMessage}\n\nPlay at playshredle.com`)
+        console.error("Native share failed:", err)
       }
-    } else {
-      if (navigator.clipboard) {
-        await fallbackToClipboard(`${shareMessage}\n\nPlay at playshredle.com`)
-      } else {
-        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
-          `${shareMessage}\n\nPlay at playshredle.com`
-        )}`
-        window.open(whatsappUrl, "_blank")
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(shareMessage)
+        toast("Results copied to clipboard!")
+        return
+      } catch (err) {
+        console.error("Clipboard failed:", err)
       }
+    }
+
+    if (!isMobile && navigator.share) {
+      try {
+        await navigator.share({
+          title: `Shredle - ${date}`,
+          text: shareMessage,
+        })
+        return
+      } catch (err) {
+        console.error("Native share failed:", err)
+      }
+    }
+
+    try {
+      const textArea = document.createElement("textarea")
+      textArea.value = shareMessage
+      textArea.style.position = "fixed"
+      textArea.style.left = "-999999px"
+      textArea.style.top = "-999999px"
+      document.body.appendChild(textArea)
+      textArea.focus()
+      textArea.select()
+      document.execCommand("copy")
+      document.body.removeChild(textArea)
+      toast("Results copied to clipboard!")
+    } catch (err) {
+      console.error("All copy methods failed:", err)
+      const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareMessage)}`
+      window.open(whatsappUrl, "_blank")
     }
   }
 
