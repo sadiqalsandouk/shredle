@@ -8,14 +8,14 @@ Shredle is a fun and educational game where you compare the calorie content of d
 
 ## How to Play
 
-1. Visit the [Shredle website](https://www.shredle.co.uk/).
+1. Visit the [Shredle website](https://www.playshredle.com/).
 2. You will be presented with two foods.
 3. Guess which food has more calories by clicking on it.
 4. See if you guessed correctly and learn more about the calorie content of the foods.
 
 ## Deployment
 
-The project is deployed on Vercel. You can play the game by visiting the [Shredle website](https://www.shredle.co.uk/).
+The project is deployed on Vercel. You can play the game by visiting the [Shredle website](https://www.playshredle.com/).
 
 ## Acknowledgements
 

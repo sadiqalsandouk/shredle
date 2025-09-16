@@ -30,7 +30,7 @@ export default function FoodFacts() {
     dateModified: UPDATED,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://www.shredle.co.uk/food-facts",
+      "@id": "https://www.playshredle.com/food-facts",
     },
   }
   return (

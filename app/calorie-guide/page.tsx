@@ -34,7 +34,7 @@ export default function CalorieGuide() {
     dateModified: UPDATED,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://www.shredle.co.uk/calorie-guide",
+      "@id": "https://www.playshredle.com/calorie-guide",
     },
   }
   return (

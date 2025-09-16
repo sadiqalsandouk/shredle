@@ -31,7 +31,7 @@ export default function FoodScience() {
     dateModified: UPDATED,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://www.shredle.co.uk/food-science",
+      "@id": "https://www.playshredle.com/food-science",
     },
   }
   return (

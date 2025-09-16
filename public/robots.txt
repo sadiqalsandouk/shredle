@@ -1,4 +1,4 @@
-# https://www.shredle.co.uk/robots.txt
+# https://www.playshredle.com/robots.txt
 # Allow all crawlers
 User-agent: *
 Allow: /
@@ -25,4 +25,4 @@ Allow: /
 # Allow image indexing for richer results
 
 # Sitemaps
-Sitemap: https://www.shredle.co.uk/sitemap.xml 
+Sitemap: https://www.playshredle.com/sitemap.xml 

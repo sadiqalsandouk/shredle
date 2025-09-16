@@ -28,7 +28,7 @@ export default function HealthyEating() {
     dateModified: UPDATED,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://www.shredle.co.uk/healthy-eating",
+      "@id": "https://www.playshredle.com/healthy-eating",
     },
   }
   return (

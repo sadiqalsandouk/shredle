@@ -16,7 +16,7 @@ const jsonLd = {
   "@type": "WebApplication",
   name: "Shredle",
   description: "A daily game where players guess which food has more calories",
-  url: "https://www.shredle.co.uk",
+  url: "https://www.playshredle.com",
   applicationCategory: "GameApplication",
   genre: "Educational Game",
   browserRequirements: "Requires JavaScript",

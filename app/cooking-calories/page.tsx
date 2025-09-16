@@ -30,7 +30,7 @@ export default function CookingCalories() {
     dateModified: UPDATED,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://www.shredle.co.uk/cooking-calories",
+      "@id": "https://www.playshredle.com/cooking-calories",
     },
   }
   return (

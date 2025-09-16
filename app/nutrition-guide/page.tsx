@@ -29,7 +29,7 @@ export default function NutritionGuide() {
     dateModified: UPDATED,
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": "https://www.shredle.co.uk/nutrition-guide",
+      "@id": "https://www.playshredle.com/nutrition-guide",
     },
   }
   return (

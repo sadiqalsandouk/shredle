@@ -107,7 +107,7 @@ export function GameOverScreen({
 
   const handleShare = async () => {
     const shareMessage = generateShareMessage()
-    const shareUrl = "https://shredle.co.uk"
+    const shareUrl = "https://playshredle.com"
 
     if (navigator.share) {
       try {
@@ -118,14 +118,14 @@ export function GameOverScreen({
         })
       } catch (err) {
         console.error("Error sharing:", err)
-        await fallbackToClipboard(`${shareMessage}\n\nPlay at shredle.co.uk`)
+        await fallbackToClipboard(`${shareMessage}\n\nPlay at playshredle.com`)
       }
     } else {
       if (navigator.clipboard) {
-        await fallbackToClipboard(`${shareMessage}\n\nPlay at shredle.co.uk`)
+        await fallbackToClipboard(`${shareMessage}\n\nPlay at playshredle.com`)
       } else {
         const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
-          `${shareMessage}\n\nPlay at shredle.co.uk`
+          `${shareMessage}\n\nPlay at playshredle.com`
         )}`
         window.open(whatsappUrl, "_blank")
       }
@@ -350,7 +350,7 @@ export function GameOverScreen({
 
         <div className="pt-2 text-xs font-medium text-gray-400 flex items-center justify-center gap-1">
           Play at
-          <span className="text-orange-500">shredle.co.uk</span>
+          <span className="text-orange-500">playshredle.com</span>
         </div>
       </div>
     </motion.div>

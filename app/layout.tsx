@@ -23,7 +23,7 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.shredle.co.uk"),
+  metadataBase: new URL("https://www.playshredle.com"),
   title: {
     default: "Shredle - A Wordle Inspired Calories Higher/Lower Game",
     template: "%s | Shredle",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Shredle - A Wordle Inspired Calories Higher/Lower Game",
     description:
       "Compare foods and guess which has more calories in this addictive daily game. Challenge your nutrition knowledge!",
-    url: "https://www.shredle.co.uk",
+    url: "https://www.playshredle.com",
     siteName: "Shredle",
     images: [
       {
@@ -153,8 +153,8 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               name: 'Shredle',
-              url: 'https://www.shredle.co.uk',
-              logo: 'https://www.shredle.co.uk/opengraph-image.png',
+              url: 'https://www.playshredle.com',
+              logo: 'https://www.playshredle.com/opengraph-image.png',
               sameAs: [],
             }),
           }}
@@ -166,10 +166,10 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
               name: 'Shredle',
-              url: 'https://www.shredle.co.uk',
+              url: 'https://www.playshredle.com',
               potentialAction: {
                 '@type': 'SearchAction',
-                target: 'https://www.shredle.co.uk/?q={search_term_string}',
+                target: 'https://www.playshredle.com/?q={search_term_string}',
                 'query-input': 'required name=search_term_string',
               },
             }),
