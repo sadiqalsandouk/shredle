@@ -9,7 +9,6 @@ import { PoppinsFont } from "./utils/font"
 import NextThemeProvider from "./components/NextThemeProvider"
 import { Metadata } from "next"
 import AdSense from "./components/AdSense"
-import ConsentBanner from "./components/ConsentBanner"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -203,7 +202,6 @@ export default function RootLayout({
               </div>
             </div>
           </ClientProvider>
-          <ConsentBanner />
           <Footer />
         </NextThemeProvider>
       </body>
