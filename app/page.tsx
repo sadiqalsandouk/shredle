@@ -45,7 +45,7 @@ export default async function Home() {
       />
       <div className="flex flex-col items-center w-full">
         <GameClient foodData={res.foodData} />
-        <section className="w-full max-w-3xl text-gray-800 dark:text-gray-200 px-3">
+        <section className="w-full max-w-3xl text-gray-800 dark:text-gray-200 px-3 mt-12">
           <h2 className="text-xl font-bold mb-2 text-orange-700 dark:text-orange-400">What is Shredle?</h2>
           <p className="mb-3">Shredle is a daily higher/lower game that helps you build calorie intuition by comparing common foods. It’s a fun way to learn how preparation, portion size, and ingredients change energy content.</p>
           <h3 className="font-semibold text-orange-700 dark:text-orange-400 mb-1">Why it helps</h3>
