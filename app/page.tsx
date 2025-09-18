@@ -2,7 +2,6 @@ import { Metadata } from "next"
 import { getFoodData } from "./utils/getFoodData"
 import GameClient from "./components/GameClient"
 import FAQ from "./components/FAQ"
-import AdBanner from "./components/AdBanner"
 
 export const metadata: Metadata = {
   title: "Shredle - Daily Food Calorie Guessing Game",
@@ -46,9 +45,6 @@ export default async function Home() {
       />
       <div className="flex flex-col items-center w-full">
         <GameClient foodData={res.foodData} />
-        <div className="w-full my-6 flex justify-center">
-          <AdBanner dataAdSlot="6595333514" dataAdFormat="auto" dataFullWidthResponsive={true} />
-        </div>
         <section className="w-full max-w-3xl text-gray-800 dark:text-gray-200 px-3">
           <h2 className="text-xl font-bold mb-2 text-orange-700 dark:text-orange-400">What is Shredle?</h2>
           <p className="mb-3">Shredle is a daily higher/lower game that helps you build calorie intuition by comparing common foods. It’s a fun way to learn how preparation, portion size, and ingredients change energy content.</p>
