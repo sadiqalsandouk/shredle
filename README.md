@@ -17,6 +17,10 @@ Shredle is a fun and educational game where you compare the calorie content of d
 
 The project is deployed on Vercel. You can play the game by visiting the [Shredle website](https://www.playshredle.com/).
 
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 ## Acknowledgements
 
 - Inspired by Wordle
