@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="py-5 px-4 mt-8 border-t border-orange-200 dark:border-gray-800 bg-orange-50/50 dark:bg-gray-900/30 text-sm">
       <div className="container mx-auto max-w-4xl">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-4">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-4">
           {/* Game Links */}
           <div>
             <h3 className="font-semibold text-orange-700 dark:text-orange-400 mb-2 text-xs uppercase tracking-wider">
@@ -157,6 +157,25 @@ export default function Footer() {
                 >
                   Contact
                 </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h3 className="font-semibold text-orange-700 dark:text-orange-400 mb-2 text-xs uppercase tracking-wider">
+              Support
+            </h3>
+            <ul className="space-y-1">
+              <li>
+                <a
+                  href="https://buymeacoffee.com/sadiqdotdigital"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-orange-300 flex items-center gap-1"
+                >
+                  ☕ Buy me a coffee
+                </a>
               </li>
             </ul>
           </div>

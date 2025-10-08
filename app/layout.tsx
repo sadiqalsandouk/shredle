@@ -86,7 +86,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className="min-h-full"
-      style={{ backgroundColor: '#fefaf7' }}
+      style={{ backgroundColor: "#fefaf7" }}
     >
       <head>
         <AdSense pId="4495583753910327" />
@@ -149,11 +149,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'Shredle',
-              url: 'https://www.playshredle.com',
-              logo: 'https://www.playshredle.com/opengraph-image.png',
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Shredle",
+              url: "https://www.playshredle.com",
+              logo: "https://www.playshredle.com/opengraph-image.png",
               sameAs: [],
             }),
           }}
@@ -162,14 +162,14 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'WebSite',
-              name: 'Shredle',
-              url: 'https://www.playshredle.com',
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Shredle",
+              url: "https://www.playshredle.com",
               potentialAction: {
-                '@type': 'SearchAction',
-                target: 'https://www.playshredle.com/?q={search_term_string}',
-                'query-input': 'required name=search_term_string',
+                "@type": "SearchAction",
+                target: "https://www.playshredle.com/?q={search_term_string}",
+                "query-input": "required name=search_term_string",
               },
             }),
           }}
@@ -177,9 +177,9 @@ export default function RootLayout({
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
-        style={{ 
+        style={{
           margin: 0,
-          backgroundColor: '#fefaf7'
+          backgroundColor: "#fefaf7",
         }}
       >
         <NextThemeProvider>
