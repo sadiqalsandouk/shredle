@@ -94,7 +94,7 @@ export function GameOverScreen({
 
   const generateShareMessage = () => {
     if (isStreak) {
-      return `Shredle Streak - ${date}\nI got ${score} correct in a row! 🔥\n\nPlay at playshredle.com`
+      return `Shredle Streak - ${date}\nI got ${score} correct in a row! 🔥\n\nPlay at https://www.playshredle.com`
     }
 
     // Generate emojis based on actual game results, not just score count
@@ -102,7 +102,7 @@ export function GameOverScreen({
       ? gameHistory.map(result => result.wasCorrect ? "🟩" : "🟥").join("")
       : Array(total).fill("⬜").map((emoji, i) => (i < score ? "🟩" : emoji)).join("")
 
-    return `Shredle - ${date}\n${score}/${total}\n${scoreEmojis}\n\nPlay at playshredle.com`
+    return `Shredle - ${date}\n${score}/${total}\n${scoreEmojis}\n\nPlay at https://www.playshredle.com`
   }
 
   const handleShare = async () => {
@@ -381,7 +381,7 @@ export function GameOverScreen({
 
         <div className="pt-2 text-xs font-medium text-gray-400 flex items-center justify-center gap-1">
           Play at
-          <span className="text-orange-500">playshredle.com</span>
+          <span className="text-orange-500">https://www.playshredle.com</span>
         </div>
       </div>
     </motion.div>
