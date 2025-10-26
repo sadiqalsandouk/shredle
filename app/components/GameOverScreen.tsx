@@ -381,7 +381,7 @@ export function GameOverScreen({
 
         <div className="pt-2 text-xs font-medium text-gray-400 flex items-center justify-center gap-1">
           Play at
-          <span className="text-orange-500">https://www.playshredle.com</span>
+          <span className="text-orange-500">www.playshredle.com</span>
         </div>
       </div>
     </motion.div>
