@@ -2,7 +2,7 @@ import { cookies } from "next/headers"
 import { getUTCMidnight } from "./getUTCMidnight"
 import { GameResult } from "../types/types"
 
-export function setGameCookie(
+export async function setGameCookie(
   now: Date,
   streak: number,
   gameHistory: GameResult[]
@@ -14,7 +14,8 @@ export function setGameCookie(
   const expires = new Date(getUTCMidnight(now))
   expires.setUTCDate(expires.getUTCDate())
 
-  cookies().set({
+  const cookieStore = await cookies()
+  cookieStore.set({
     name: "gameState",
     value: JSON.stringify({
       lastPlayed: nowUTC,
@@ -25,12 +26,12 @@ export function setGameCookie(
   })
 }
 
-export function getGameCookie(): {
+export async function getGameCookie(): Promise<{
   streak: number
   lastPlayed: string
   gameHistory: GameResult[]
-} | null {
-  const cookieStore = cookies()
+} | null> {
+  const cookieStore = await cookies()
   const gameCookie = cookieStore.get("gameState")
 
   if (!gameCookie) return null
