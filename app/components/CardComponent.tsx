@@ -21,8 +21,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
 }) => {
   return (
     <Card
-      className={`w-[140px] sm:w-[280px] flex flex-col justify-between bg-white dark:bg-gray-800 rounded-3xl border-2 dark:border-gray-700
-      }`}
+      className="w-[140px] sm:w-[280px] flex flex-col justify-between bg-white dark:bg-gray-800 rounded-3xl border-2 border-orange-100 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-200"
     >
       <CardHeader className="flex flex-col items-center space-y-0 p-2 sm:p-4">
         <div className="w-full h-24 sm:h-48 relative rounded-2xl overflow-hidden mb-2 sm:mb-4">
@@ -68,7 +67,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
               <Button
                 key={button}
                 variant="default"
-                className={`${
+                className={`gap-1.5 transition-transform active:scale-95 disabled:active:scale-100 ${
                   button === "Higher"
                     ? "bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-600 text-white text-lg"
                     : "bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600 text-white text-lg"
@@ -76,6 +75,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
                 onClick={buttonHandlers[index]}
                 disabled={disabled}
               >
+                <span aria-hidden>{button === "Higher" ? "▲" : "▼"}</span>
                 {button}
               </Button>
             ))}

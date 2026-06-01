@@ -75,10 +75,10 @@ export default function Leaderboard({ initialPage = 1 }: LeaderboardProps) {
     return (
       <div className="text-center p-6">
         <div className="text-red-600 dark:text-red-400 mb-4">
-          Unable to load leaderboard right now.
+          Couldn&apos;t reach the leaderboard.
         </div>
         <div className="text-gray-600 dark:text-gray-400 text-sm">
-          The leaderboard feature is still being set up. Check back soon!
+          Hit a temporary hiccup loading scores. Refresh the page to try again.
         </div>
       </div>
     )

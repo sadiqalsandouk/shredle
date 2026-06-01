@@ -13,41 +13,28 @@ export default function GameHeader() {
   const isLeaderboard = pathname === "/leaderboard"
   const isResources = pathname === "/resources" || pathname?.startsWith("/nutrition-guide") || pathname?.startsWith("/calorie-guide") || pathname?.startsWith("/healthy-eating")
   const isDailyMode = pathname === "/" || (!isStreakMode && !isProteinMode && !isLeaderboard && !isResources)
-  const [showNew, setShowNew] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
-    const hasSeenProtein = localStorage.getItem("hasSeenProteinMode")
-    if (!hasSeenProtein) {
-      setShowNew(true)
-    }
-
-    if (isProteinMode) {
-      localStorage.setItem("hasSeenProteinMode", "true")
-      setShowNew(false)
-    }
-
     // Check for dark mode
     const checkDarkMode = () => {
       const isDark = document.documentElement.classList.contains('dark')
       setIsDarkMode(isDark)
     }
-    
+
     // Initial check
     checkDarkMode()
-    
+
     // Listen for theme changes
     const observer = new MutationObserver(checkDarkMode)
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class']
     })
-    
+
     return () => observer.disconnect()
-  }, [isProteinMode])
+  }, [])
 
   return (
     <>
@@ -107,13 +94,6 @@ export default function GameHeader() {
               >
                 Protein
               </Link>
-              {mounted && showNew && (
-                <div className="absolute -top-2 -right-2 z-10">
-                  <div className="bg-gradient-to-r from-red-500 to-red-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm animate-pulse dark:from-red-600 dark:to-red-700">
-                    NEW
-                  </div>
-                </div>
-              )}
             </div>
 
             <div className="hidden sm:flex items-center gap-1 lg:gap-2">

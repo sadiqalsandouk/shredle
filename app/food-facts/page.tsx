@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function FoodFacts() {
   const PUBLISHED = "2024-05-01"
-  const UPDATED = "2025-09-14"
+  const UPDATED = "2026-05-15"
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
