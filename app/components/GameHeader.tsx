@@ -5,6 +5,7 @@ import { PoppinsFontHeader } from "../utils/font"
 import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 import ThemeToggle from "./ThemeToggle"
+import SoundToggle from "./SoundToggle"
 
 export default function GameHeader() {
   const pathname = usePathname()
@@ -121,7 +122,8 @@ export default function GameHeader() {
               <HowToPlay isMobile={false} />
             </div>
 
-            <div className="ml-2 hidden sm:block">
+            <div className="ml-2 hidden sm:flex items-center">
+              <SoundToggle />
               <ThemeToggle />
             </div>
 
@@ -255,7 +257,8 @@ export default function GameHeader() {
 
         {/* Sidebar Footer */}
         <div className="mt-auto p-4 border-t border-gray-200 dark:border-gray-600">
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center gap-2">
+            <SoundToggle />
             <ThemeToggle />
           </div>
         </div>
