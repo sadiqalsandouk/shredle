@@ -7,6 +7,7 @@ import { loadGameState, saveGameState } from "../utils/storage"
 import { seededShuffle } from "../utils/fisher-yates"
 import { updateGameStatus } from "../utils/api"
 import { playCorrect, playWrong } from "../utils/sounds"
+import { hapticCorrect, hapticWrong } from "../utils/haptics"
 
 export function useGameLogic(
   foodItems: FoodItem[],
@@ -171,8 +172,13 @@ export function useGameLogic(
 
     setFeedback(isCorrect ? "correct" : "wrong")
     setFeedbackKey((prevKey) => prevKey + 1)
-    if (isCorrect) playCorrect()
-    else playWrong()
+    if (isCorrect) {
+      playCorrect()
+      hapticCorrect()
+    } else {
+      playWrong()
+      hapticWrong()
+    }
 
     if (isCorrect) {
       setStreak(streak + 1)
