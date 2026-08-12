@@ -181,15 +181,8 @@ export default function TermsAndConditions() {
         </h2>
         <p className="text-gray-700 dark:text-gray-300">
           If you have any questions or concerns about these Terms and
-          Conditions, please{" "}
-          <a
-            href="/contact"
-            className="text-orange-600 hover:text-orange-800 dark:text-orange-400 dark:hover:text-orange-300"
-          >
-            contact us
-          </a>
-          . We are committed to addressing your inquiries promptly and
-          transparently.
+          Conditions, please reach out. We are committed to addressing your
+          inquiries promptly and transparently.
         </p>
 
         <p className="mt-6 text-sm italic text-gray-600 dark:text-gray-400">

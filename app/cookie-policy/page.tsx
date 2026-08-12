@@ -37,11 +37,6 @@ export default function CookiePolicy() {
           <h2 className="text-lg font-bold mb-2 text-orange-700 dark:text-orange-400">Advertising Partners</h2>
           <p>We use Google AdSense. See our <a className="underline text-orange-700 dark:text-orange-400" href="/privacy">Privacy Policy</a> and <a className="underline text-orange-700 dark:text-orange-400" href="/ads.txt">ads.txt</a>.</p>
         </section>
-
-        <section>
-          <h2 className="text-lg font-bold mb-2 text-orange-700 dark:text-orange-400">Contact</h2>
-          <p>Questions? <a className="underline text-orange-700 dark:text-orange-400" href="/contact">Contact us</a>.</p>
-        </section>
       </div>
     </FooterPagesLayout>
   )

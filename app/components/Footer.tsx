@@ -150,14 +150,6 @@ export default function Footer() {
                   Cookie Policy
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-600 hover:text-orange-600 dark:text-gray-400 dark:hover:text-orange-300"
-                >
-                  Contact
-                </Link>
-              </li>
             </ul>
           </div>
         </div>

@@ -39,11 +39,6 @@ export default function About() {
           </p>
         </section>
 
-        <section className="bg-white/70 dark:bg-gray-800/70 p-5 rounded-lg">
-          <p className="text-gray-700 dark:text-gray-300">
-            Have a question? <Link href="/contact" className="underline text-orange-700 dark:text-orange-400">Contact us</Link>
-          </p>
-        </section>
 
         <section>
           <h2 className="text-xl font-bold mb-3 text-orange-700 dark:text-orange-400">
