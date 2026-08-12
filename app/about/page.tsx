@@ -21,7 +21,7 @@ export default function About() {
   return (
     <FooterPagesLayout title="About Shredle">
       <div className="space-y-6">
-        <div className="text-sm text-gray-600 dark:text-gray-400">By <span className="font-medium">Sadiq</span> • Published 2024-05-01 • Updated 2025-09-14</div>
+        <div className="text-sm text-gray-600 dark:text-gray-400">Published 2024-05-01 • Updated 2025-09-14</div>
         <section>
           <h2 className="text-xl font-bold mb-3 text-orange-700 dark:text-orange-400">
             What is Shredle?
@@ -41,7 +41,7 @@ export default function About() {
 
         <section className="bg-white/70 dark:bg-gray-800/70 p-5 rounded-lg">
           <p className="text-gray-700 dark:text-gray-300">
-            Contact: <a href="mailto:sadiqdotdigital@gmail.com" className="underline text-orange-700 dark:text-orange-400">sadiqdotdigital@gmail.com</a>
+            Have a question? <Link href="/contact" className="underline text-orange-700 dark:text-orange-400">Contact us</Link>
           </p>
         </section>
 

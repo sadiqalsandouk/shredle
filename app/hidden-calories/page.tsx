@@ -25,7 +25,7 @@ export default function HiddenCalories() {
   return (
     <FooterPagesLayout title="Hidden Calories: Foods That Pack More Energy Than You Think">
       <div className="space-y-8">
-        <div className="text-sm text-gray-600 dark:text-gray-400">By <span className="font-medium">Sadiq</span> • Updated {new Date().toLocaleDateString()}</div>
+        <div className="text-sm text-gray-600 dark:text-gray-400">Updated {new Date().toLocaleDateString()}</div>
         <section>
           <h2 className="text-2xl font-bold mb-4 text-orange-700 dark:text-orange-400">
             The Surprising World of Hidden Calories

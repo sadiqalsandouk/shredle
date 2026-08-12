@@ -24,7 +24,7 @@ export default function RestaurantCalories() {
   return (
     <FooterPagesLayout title="Restaurant Calories: How Dining Out Affects Your Nutrition Goals">
       <div className="space-y-8">
-        <div className="text-sm text-gray-600 dark:text-gray-400">By <span className="font-medium">Sadiq</span> • Updated {new Date().toLocaleDateString()}</div>
+        <div className="text-sm text-gray-600 dark:text-gray-400">Updated {new Date().toLocaleDateString()}</div>
         <section>
           <h2 className="text-2xl font-bold mb-4 text-orange-700 dark:text-orange-400">
             The Hidden Cost of Convenience

@@ -181,12 +181,12 @@ export default function TermsAndConditions() {
         </h2>
         <p className="text-gray-700 dark:text-gray-300">
           If you have any questions or concerns about these Terms and
-          Conditions, please contact us at{" "}
+          Conditions, please{" "}
           <a
-            href="mailto:sadiqdotdigital@gmail.com"
+            href="/contact"
             className="text-orange-600 hover:text-orange-800 dark:text-orange-400 dark:hover:text-orange-300"
           >
-            sadiqdotdigital@gmail.com
+            contact us
           </a>
           . We are committed to addressing your inquiries promptly and
           transparently.

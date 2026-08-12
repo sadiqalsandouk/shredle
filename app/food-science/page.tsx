@@ -26,7 +26,7 @@ export default function FoodScience() {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: "Food Science - Understanding the Science Behind Nutrition",
-    author: { "@type": "Person", name: "Sadiq" },
+    author: { "@type": "Organization", name: "Shredle" },
     datePublished: PUBLISHED,
     dateModified: UPDATED,
     mainEntityOfPage: {
@@ -38,7 +38,7 @@ export default function FoodScience() {
     <FooterPagesLayout title="Food Science">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="space-y-6">
-        <div className="text-sm text-gray-600 dark:text-gray-400">By <span className="font-medium">Sadiq</span> • Published {PUBLISHED} • Updated {UPDATED}</div>
+        <div className="text-sm text-gray-600 dark:text-gray-400">Published {PUBLISHED} • Updated {UPDATED}</div>
         <section>
           <h2 className="text-xl font-bold mb-3 text-orange-700 dark:text-orange-400">
             The Science Behind Food and Nutrition

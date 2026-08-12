@@ -11,7 +11,7 @@ export default function CookiePolicy() {
   return (
     <FooterPagesLayout title="Cookie Policy">
       <div className="space-y-6 text-gray-700 dark:text-gray-300">
-        <div className="text-sm text-gray-600 dark:text-gray-400">By <span className="font-medium">Sadiq</span> • Published 2024-05-01 • Updated 2025-09-14</div>
+        <div className="text-sm text-gray-600 dark:text-gray-400">Published 2024-05-01 • Updated 2025-09-14</div>
 
         <section>
           <h2 className="text-lg font-bold mb-2 text-orange-700 dark:text-orange-400">What Are Cookies?</h2>
@@ -40,7 +40,7 @@ export default function CookiePolicy() {
 
         <section>
           <h2 className="text-lg font-bold mb-2 text-orange-700 dark:text-orange-400">Contact</h2>
-          <p>Questions? Email <a className="underline text-orange-700 dark:text-orange-400" href="mailto:sadiqdotdigital@gmail.com">sadiqdotdigital@gmail.com</a>.</p>
+          <p>Questions? <a className="underline text-orange-700 dark:text-orange-400" href="/contact">Contact us</a>.</p>
         </section>
       </div>
     </FooterPagesLayout>

@@ -192,13 +192,12 @@ export default function Privacy() {
           Contact Information
         </h2>
         <p className="text-gray-700 dark:text-gray-300">
-          For any privacy-related questions, concerns, or requests, please
-          contact us at{" "}
+          For any privacy-related questions, concerns, or requests, please{" "}
           <a
-            href="mailto:sadiqdotdigital@gmail.com"
+            href="/contact"
             className="text-orange-600 hover:text-orange-800 dark:text-orange-400 dark:hover:text-orange-300"
           >
-            sadiqdotdigital@gmail.com
+            contact us
           </a>
           . We are committed to addressing your privacy inquiries promptly and
           transparently.

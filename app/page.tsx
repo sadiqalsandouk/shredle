@@ -25,8 +25,8 @@ const jsonLd = {
     priceCurrency: "USD",
   },
   author: {
-    "@type": "Person",
-    name: "SadiqDotDigital",
+    "@type": "Organization",
+    name: "Shredle",
   },
   aggregateRating: {
     "@type": "AggregateRating",

@@ -1,7 +1,5 @@
 import { Metadata } from "next"
 import FooterPagesLayout from "../components/FooterPagesLayout"
-import { Mail } from "lucide-react"
-import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Contact Shredle - Support, Feedback & Educational Partnerships",
@@ -23,8 +21,7 @@ export default function Contact() {
     <FooterPagesLayout title="Contact">
       <div className="space-y-8">
         <div className="text-sm text-gray-600 dark:text-gray-400">
-          By <span className="font-medium">Sadiq</span> • Updated{" "}
-          {new Date().toLocaleDateString()}
+          Updated {new Date().toLocaleDateString()}
         </div>
         <section>
           <h2 className="text-xl font-bold mb-4 text-orange-700 dark:text-orange-400">
@@ -78,50 +75,6 @@ export default function Contact() {
                 specific food categories? All ideas welcome!
               </p>
             </div>
-          </div>
-        </section>
-
-        <section>
-          <div className="text-gray-700 dark:text-gray-300 space-y-4">
-            <Link
-              href="mailto:sadiqdotdigital@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group"
-            >
-              <div
-                className="bg-white/80 dark:bg-gray-800/80 rounded-lg p-6 shadow-sm 
-                transition-all duration-300 
-                group-hover:shadow-md group-hover:bg-white/90 dark:group-hover:bg-gray-700/90
-                group-hover:-translate-y-0.5"
-              >
-                <h4 className="text-lg font-semibold text-orange-800 dark:text-orange-300 flex items-center gap-3 mb-3">
-                  <Mail className="w-6 h-6" />
-                  Email
-                </h4>
-                <span className="group-hover:text-orange-900 text-gray-700 dark:text-gray-300 dark:group-hover:text-orange-300 text-lg">
-                  sadiqdotdigital@gmail.com
-                </span>
-              </div>
-            </Link>
-
-            <a
-              href="https://buymeacoffee.com/sadiqdotdigital"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group"
-            >
-              <div
-                className="bg-white/80 dark:bg-gray-800/80 rounded-lg p-6 shadow-sm 
-                transition-all duration-300 
-                group-hover:shadow-md group-hover:bg-white/90 dark:group-hover:bg-gray-700/90
-                group-hover:-translate-y-0.5"
-              >
-                <h4 className="text-lg font-semibold text-orange-800 dark:text-orange-300 flex items-center gap-3 mb-3">
-                  ☕ Support Shredle
-                </h4>
-              </div>
-            </a>
           </div>
         </section>
 

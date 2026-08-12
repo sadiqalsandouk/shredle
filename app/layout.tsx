@@ -60,7 +60,6 @@ export const metadata: Metadata = {
     description:
       "Challenge your nutrition knowledge with this addictive daily game!",
     images: ["/opengraph-image.png"],
-    creator: "@sadiqdotdigital",
   },
   robots: {
     index: true,
