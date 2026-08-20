@@ -9,6 +9,8 @@ Allow: /terms
 Allow: /contact
 Allow: /leaderboard
 Allow: /streak
+Allow: /protein
+Allow: /resources
 
 # Block admin/dashboard routes
 Disallow: /dashboard
@@ -24,5 +26,48 @@ Allow: /
 
 # Allow image indexing for richer results
 
+# AI assistants and answer engines - explicitly allowed for AI search/citation
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
 # Sitemaps
-Sitemap: https://www.playshredle.com/sitemap.xml 
+Sitemap: https://www.playshredle.com/sitemap.xml

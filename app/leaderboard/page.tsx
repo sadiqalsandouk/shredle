@@ -1,4 +1,11 @@
+import { Metadata } from "next"
 import Leaderboard from "../components/Leaderboard"
+
+export const metadata: Metadata = {
+  title: "Leaderboard - Shredle",
+  description:
+    "See the top daily and streak scores from Shredle players and check how your calorie-guessing skills compare.",
+}
 
 export default function LeaderboardPage() {
   return (

@@ -35,6 +35,31 @@ const jsonLd = {
   },
 }
 
+const howToJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to Play Shredle",
+  description:
+    "Compare two foods and guess which one has more calories to build your daily streak.",
+  step: [
+    {
+      "@type": "HowToStep",
+      name: "Compare",
+      text: "Compare the revealed food item with the hidden one.",
+    },
+    {
+      "@type": "HowToStep",
+      name: "Guess",
+      text: "Click Higher or Lower to guess whether the hidden food has more or fewer calories.",
+    },
+    {
+      "@type": "HowToStep",
+      name: "Build your streak",
+      text: "Keep guessing correctly to build your streak. The game ends when you guess wrong, and a new challenge is available every day.",
+    },
+  ],
+}
+
 export default async function Home() {
   const res = await getFoodData()
   return (
@@ -42,6 +67,10 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
       />
       <div className="flex flex-col items-center w-full">
         <GameClientWrapper foodData={res.foodData} />
