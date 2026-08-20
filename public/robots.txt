@@ -6,7 +6,6 @@ Allow: /
 # Main pages
 Allow: /privacy
 Allow: /terms
-Allow: /contact
 Allow: /leaderboard
 Allow: /streak
 Allow: /protein

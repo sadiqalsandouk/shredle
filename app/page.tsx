@@ -4,6 +4,7 @@ import GameClientWrapper from "./components/GameClientWrapper"
 import FAQ from "./components/FAQ"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/" },
   title: "Shredle - Daily Food Calorie Guessing Game",
   description:
     "Challenge yourself with Shredle, a daily game where you guess which food has more calories. Learn about nutrition while having fun!",
@@ -73,6 +74,9 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
       />
       <div className="flex flex-col items-center w-full">
+        <h1 className="text-lg sm:text-xl font-bold text-orange-700 dark:text-orange-400 text-center mb-4">
+          Shredle: Daily Food Calorie Higher/Lower Game
+        </h1>
         <GameClientWrapper foodData={res.foodData} />
         <section className="w-full max-w-3xl px-3 mt-10">
           <div className="rounded-lg border border-orange-200 bg-orange-50/60 dark:border-orange-900/40 dark:bg-orange-950/20 px-4 py-3 flex items-center gap-3">

@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import Leaderboard from "../components/Leaderboard"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/leaderboard" },
   title: "Leaderboard - Shredle",
   description:
     "See the top daily and streak scores from Shredle players and check how your calorie-guessing skills compare.",

@@ -4,6 +4,7 @@ import Link from "next/link"
 import AuthorBox from "../components/AuthorBox"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cooking-calories" },
   title: "Cooking Calories - How Preparation Methods Affect Food Energy",
   description:
     "Learn how different cooking methods affect the calorie content of foods. Discover which cooking techniques add calories and which help reduce them.",

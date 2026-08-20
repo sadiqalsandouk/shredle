@@ -3,6 +3,7 @@ import FooterPagesLayout from "../components/FooterPagesLayout"
 import AuthorBox from "../components/AuthorBox"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/healthy-eating" },
   title: "Healthy Eating Guide - Balanced Nutrition for Everyone",
   description:
     "Learn the principles of healthy eating, balanced nutrition, and how to make better food choices for long-term health and wellbeing.",

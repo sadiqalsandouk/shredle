@@ -4,6 +4,7 @@ import Link from "next/link"
 import AuthorBox from "../components/AuthorBox"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/food-facts" },
   title: "Food Facts - Surprising Nutrition Information and Food Science",
   description:
     "Discover fascinating food facts, nutritional insights, and scientific explanations about everyday foods and their calorie content.",

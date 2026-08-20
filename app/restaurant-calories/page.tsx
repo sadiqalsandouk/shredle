@@ -3,6 +3,7 @@ import FooterPagesLayout from "../components/FooterPagesLayout"
 import Link from "next/link"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/restaurant-calories" },
   title: "Restaurant Calories: How Dining Out Affects Your Nutrition Goals",
   description:
     "Understand how restaurant meals compare to home cooking in calories and nutrition. Learn strategies for making healthier choices when dining out, from fast food to fine dining establishments.",

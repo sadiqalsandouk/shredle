@@ -36,9 +36,9 @@ export const ProteinCardComponent: React.FC<ProteinCardComponentProps> = ({
         <h3 className="font-bold text-xs sm:text-xl text-center text-orange-800 dark:text-orange-300">
           {foodItemName}
         </h3>
-        <h1 className="text-[10px] sm:text-sm text-center text-orange-600/80 dark:text-orange-400/80 italic">
+        <p className="text-[10px] sm:text-sm text-center text-orange-600/80 dark:text-orange-400/80 italic">
           (100g)
-        </h1>
+        </p>
       </CardHeader>
       <CardContent className="text-center flex-1 flex items-center justify-center p-2 sm:p-6">
         {!buttons ? (

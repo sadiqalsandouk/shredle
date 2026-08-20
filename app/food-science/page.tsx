@@ -4,6 +4,7 @@ import AuthorBox from "../components/AuthorBox"
 import Link from "next/link"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/food-science" },
   title: "Food Science - Understanding the Science Behind Nutrition",
   description:
     "Explore the science behind food, nutrition, and calories. Learn about macronutrients, energy metabolism, and the chemistry of cooking.",

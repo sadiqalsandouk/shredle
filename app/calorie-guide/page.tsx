@@ -3,6 +3,7 @@ import FooterPagesLayout from "../components/FooterPagesLayout"
 import AuthorBox from "../components/AuthorBox"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/calorie-guide" },
   title: "Complete Calorie Guide - Understanding Food Energy & Nutrition",
   description:
     "Comprehensive guide to understanding calories in food, portion control, calorie density, and building healthy relationships with food energy. Learn practical estimation skills and debunk common calorie myths.",

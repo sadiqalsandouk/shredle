@@ -3,6 +3,7 @@ import FooterPagesLayout from "../components/FooterPagesLayout"
 import Link from "next/link"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About Shredle - Learn About Calories and Nutrition",
   description:
     "Learn about calories, nutrition facts, and how Shredle helps you understand food energy content in a fun, educational way.",

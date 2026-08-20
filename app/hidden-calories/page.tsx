@@ -3,6 +3,7 @@ import FooterPagesLayout from "../components/FooterPagesLayout"
 import Link from "next/link"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/hidden-calories" },
   title: "Hidden Calories: 25 Foods That Pack More Energy Than You Think",
   description:
     "Discover the surprising calorie content in everyday foods that appear healthy or low-calorie. Learn to identify hidden calories in drinks, condiments, cooking methods, and seemingly healthy snacks to make better nutrition choices.",

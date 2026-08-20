@@ -3,6 +3,7 @@ import FooterPagesLayout from "../components/FooterPagesLayout"
 import Link from "next/link"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/portion-control" },
   title: "Portion Control Guide - Understanding Serving Sizes vs Reality",
   description:
     "Master portion control with practical strategies for estimating serving sizes, understanding food labels, and making balanced choices. Learn the difference between serving sizes and typical portions for better nutrition management.",

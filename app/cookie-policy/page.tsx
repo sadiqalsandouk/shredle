@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import FooterPagesLayout from "../components/FooterPagesLayout"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/cookie-policy" },
   title: "Cookie Policy - Shredle",
   description:
     "Learn how Shredle uses cookies and how to manage your preferences, including advertising and analytics cookies.",

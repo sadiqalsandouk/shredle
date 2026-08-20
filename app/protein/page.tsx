@@ -4,6 +4,7 @@ import FAQ from "../components/FAQ"
 import ProteinGameWrapper from "../components/ProteinGameWrapper"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/protein" },
   title: "Protein Mode - Shredle",
   description:
     "Play Shredle's Protein Mode: compare two foods and guess which one has more protein in this daily nutrition guessing game.",

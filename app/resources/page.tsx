@@ -3,6 +3,7 @@ import Link from "next/link"
 import FooterPagesLayout from "../components/FooterPagesLayout"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/resources" },
   title: "Nutrition Resources - Food Education Hub",
   description:
     "Explore our collection of nutrition guides, food science articles, and healthy eating resources to build your food knowledge.",

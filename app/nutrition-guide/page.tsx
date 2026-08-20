@@ -3,6 +3,7 @@ import FooterPagesLayout from "../components/FooterPagesLayout"
 import AuthorBox from "../components/AuthorBox"
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/nutrition-guide" },
   title: "Nutrition Guide - Comprehensive Food Education",
   description:
     "Learn about nutrition basics, macronutrients, reading food labels, and making informed dietary choices in our comprehensive nutrition guide.",
