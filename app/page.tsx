@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import { getFoodData } from "./utils/getFoodData"
+import { getPuzzleNumber } from "./utils/getPuzzleNumber"
 import GameClientWrapper from "./components/GameClientWrapper"
 import FAQ from "./components/FAQ"
 
@@ -63,6 +64,12 @@ const howToJsonLd = {
 
 export default async function Home() {
   const res = await getFoodData()
+  const puzzleNumber = getPuzzleNumber()
+  const todayLabel = new Date().toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  })
   return (
     <>
       <script
@@ -82,7 +89,7 @@ export default async function Home() {
           <div className="rounded-lg border border-orange-200 bg-orange-50/60 dark:border-orange-900/40 dark:bg-orange-950/20 px-4 py-3 flex items-center gap-3">
             <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse shrink-0" aria-hidden />
             <p className="text-sm text-gray-700 dark:text-gray-300">
-              <span className="font-semibold text-orange-800 dark:text-orange-300">New foods added!</span> Fresh items in the daily pool.
+              <span className="font-semibold text-orange-800 dark:text-orange-300">Shredle #{puzzleNumber}</span> · New daily challenge for {todayLabel}
             </p>
           </div>
         </section>
